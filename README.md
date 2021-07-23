@@ -1,2 +1,2 @@
-# stack-overflow-clone
+# App Overflow
 A Stack Overflow clone
