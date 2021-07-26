@@ -1,5 +1,5 @@
 # App Overload
-A Stack Overflow clone
+A Stack Overflow clone :)
 
 # Express Project Skeleton
 
