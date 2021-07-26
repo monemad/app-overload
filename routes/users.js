@@ -30,7 +30,8 @@ router.post('/', csrfProtection, userValidators, asyncHandler(async (req, res) =
 res.redirect('/users')
   }else{
     const errors = validationErrors.array().map(error => error.msg)
-    res.render('user-register', {errors, user})
+    const csrfToken = req.csrfToken();
+    res.render('user-register', {errors, user , csrfToken})
   }
 }));
 
