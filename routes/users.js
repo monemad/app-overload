@@ -1,8 +1,9 @@
 const express = require('express');
-
+const bcrypt = require('bcryptjs')
 const router = express.Router();
 const { User } = require('../db/models')
-const { asyncHandler, csrfProtection, userValidators, loginValidators, handleValidationErrors } = require('./utils')
+const { asyncHandler, csrfProtection, userValidators, loginValidators, handleValidationErrors } = require('./utils');
+const { validationResult } = require('express-validator');
 
 /* GET users listing. */
 router.get('/', async function(req, res, next) {
@@ -19,7 +20,18 @@ router.get('/signup', csrfProtection, asyncHandler(async (req, res) => {
 
 // Submit the user registration form
 router.post('/', csrfProtection, userValidators, asyncHandler(async (req, res) => {
-  // TODO
+  const validationErrors = validationResult(req)
+  const {firstName, lastName, username, password, email} = req.body
+  const hashedPassword = bcrypt.hash(password, 12)
+  const user = await User.build({firstName, lastName, username, email, hashedPassword, reputation: 0, avatarURL:'../public/images/default.png',})
+  if(validationErrors.isEmpty()){
+    await user.save()
+//NEED TO IMPLEMENT USER AUTHERIZATION
+res.redirect('/users')
+  }else{
+    const errors = validationErrors.array().map(error => error.msg)
+    res.render('user-register', {errors, user})
+  }
 }));
 
 // Get the login form

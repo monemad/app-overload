@@ -1,7 +1,7 @@
 const csrf = require('csurf');
 const { check, validationResult } = require('express-validator');
 const csrfProtection = csrf({cookie: true});
-
+const  bcrypt = require('bcryptjs')
 const asyncHandler = handler => (req, res, next) => handler(req, res, next).catch(next);
 
 const handleValidationErrors = (req, res, next) => {
@@ -79,5 +79,6 @@ module.exports = {
     csrfProtection,
     userValidators,
     loginValidators,
-    handleValidationErrors
+    handleValidationErrors,
+    bcrypt
 }
