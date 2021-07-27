@@ -21,6 +21,7 @@ const handleValidationErrors = (req, res, next) => {
 };
 
 
+
 const userValidators = [
     check('firstName')
         .exists({ checkFalsy: true })
@@ -64,6 +65,8 @@ const userValidators = [
         })
         .withMessage('Passwords do not match'),
 ];
+
+
 
 const loginValidators = [
     check('emailAddress')
