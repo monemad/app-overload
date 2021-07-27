@@ -5,4 +5,7 @@ html
         title="App Overload"
         link(rel='stylesheet' href='/stylesheets/reset.css')
   body
+    if locals.authenticated 
+      span Welcome, #{locals.user.firstName}
+      form(action='/users/logout' method='post'): button(type='submit') Logout
     block content

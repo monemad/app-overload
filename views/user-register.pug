@@ -5,13 +5,14 @@ block content
     +validationErrorSummary(errors)
     form(id='registration-form' method='post' action='/users')
         input(type='hidden' name= '_csrf' value= csrfToken)
-        +field('First Name: ', 'firstName', user.firstName, true)
-        +field('Last Name: ', 'lastName', user.lastName)
-        +field('Username: ', 'username', user.username, true)
-        +field('Email: ', 'email', user.email, 'email', true)
+        +field('First Name: ', 'firstName', newUser.firstName, true)
+        +field('Last Name: ', 'lastName', newUser.lastName)
+        +field('Username: ', 'username', newUser.username, true)
+        +field('Email: ', 'email', newUser.email, 'email', true)
         +field('Password: ', 'password', '', 'password', true)
         +field('Confirm Password: ', 'confirmPassword', '', 'password', true)
         button(type='submit') Sign Up!
-
+    p Already have an account? 
+        a(href='/users/login') Log in
 
         
