@@ -66,7 +66,7 @@ const userValidators = [
 ];
 
 const loginValidators = [
-    check('emailAddress')
+    check('email')
         .exists({ checkFalsy: true })
         .withMessage('Please provide a value for email address'),
     check('password')
