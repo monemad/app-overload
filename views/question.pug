@@ -15,11 +15,11 @@ block content
             ul 
                 each qComment in qComments 
                     li= qComment.comment 
-                        +validationErrorSummary(errors)
-                        form(id='new-question-comment' method='post' action=`/questions/${question.id}/comments`)
-                            input(type='hidden' name= '_csrf' value= csrfToken)
-                            +field('Comment: ', 'comment', '', 'textarea', true)
-                            button(type='submit') Comment on this Question
+                +validationErrorSummary(errors)
+                form(id='new-question-comment' method='post' action=`/questions/${question.id}/comments`)
+                    input(type='hidden' name= '_csrf' value= csrfToken)
+                    +field('Comment: ', 'comment', '', 'textarea', true)
+                    button(type='submit') Comment on this Question
     div#question-answers
         h1 Answers
             ul 
