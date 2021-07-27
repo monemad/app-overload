@@ -22,7 +22,7 @@ router.get('/signup', csrfProtection, asyncHandler(async (req, res) => {
 router.post('/', csrfProtection, userValidators, asyncHandler(async (req, res) => {
   const validationErrors = validationResult(req)
   const {firstName, lastName, username, password, email} = req.body
-  const hashedPassword = bcrypt.hash(password, 12)
+  const hashedPassword = await bcrypt.hash(password, 12)
   const user = await User.build({firstName, lastName, username, email, hashedPassword, reputation: 0, avatarURL:'../public/images/default.png',})
   if(validationErrors.isEmpty()){
     await user.save()
