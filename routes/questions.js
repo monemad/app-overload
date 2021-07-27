@@ -11,17 +11,22 @@ router.get('/', asyncHandler(async (req, res, next) => {
 
 /* GET the question page to view a specific question */
 router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => {
+    
     const question = await Question.findOne({
         where: {
             id: req.params.id
         }
     })
+
+    const isMyQuestion = question.userId === res.locals.user.id;
+
     const answers = await Answer.findAll({
         include: AnswerComment,
         where: {
             questionId: req.params.id
         }
     })
+
     const qComments = await QuestionComment.findAll({
         where: {
             questionId: req.params.id
@@ -34,7 +39,9 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
         question,
         answers,
         qComments,
-        csrfToken: req.csrfToken()
+        csrfToken: req.csrfToken(),
+        isMyQuestion,
+        userId: res.locals.user.id
     });
 }));
 
