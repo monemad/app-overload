@@ -7,6 +7,7 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const { sequelize } = require('./db/models');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const questionsRouter = require('./routes/questions')
 const answersRouter = require('./routes/answers')
 const errorRouter = require('./routes/error')
 const { sessionSecret } = require('./config');
@@ -45,6 +46,7 @@ app.use(restoreUser);
 // use routers
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/questions', questionsRouter)
 app.use('/answers', answersRouter)
 app.use(errorRouter);
 
