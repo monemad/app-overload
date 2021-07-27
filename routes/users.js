@@ -1,9 +1,10 @@
 const express = require('express');
 const bcrypt = require('bcryptjs')
 const router = express.Router();
-const { User } = require('../db/models')
+const { User } = require('../db/models');
 const { asyncHandler, csrfProtection, userValidators, loginValidators, handleValidationErrors } = require('./utils');
 const { validationResult } = require('express-validator');
+const { loginUser, logoutUser } = require('../auth');
 
 /* GET users listing. */
 router.get('/', async function(req, res, next) {
@@ -13,9 +14,9 @@ router.get('/', async function(req, res, next) {
 
 // Get the user registration form
 router.get('/signup', csrfProtection, asyncHandler(async (req, res) => {
-  const user = await User.build();
+  const newUser = await User.build();
   const csrfToken = req.csrfToken();
-  res.render('user-register', { user, csrfToken });
+  res.render('user-register', { newUser, csrfToken });
 }));
 
 // Submit the user registration form
@@ -23,15 +24,15 @@ router.post('/', csrfProtection, userValidators, asyncHandler(async (req, res) =
   const validationErrors = validationResult(req);
   const {firstName, lastName, username, password, email} = req.body;
   const hashedPassword = await bcrypt.hash(password, 12);
-  const user = await User.build({ firstName, lastName, username, email, hashedPassword, reputation: 0, avatarURL:'../public/images/default.png' });
+  const newUser = await User.build({ firstName, lastName, username, email, hashedPassword, reputation: 0, avatarURL:'../public/images/default.png' });
   if (validationErrors.isEmpty()) {
-    await user.save();
-  //NEED TO IMPLEMENT USER AUTHERIZATION
-res.redirect('/users');
+    await newUser.save();
+    loginUser(req, res, newUser);
+    res.redirect('/');
   } else {
     const errors = validationErrors.array().map(error => error.msg);
     const csrfToken = req.csrfToken();
-    res.render('user-register', { errors, user , csrfToken });
+    res.render('user-register', { errors, newUser , csrfToken });
   }
 }));
 
@@ -43,32 +44,36 @@ router.get('/login', csrfProtection, asyncHandler(async (req, res) => {
 
 // Submit the login form
 router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, res) => {
-  // grab validation errors
-  // destructure email, password from req body
-
   const validationErrors = validationResult(req);
   const { email, password } = req.body;
+  const csrfToken = req.csrfToken();
 
   if (!validationErrors.isEmpty()) {
     const errors = validationErrors.array().map(error => error.msg);
-    const csrfToken = req.csrfToken();
-    res.render('user-login', { csrfToken, errors })
+    return res.render('user-login', { csrfToken, errors })
   }
 
-  const user = await User.findOne({ where: email });
+  const user = await User.findOne({ where: { email } });
+  const errors = []
   if (user) {
     let match = await bcrypt.compare(password, user.hashedPassword);
     if (match){
-      // IMPLEMENT USER AUTH
-      res.redirect('/');
+      loginUser(req, res, user);
+      return res.redirect('/');
     }
+
+    errors.push('Could not login with provided email and password. Please try again!')
+    return res.render('user-login', { csrfToken, errors })
   }
-  // else, check password vs hashed password
-    //if match
-      // implement user login
-      // redirect to /
-    // else 
-      // create array of errors, add error that user cannot be logged in
+
+  errors.push('No user with that email found!');
+  return res.render('user-login', { csrfToken, errors });
+
+}));
+
+router.post('/logout', asyncHandler(async (req, res) => {
+  logoutUser(req, res)
+  res.redirect('/');
 }));
 
 
