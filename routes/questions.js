@@ -72,7 +72,14 @@ router.post('/:id(\\d+)/answers', asyncHandler(async (req, res, next) => {
 
 /* Submit an commment to a specific question which will be dynamically added to the answers list */
 router.post('/:id(\\d+)/comments', asyncHandler(async (req, res, next) => {
-    res.send(`Here in the /questions/${req.params.id}/comments POST route handler to comment on a specific question`);
+    const {comment} = req.body
+    const newQComment = await QuestionComment.create({
+        comment,
+        votes: 1,
+        questionId: req.params.id,
+        userId: res.locals.user.id
+    })
+    res.redirect(`/questions/${req.params.id}`)
 }));
 
 /* Update a specific question by id */
