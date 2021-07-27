@@ -24,17 +24,20 @@ block content
             ul 
                 each answer in answers 
                     li= answer.answer
+
+                        h1= `Answer ${answer.id} Comments`
+                        ul 
+                            each aComment in answer.AnswerComments 
+                                li= aComment.comment
+
                         +validationErrorSummary(errors)
-                        form(id='new-answer' method='post' action=`/answers/${question.id}/comments`)
+                        form(id='new-answer' method='post' action=`/answers/${answer.id}/comments`)
                             +field('Comment: ', 'answer', '', 'textarea', true)
                             button(type='submit') Comment on this Answer
 
 
-            h1 Answer Comments
-                ul 
-                    each aComment in aComments 
-                        li= aComment.comment
 
+    h1 Submit a new Answer
     div#new-answer
         +validationErrorSummary(errors)
         form(id='new-answer' method='post' action=`/questions/${question.id}/answers`)

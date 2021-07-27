@@ -17,6 +17,7 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
         }
     })
     const answers = await Answer.findAll({
+        include: AnswerComment,
         where: {
             questionId: req.params.id
         }
@@ -27,20 +28,12 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
         }
     })
 
-    //how do we implement this so that i can get every comment on every answer?
-    const aComments = await AnswerComment.findAll({
-        where: {
-            answerId: req.params.id
-        }
-    })
-
     console.log(answers)
 
     res.render('question', {
         question,
         answers,
         qComments,
-        aComments
     });
 }));
 
@@ -58,8 +51,7 @@ router.post('/', asyncHandler(async (req, res, next) => {
         details,
         votes: 1,
         viewCount: 1,
-        //we need to get the current userId here
-        userId: res.locals.userId
+        userId: res.locals.user.id
     })
     const questions = await Question.findAll()
     res.render('popular-questions', {questions})
