@@ -10,7 +10,7 @@ router.get('/', asyncHandler(async (req, res, next) => {
 }));
 
 /* GET the question page to view a specific question */
-router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
+router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => {
     const question = await Question.findOne({
         where: {
             id: req.params.id
@@ -34,6 +34,7 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
         question,
         answers,
         qComments,
+        csrfToken: req.csrfToken()
     });
 }));
 

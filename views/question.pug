@@ -17,6 +17,7 @@ block content
                     li= qComment.comment 
                         +validationErrorSummary(errors)
                         form(id='new-question-comment' method='post' action=`/questions/${question.id}/comments`)
+                            input(type='hidden' name= '_csrf' value= csrfToken)
                             +field('Comment: ', 'qcomment', '', 'textarea', true)
                             button(type='submit') Comment on this Question
     div#question-answers
@@ -32,7 +33,8 @@ block content
 
                         +validationErrorSummary(errors)
                         form(id='new-answer' method='post' action=`/answers/${answer.id}/comments`)
-                            +field('Comment: ', 'answer', '', 'textarea', true)
+                            input(type='hidden' name= '_csrf' value= csrfToken)
+                            +field('Comment: ', 'comment', '', 'textarea', true)
                             button(type='submit') Comment on this Answer
 
 
@@ -41,6 +43,7 @@ block content
     div#new-answer
         +validationErrorSummary(errors)
         form(id='new-answer' method='post' action=`/questions/${question.id}/answers`)
+            input(type='hidden' name= '_csrf' value= csrfToken)
             +field('Full Answer: ', 'answer', '', 'textarea', true)
             button(type='submit') Submit an Answer to this Question!
         a(href="/questions") Back to the questions 
