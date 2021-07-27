@@ -1,0 +1,15 @@
+extends layout
+
+append head
+  //- add page specific styles by appending to the head
+  link(rel="stylesheet" href="/stylesheets/index.css")
+  //- add page specific js
+  script(src="/javascripts/index.js" type="module" defer)
+
+block content
+    div#questions-div
+        h1 Most Popular App Overload Questions
+        ul 
+            each question in questions
+                li= question.title
+

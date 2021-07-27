@@ -1,0 +1,18 @@
+extends layout
+
+append head
+  //- add page specific styles by appending to the head
+  link(rel="stylesheet" href="/stylesheets/index.css")
+  //- add page specific js
+  script(src="/javascripts/index.js" type="module" defer)
+
+block content
+    div#question
+        h1 Question
+        p= question.title 
+            h2 Comments 
+            ul 
+                each qcomment in qcomments 
+                    li= qcomment.comment 
+    div#question-answers
+        h1 Answers 

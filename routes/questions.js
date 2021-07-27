@@ -5,7 +5,8 @@ const { asyncHandler, csrfProtection, userValidators, loginValidators, handleVal
 
 /* GET the questions page to view the top questions */
 router.get('/', asyncHandler(async (req, res, next) => {
-    res.send('here in /questions GET route handler to see the home page of recent questions');
+    const questions = await Question.findAll();
+    res.render('popular-questions', {questions})
 }));
 
 /* GET the questions page to view the top questions */
