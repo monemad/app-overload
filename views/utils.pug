@@ -1,9 +1,9 @@
 mixin validationErrorSummary(errors)
-    if errors  
+    if errors
         div(class='alert-error' id='validation-error-div')
             p The following error(s) occurred:
-            ul 
-                each error in errors 
+            ul
+                each error in errors
                     li= error
 
 mixin field(labelText, fieldName, fieldValue, fieldType = 'text', req = false, placeholder = null)
@@ -13,3 +13,5 @@ mixin field(labelText, fieldName, fieldValue, fieldType = 'text', req = false, p
             textarea(id=fieldName name=fieldName class='form-input' rows='5' required= `${req}`)= fieldValue
         else
             input(type=fieldType id=fieldName name=fieldName value=fieldValue placeholder=placeholder class='form-input' required= `${req}`)
+
+

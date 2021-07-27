@@ -2,11 +2,12 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const { sequelize } = require('./db/models');
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const { sequelize } = require('./db/models');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const answersRouter = require('./routes/answers')
 const errorRouter = require('./routes/error')
 const { sessionSecret } = require('./config');
 const { restoreUser } = require('./auth');
@@ -38,9 +39,13 @@ app.use(
 // create Session table if it doesn't already exist
 store.sync();
 
+// restore user using session ID
 app.use(restoreUser);
+
+// use routers
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/answers', answersRouter)
 app.use(errorRouter);
 
 module.exports = app;
