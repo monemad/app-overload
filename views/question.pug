@@ -1,5 +1,5 @@
-
 extends layout
+include utils.pug
 
 append head
   //- add page specific styles by appending to the head
@@ -11,9 +11,33 @@ block content
     div#question
         h1 Question
         p= question.title 
-            h2 Comments 
+            h1 Question Comments 
             ul 
-                each qcomment in qcomments 
-                    li= qcomment.comment 
+                each qComment in qComments 
+                    li= qComment.comment 
+                        +validationErrorSummary(errors)
+                        form(id='new-question-comment' method='post' action=`/questions/${question.id}/comments`)
+                            +field('Comment: ', 'qcomment', '', 'textarea', true)
+                            button(type='submit') Comment on this Question
     div#question-answers
-        h1 Answers 
+        h1 Answers
+            ul 
+                each answer in answers 
+                    li= answer.answer
+                        +validationErrorSummary(errors)
+                        form(id='new-answer' method='post' action=`/answers/${question.id}/comments`)
+                            +field('Comment: ', 'answer', '', 'textarea', true)
+                            button(type='submit') Comment on this Answer
+
+
+            h1 Answer Comments
+                ul 
+                    each aComment in aComments 
+                        li= aComment.comment
+
+    div#new-answer
+        +validationErrorSummary(errors)
+        form(id='new-answer' method='post' action=`/questions/${question.id}/answers`)
+            +field('Full Answer: ', 'answer', '', 'textarea', true)
+            button(type='submit') Submit an Answer to this Question!
+        a(href="/questions") Back to the questions 

@@ -11,4 +11,6 @@ block content
         h1 Most Popular App Overload Questions
         ul 
             each question in questions
-                li= question.title
+                li
+                  a(href=`/questions/${question.id}`)= question.title 
+    a(href="/questions/new") New Question
