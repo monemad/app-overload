@@ -1,0 +1,16 @@
+extends layout
+include utils.pug
+
+append head
+  //- add page specific styles by appending to the head
+  link(rel="stylesheet" href="/stylesheets/index.css")
+  //- add page specific js
+  script(src="/javascripts/index.js" type="module" defer)
+
+block content
+    +validationErrorSummary(errors)
+    form(id='new-question' method='post' action='/questions')
+        input(type='hidden' name= '_csrf' value= csrfToken)
+        +field('Question Title: ', 'title', '', 'text', true)
+        +field('Question Details: ', 'details', question.details, 'textarea', true)
+        button(type='submit') Submit new Question!

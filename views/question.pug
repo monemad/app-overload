@@ -1,0 +1,49 @@
+extends layout
+include utils.pug
+
+append head
+  //- add page specific styles by appending to the head
+  link(rel="stylesheet" href="/stylesheets/index.css")
+  //- add page specific js
+  script(src="/javascripts/index.js" type="module" defer)
+
+block content
+    div#question
+        h1 Question
+        p= question.title 
+            h1 Question Comments 
+            ul 
+                each qComment in qComments 
+                    li= qComment.comment 
+                        +validationErrorSummary(errors)
+                        form(id='new-question-comment' method='post' action=`/questions/${question.id}/comments`)
+                            input(type='hidden' name= '_csrf' value= csrfToken)
+                            +field('Comment: ', 'comment', '', 'textarea', true)
+                            button(type='submit') Comment on this Question
+    div#question-answers
+        h1 Answers
+            ul 
+                each answer in answers 
+                    li= answer.answer
+
+                        h1= `Answer ${answer.id} Comments`
+                        ul 
+                            each aComment in answer.AnswerComments 
+                                li= aComment.comment
+
+                        +validationErrorSummary(errors)
+                        form(id='new-answer' method='post' action=`/answers/${answer.id}/comments`)
+                            input(type='hidden' name= '_csrf' value= csrfToken)
+                            +field('Comment: ', 'comment', '', 'textarea', true)
+                            button(type='submit') Comment on this Answer
+
+
+
+    h1 Submit a new Answer
+    div#new-answer
+        +validationErrorSummary(errors)
+        form(id='new-answer' method='post' action=`/questions/${question.id}/answers`)
+            input(type='hidden' name= '_csrf' value= csrfToken)
+            +field('Full Answer: ', 'answer', '', 'textarea', true)
+            button(type='submit') Submit an Answer to this Question!
+        a(href="/questions") Back to the questions 

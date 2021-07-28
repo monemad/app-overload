@@ -1,17 +1,22 @@
 const express = require('express');
 const bcrypt = require('bcryptjs')
 const router = express.Router();
-const { Answer } = require('../db/models')
+const { Answer, AnswerComment } = require('../db/models')
 const { asyncHandler, csrfProtection, userValidators, loginValidators, handleValidationErrors } = require('./utils');
 const { validationResult } = require('express-validator');
 
 
 
-
-router.post('/:id/comments', csrfProtection, asyncHandler(async (req, res) => {
+router.post('/:id(\\d+)/comments', csrfProtection, asyncHandler(async (req, res) => {
     // const validationErrors = validationResult(req)
     const { comment } = req.body;
-    const answer = Answer.build({ comment });
+    const answer = await AnswerComment.create({
+      comment,
+      votes: 1,
+      answerId: req.params.id,
+      userId: res.locals.user.id
+    });
+    res.redirect('/questions')
   }));
 
 
