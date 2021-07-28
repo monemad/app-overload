@@ -4,7 +4,7 @@ const router = express.Router();
 const { User } = require('../db/models');
 const { asyncHandler, csrfProtection, userValidators, loginValidators, handleValidationErrors } = require('./utils');
 const { validationResult } = require('express-validator');
-const { loginUser, logoutUser } = require('../auth');
+const { loginUser, logoutUser, requireAuth } = require('../auth');
 
 /* GET users listing. */
 router.get('/', async function(req, res, next) {
@@ -71,11 +71,28 @@ router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, 
 
 }));
 
-router.post('/logout', asyncHandler(async (req, res) => {
+router.get('/logout', requireAuth, asyncHandler(async (req, res) => {
   logoutUser(req, res)
   res.redirect('/');
 }));
 
-
+router.get('/demo', asyncHandler(async (req, res) => {
+  if(res.locals.authenticated) return res.redirect('/');
+  let demo = await User.findOne({ where: {email: 'demo@user.com'} });
+  if (!demo) {
+    demo = await User.build({
+      firstName: 'Demo User',
+      lastName: ':)',
+      username: 'demouser',
+      email: 'demo@user.com',
+      hashedPassword: await bcrypt.hash('password', 12),
+      reputation: 0, 
+      avatarURL:'../public/images/default.png'
+    })
+    await demo.save();
+  }
+  loginUser(req, res, demo);
+  return res.redirect('/');
+}));
 
 module.exports = router;

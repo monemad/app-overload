@@ -64,8 +64,8 @@ router.post('/:id(\\d+)/answers', asyncHandler(async (req, res, next) => {
     const newAnswer = await Answer.create({
         answer,
         votes: 0,
-        questionId: 1, // make this dynamic
-        userId: 1 //make this dynamic
+        questionId: req.params.id,
+        userId: res.locals.user.id
     })
     res.redirect(`/questions/${req.params.id}`)
 }));
