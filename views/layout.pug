@@ -1,11 +1,22 @@
+include utils
+
 doctype html
 html
   head
       block head
         title="App Overload"
         link(rel='stylesheet' href='/stylesheets/reset.css')
+        script(src="/javascripts/layout.js" type="module" defer)
   body
-    if locals.authenticated 
-      span Welcome, #{locals.user.firstName}
-      form(action='/users/logout' method='post'): button(type='submit') Logout
+    nav#nav-bar 
+      a(href='/') Home
+      input#search-bar(type='text' name='searchQuery' placeholder='Search here...')
+      button#search-btn Search
+      if locals.authenticated 
+        span Welcome, #{locals.user.firstName}
+        button: a(href='/users/logout') Logout
+      else 
+        button: a(href='/users/login') Login 
+        button: a(href='/users/signup') Sign Up
+        button: a(href='/users/demo') Demo User
     block content
