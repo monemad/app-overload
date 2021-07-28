@@ -7,7 +7,10 @@ const { validationResult } = require('express-validator');
 
 
 
-router.get('/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res) => {
+
+
+
+router.get('/a/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res) => {
     const commentId = parseInt(req.params.id, 10);
     const answerComment = await AnswerComment.findByPk(commentId);
 
@@ -16,7 +19,7 @@ router.get('/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res) => {
 
   }));
 
-router.post('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
+router.post('/a/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
     const newComment = req.body.answer
     const commentId = parseInt(req.params.id, 10);
     const comment = await AnswerComment.findByPk(commentId);
@@ -25,7 +28,7 @@ router.post('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
   }));
 
 
-router.post('/:id(\\d+)/delete', csrfProtection, asyncHandler(async (req, res) => {
+router.post('/a/:id(\\d+)/delete', csrfProtection, asyncHandler(async (req, res) => {
     const commentId = parseInt(req.params.id, 10);
     const answerComment = await AnswerComment.findByPk(commentId);
     await answerComment.destroy();
@@ -34,7 +37,7 @@ router.post('/:id(\\d+)/delete', csrfProtection, asyncHandler(async (req, res) =
   }));
 
 
-router.get('/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res) => {
+router.get('/q/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res) => {
     const Id = parseInt(req.params.id, 10);
     const questionComment = await QuestionComment.findByPk();
 
@@ -43,7 +46,7 @@ router.get('/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res) => {
 
   }));
 
-router.post('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
+router.post('/q/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
     const newComment = req.body.answer
     const commentId = parseInt(req.params.id, 10);
     const comment = await QuestionComment.findByPk(commentId);
@@ -52,7 +55,7 @@ router.post('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
   }));
 
 
-router.post('/:id(\\d+)/delete', csrfProtection, asyncHandler(async (req, res) => {
+router.post('/q/:id(\\d+)/delete', csrfProtection, asyncHandler(async (req, res) => {
     const commentId = parseInt(req.params.id, 10);
     const questionComment = await QuestionComment.findByPk(commentId);
     await questionComment.destroy();
