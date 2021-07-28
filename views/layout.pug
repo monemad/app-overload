@@ -6,6 +6,7 @@ html
       block head
         title="App Overload"
         link(rel='stylesheet' href='/stylesheets/reset.css')
+        link(rel='stylesheet' href='/stylesheets/index.css')
         script(src="/javascripts/layout.js" type="module" defer)
   body
     div#nav-div
@@ -21,5 +22,5 @@ html
           button: a(href='/users/login') Login 
           button: a(href='/users/signup') Sign Up
           button: a(href='/users/demo') Demo User
-
-    block content
+    div#content
+      block content

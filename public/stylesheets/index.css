@@ -21,6 +21,10 @@
     display: inline-flex;
 }
 
+#search-form {
+    display: flex;
+}
+
 #search-bar {
     width: 90%;
 }
