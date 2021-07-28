@@ -33,7 +33,7 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
         }
     })
 
-    console.log(answers)
+    // console.log(answers)
 
     res.render('question', {
         question,
@@ -71,8 +71,8 @@ router.post('/:id(\\d+)/answers', asyncHandler(async (req, res, next) => {
     const newAnswer = await Answer.create({
         answer,
         votes: 0,
-        questionId: 1, // make this dynamic
-        userId: 1 //make this dynamic
+        questionId: req.params.id,
+        userId: res.locals.user.id
     })
     res.redirect(`/questions/${req.params.id}`)
 }));
@@ -91,12 +91,15 @@ router.post('/:id(\\d+)/comments', asyncHandler(async (req, res, next) => {
 
 /* Update a specific question by id */
 router.put('/:id(\\d+)', asyncHandler(async (req, res, next) => {
-    res.send(`Here in the /questions/${req.params.id} PUT route handler to update a specific question`);
+    //TODO
 }));
 
 /* Delete a specific question by id */
-router.delete('/:id(\\d+)', asyncHandler(async (req, res, next) => {
-    res.send(`Here in the /questions/${req.params.id} DELETE route handler to delete a specific question`);
+router.get('/:id(\\d+)/delete', asyncHandler(async (req, res, next) => {
+    const question = await Question.findByPk(req.params.id)
+
+    await question.destroy()
+    res.redirect('/questions')
 }));
 
 module.exports = router;

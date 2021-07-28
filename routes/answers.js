@@ -38,7 +38,6 @@ router.get('/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res) => {
 
 router.post('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
     const newAnswer = req.body.answer
-    console.log(newAnswer)
     const answerId = parseInt(req.params.id, 10);
     const answer = await Answer.findByPk(answerId);
     answer.update({answer: newAnswer})

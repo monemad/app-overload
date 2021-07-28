@@ -13,7 +13,8 @@ block content
         if isMyQuestion 
             a(href=`/questions/${question.id}/edit`) Edit this question
             a(href=`/questions/${question.id}/delete`) Delete this question
-        h2= question.title 
+        h2= `Title: ${question.title}`
+        h2= `Details: ${question.details}`
             h1 Question Comments 
             ul 
                 each qComment in qComments 
@@ -33,8 +34,8 @@ block content
                     div#question-answers
                         h2= answer.answer
                             if(userId === answer.userId)
-                                a(href=`/comments/${answer.id}/edit`) Edit this Answer
-                                a(href=`/comments/${answer.id}/delete`) Delete this Answer
+                                a(href=`/answers/${answer.id}/edit`) Edit this Answer
+                                a(href=`/answers/${answer.id}/delete`) Delete this Answer
                             h1= `Answer ${answer.id} Comments`
                             ul 
                                 each aComment in answer.AnswerComments 
