@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { Question, Answer, QuestionComment, AnswerComment } = require('../db/models')
+const { Op } = require('sequelize');
 const { asyncHandler, csrfProtection, userValidators, loginValidators, handleValidationErrors } = require('./utils');
 
 /* GET the questions page to view the top questions */
@@ -100,6 +101,20 @@ router.get('/:id(\\d+)/delete', asyncHandler(async (req, res, next) => {
 
     await question.destroy()
     res.redirect('/questions')
+}));
+
+router.post('/search', asyncHandler(async (req, res) => {
+    console.log('we in it');
+    const { searchTerm } = req.body;
+    const searchResult = await Question.findAll({
+        where: {
+            title: {
+                [Op.iLike]: searchTerm
+            }
+        }
+    })
+    console.log(searchResult);
+    res.json(searchResult);
 }));
 
 module.exports = router;
