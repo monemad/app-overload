@@ -27,7 +27,13 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
     const isMyQuestion = question.userId === res.locals.user.id;
 
     const answers = await Answer.findAll({
-        include: AnswerComment,
+        // include: [AnswerComment, User],
+        include: [
+            User, {
+                model: AnswerComment,
+                include: [User]
+            },
+        ],
         where: {
             questionId: req.params.id
         }
@@ -40,7 +46,7 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
         include: User
     })
 
-    // console.log(qComments[0])
+    console.log(answers[0].User.firstName)
 
     res.render('question', {
         question,
