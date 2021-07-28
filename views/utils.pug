@@ -10,8 +10,8 @@ mixin field(labelText, fieldName, fieldValue, fieldType = 'text', req = false, p
     div(class='form-div')
         label(for=fieldName)= labelText
         if fieldType === 'textarea'
-            textarea(id=fieldName name=fieldName class='form-input' rows='5' required= `${req}`)= fieldValue
+            textarea(name=fieldName class='form-input' rows='5' required= `${req}`)= fieldValue
         else
-            input(type=fieldType id=fieldName name=fieldName value=fieldValue placeholder=placeholder class='form-input' required= `${req}`)
+            input(type=fieldType name=fieldName value=fieldValue placeholder=placeholder class='form-input' required= `${req}`)
 
 
