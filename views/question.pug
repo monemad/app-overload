@@ -10,18 +10,18 @@ append head
 block content
     div#question
         h1 Question
-        if isMyQuestion 
+        if isMyQuestion
             a(href=`/questions/${question.id}/edit`) Edit this question
             a(href=`/questions/${question.id}/delete`) Delete this question
         h2= `Title: ${question.title}`
         h2= `Details: ${question.details}`
-            h1 Question Comments 
-            ul 
-                each qComment in qComments 
-                    li= qComment.comment 
+            h1 Question Comments
+            ul
+                each qComment in qComments
+                    li= qComment.comment
                         if(userId === qComment.userId)
-                            a(href=`/comments/${qComment.id}/edit`) Edit this comment
-                            a(href=`/comments/${qComment.id}/delete`) Delete this comment
+                            a(href=`/comments/q/${qComment.id}/edit`) Edit this comment
+                            a(href=`/comments/q/${qComment.id}/delete`) Delete this comment
                 +validationErrorSummary(errors)
                 form(id='new-question-comment' method='post' action=`/questions/${question.id}/comments`)
                     input(type='hidden' name= '_csrf' value= csrfToken)
@@ -29,20 +29,20 @@ block content
                     button(type='submit') Comment on this Question
 
         h1 Answers
-            ul 
-                each answer in answers 
+            ul
+                each answer in answers
                     div#question-answers
                         h2= answer.answer
                             if(userId === answer.userId)
                                 a(href=`/answers/${answer.id}/edit`) Edit this Answer
                                 a(href=`/answers/${answer.id}/delete`) Delete this Answer
                             h1= `Answer ${answer.id} Comments`
-                            ul 
-                                each aComment in answer.AnswerComments 
+                            ul
+                                each aComment in answer.AnswerComments
                                     li= aComment.comment
                                         if(userId === aComment.userId)
-                                            a(href=`/comments/${aComment.id}/edit`) Edit this comment
-                                            a(href=`/comments/${aComment.id}/delete`) Delete this comment
+                                            a(href=`/comments/a/${aComment.id}/edit`) Edit this comment
+                                            a(href=`/comments/a/${aComment.id}/delete`) Delete this comment
 
                             +validationErrorSummary(errors)
                             form(id='new-answer' method='post' action=`/answers/${answer.id}/comments`)
@@ -59,4 +59,4 @@ block content
             input(type='hidden' name= '_csrf' value= csrfToken)
             +field('Full Answer: ', 'answer', '', 'textarea', true)
             button(type='submit') Submit an Answer to this Question!
-        a(href="/questions") Back to the questions 
+        a(href="/questions") Back to the questions

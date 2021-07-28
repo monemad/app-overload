@@ -11,56 +11,75 @@ const { validationResult } = require('express-validator');
 
 
 router.get('/a/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res) => {
-    const commentId = parseInt(req.params.id, 10);
-    const answerComment = await AnswerComment.findByPk(commentId);
+    const commentId = req.params.id;
+    const commentType = 'a'
+    const myComment = await AnswerComment.findByPk(commentId);
 
     //show same text area box
-    res.render('comment-edit', { title: 'Edit Comment', answerCommentId, csrfToken: req.csrfToken()});
+    res.render('comment-edit', { title: 'Edit Comment',commentType, myComment, commentId , csrfToken: req.csrfToken()});
 
   }));
 
 router.post('/a/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
-    const newComment = req.body.answer
-    const commentId = parseInt(req.params.id, 10);
-    const comment = await AnswerComment.findByPk(commentId);
-    comment.update({comment: newComment})
-
+    const newComment = req.body.comment
+    const commentId = req.params.id
+    const myComment = await AnswerComment.findByPk(commentId, {
+      include: Answer
+    });
+    const questionId = myComment.Answer.questionId
+    myComment.update({ comment: newComment })
+    res.redirect(`/questions/${questionId}`)
   }));
 
 
-router.post('/a/:id(\\d+)/delete', csrfProtection, asyncHandler(async (req, res) => {
-    const commentId = parseInt(req.params.id, 10);
-    const answerComment = await AnswerComment.findByPk(commentId);
-    await answerComment.destroy();
-    res.redirect('/');
+router.post('/a/:id(\\d+)/delete', asyncHandler(async (req, res) => {
+    const commentId = req.params.id;
+    const myComment = await AnswerComment.findByPk(commentId,{
+      include: Answer
+    });
+    const questionId = myComment.Answer.questionId
+    await myComment.destroy();
 
+    res.redirect(`/questions/${questionId}`)
   }));
 
 
 router.get('/q/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res) => {
-    const Id = parseInt(req.params.id, 10);
-    const questionComment = await QuestionComment.findByPk();
+    const commentId = req.params.id
+    const commentType = 'q'
+    const myComment = await QuestionComment.findByPk(commentId);
 
     //show same text area box
-    res.render('comment-edit', { title: 'Edit Comment', questionCommentId, csrfToken: req.csrfToken()});
+    res.render('comment-edit', { title: 'Edit Comment', commentType, myComment, commentId, csrfToken: req.csrfToken()});
 
   }));
 
 router.post('/q/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
-    const newComment = req.body.answer
-    const commentId = parseInt(req.params.id, 10);
-    const comment = await QuestionComment.findByPk(commentId);
-    comment.update({comment: newComment})
+    const newComment = req.body.comment
+    const commentId = req.params.id
+    const myComment = await QuestionComment.findByPk(commentId,{
+      include: Question
+    });
+
+    const questionId = myComment.questionId
+    myComment.comment =  newComment
+    await myComment.save()
+    res.redirect(`/questions/${questionId}`)
 
   }));
 
 
-router.post('/q/:id(\\d+)/delete', csrfProtection, asyncHandler(async (req, res) => {
-    const commentId = parseInt(req.params.id, 10);
-    const questionComment = await QuestionComment.findByPk(commentId);
-    await questionComment.destroy();
-    res.redirect('/');
+router.post('/q/:id(\\d+)/delete', asyncHandler(async (req, res) => {
+    const commentId = req.params.id;
+    const myComment = await QuestionComment.findByPk(commentId,{
+      include: Question
+    });
 
+
+    const questionId = myComment.questionId
+    await myComment.destroy();
+
+    res.redirect(`/questions/${questionId}`)
   }));
 
 
