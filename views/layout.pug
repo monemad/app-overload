@@ -9,11 +9,13 @@ html
         script(src="/javascripts/layout.js" type="module" defer)
   body
     nav#nav-bar 
-      a(href='/') Home
-      input#search-bar(type='text' name='searchQuery' placeholder='Search here...')
-      button#search-btn Search
+      a(href='/') 
+        img(src="/images/app-logo.png", alt="")
+      div#search-div
+        input#search-bar(type='text' name='searchQuery' placeholder='Search here...')
+        button#search-btn Search
       if locals.authenticated 
-        span Welcome, #{locals.user.firstName}
+        span#nav-span Welcome, #{locals.user.firstName}
         button: a(href='/users/logout') Logout
       else 
         button: a(href='/users/login') Login 

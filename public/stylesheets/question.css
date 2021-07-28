@@ -1,0 +1,19 @@
+#question-page {
+    display: flex;
+    flex-direction: column;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+#question-title, #question-details {
+    padding: 10px
+}
+
+.question-comment-li{
+    border-top: 1px solid lightgray;
+    color: lightgray;
+}
+
+#q-comments-list {
+    list-style-type: none;
+}
