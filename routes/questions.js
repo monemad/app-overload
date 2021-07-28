@@ -1,12 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const { Question, Answer, QuestionComment, AnswerComment } = require('../db/models')
 const { Op } = require('sequelize');
+
+const { Question, Answer, QuestionComment, AnswerComment, User } = require('../db/models')
+
 const { asyncHandler, csrfProtection, userValidators, loginValidators, handleValidationErrors } = require('./utils');
 
 /* GET the questions page to view the top questions */
 router.get('/', asyncHandler(async (req, res, next) => {
-    const questions = await Question.findAll();
+    const questions = await Question.findAll({
+        include: Answer
+    });
+    // console.log(questions)
     res.render('popular-questions', { questions })
 }));
 
@@ -31,10 +36,11 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
     const qComments = await QuestionComment.findAll({
         where: {
             questionId: req.params.id
-        }
+        },
+        include: User
     })
 
-    // console.log(answers)
+    // console.log(qComments[0])
 
     res.render('question', {
         question,
