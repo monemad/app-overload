@@ -11,30 +11,37 @@ router.get('/', asyncHandler(async (req, res, next) => {
 
 /* GET the question page to view a specific question */
 router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => {
+    
     const question = await Question.findOne({
         where: {
             id: req.params.id
         }
     })
+
+    const isMyQuestion = question.userId === res.locals.user.id;
+
     const answers = await Answer.findAll({
         include: AnswerComment,
         where: {
             questionId: req.params.id
         }
     })
+
     const qComments = await QuestionComment.findAll({
         where: {
             questionId: req.params.id
         }
     })
 
-    console.log(answers)
+    // console.log(answers)
 
     res.render('question', {
         question,
         answers,
         qComments,
-        csrfToken: req.csrfToken()
+        csrfToken: req.csrfToken(),
+        isMyQuestion,
+        userId: res.locals.user.id
     });
 }));
 
@@ -84,12 +91,15 @@ router.post('/:id(\\d+)/comments', asyncHandler(async (req, res, next) => {
 
 /* Update a specific question by id */
 router.put('/:id(\\d+)', asyncHandler(async (req, res, next) => {
-    res.send(`Here in the /questions/${req.params.id} PUT route handler to update a specific question`);
+    //TODO
 }));
 
 /* Delete a specific question by id */
-router.delete('/:id(\\d+)', asyncHandler(async (req, res, next) => {
-    res.send(`Here in the /questions/${req.params.id} DELETE route handler to delete a specific question`);
+router.get('/:id(\\d+)/delete', asyncHandler(async (req, res, next) => {
+    const question = await Question.findByPk(req.params.id)
+
+    await question.destroy()
+    res.redirect('/questions')
 }));
 
 module.exports = router;
