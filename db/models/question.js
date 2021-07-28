@@ -14,9 +14,9 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'questionId',
       otherKey: 'tagId'
     }
-    Question.hasMany(models.Answer, {foreignKey: 'questionId'})
+    Question.hasMany(models.QuestionComment, { foreignKey: 'questionId', onDelete: 'CASCADE', hooks: true})
+    Question.hasMany(models.Answer, { foreignKey: 'questionId', onDelete: 'CASCADE', hooks: true})
     Question.belongsTo(models.User, {foreignKey: 'userId'})
-    Question.hasMany(models.QuestionComment, {foreignKey: 'questionId'})
     Question.belongsToMany(models.Tag, columnMapping)
   };
   return Question;
