@@ -32,7 +32,7 @@
 
 #search-form {
     display: flex;
-    width: auto;
+    width: 40%;
     height: 35px;
     align-self: center;
 }
