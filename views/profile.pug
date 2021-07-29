@@ -1,26 +1,33 @@
 extends layout.pug 
 
 block content 
-    div#banner
+    div#user-banner
         h1= `${locals.user.firstName}'s Profile`
         img#profile-pic(src=locals.user.avatarURL width='100')
+        p#reputation= `Reputation: ${locals.user.reputation}`
     div#question-div
         h2 Your Questions
             span.counter= ` (${questions.length})`
         if questions.length
             ul#question-list
                 each q in questions
-                    li#question: a(href=`/questions/${q.id}`)= q.title
+                    if q.title.split(' ').length > 5
+                        li.user-question: a(href=`/questions/${q.id}` title=q.title)= `${q.title.split(' ').slice(0,5).join(' ')}...`
+                            span= ` ${q.Answers.length} answer(s)`
+                    else
+                        li.user-question: a(href=`/questions/${q.id}`)= q.title
+                            span= ` ${q.Answers.length} answer(s)`
         else    
             p You haven't asked any questions!
+
     div#answer-div
         h2 Your Answers
             span.counter= ` (${answers.length})`
         if answers.length
             ul#answer-list
                 each a in answers
-                    li#answer= a.answer
+                    li.user-answer= a.answer
                         span=' for: '
-                            a(href=`/questions/${a.Question.id}`)= a.Question.title
+                            a(href=`/questions/${a.Question.id}` title=a.Question.title)= `${a.Question.title.split(' ')[0]}...`
         else
             p You haven't answered any questions yet!

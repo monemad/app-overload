@@ -43,13 +43,11 @@ router.post('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
 
   }));
 
-
-router.post('/:id(\\d+)/delete', csrfProtection, asyncHandler(async (req, res) => {
-    const answerId = parseInt(req.params.id, 10);
-    const answer = await Answer.findByPk(answerId);
-    await answer.destroy();
-    res.redirect('/');
-  }));
+router.delete('/:id(\\d+)', asyncHandler(async (req, res, next) => {
+  const answer = await Answer.findByPk(req.params.id)
+  await answer.destroy()
+  console.log('here in the delte route')
+}));
 
 
   module.exports = router;

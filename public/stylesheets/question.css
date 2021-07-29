@@ -25,6 +25,11 @@
 
 }
 
+#question-title-editor, #question-details-editor, #question-done-editing-link {
+    visibility: hidden;
+    display: none;
+}
+
 .question-comment-li{
     display: inline-flex;
     border-top: 1px solid lightgray;
@@ -33,6 +38,13 @@
 }
 
 .comment-editor {
+    color: blue;
+    border: 1px solid black;
+    padding: 5px;
+    margin: 5px;
+}
+
+#answer-edit-link, #answer-delete-link, #question-edit-link, #question-delete-link, #question-done-editing-link {
     color: blue;
     border: 1px solid black;
     padding: 5px;
