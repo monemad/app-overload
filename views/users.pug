@@ -1,0 +1,12 @@
+extends layout.pug
+include utils.pug
+
+block content
+    div#user-page
+            div#user-layout
+                each user in users
+                    div.user
+                        img(class='icon' src="./images/default-user-image.png", alt="")
+                        div.user-display
+                            h4#user-name= `Username: ${user.username}`
+                            p#user-rep= `Reputation: ${user.reputation}`

@@ -25,4 +25,22 @@ window.addEventListener("DOMContentLoaded", (event)=>{
         resultsList.innerHTML = results;
         content.appendChild(resultsList);
     })
+
+
+
+    document.querySelector('.homebtn').addEventListener('click', e => {
+    e.preventDefault()
+    window.location.href = '/'
+    })
+
+    document.querySelector('.questionbtn').addEventListener('click', e => {
+        e.preventDefault()
+        window.location.href = '/questions'
+        })
+
+    document.querySelector('.userbtn').addEventListener('click', e => {
+            e.preventDefault()
+            window.location.href = '/users'
+            })
+
 })
