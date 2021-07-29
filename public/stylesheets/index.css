@@ -21,6 +21,10 @@
     display: inline-flex;
 }
 
+#search-form {
+    display: flex;
+}
+
 #search-bar {
     width: 90%;
 }
@@ -51,3 +55,11 @@ h2 {
     font-size: 20px;
     padding: 20px;
 }
+<<<<<<< HEAD
+
+#question, #new-answer, #question-answers {
+    margin: 50px;
+
+}
+=======
+>>>>>>> main
