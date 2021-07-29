@@ -8,8 +8,10 @@
     height: 35px;
 }
 
-#nav-span {
+#nav-greeting {
     align-self: center;
+    font-weight: bold;
+    font-size: .9em;
 }
 
 #nav-home-link {
@@ -39,6 +41,30 @@
 
 #search-btn {
     justify-self: left;
+    cursor: pointer;
+}
+
+#nav-auth {
+    display: flex;
+    height: 80%;
+    align-self: center;
+    justify-content: space-around;
+    align-items: center;
+    width: fit-content;
+}
+
+#nav-auth > a {
+    text-decoration: none;
+    font-weight:bold;
+    cursor: pointer;
+}
+
+#nav-auth > a:hover {
+    text-decoration: underline;
+}
+
+#nav-auth > * {
+    margin: 0 5px;
 }
 
 #nav-prof-link {
@@ -46,7 +72,7 @@
 }
 
 #nav-prof-pic {
-    width: 100%;
+    height: 35px;
 }
 
 #index-page {
