@@ -9,14 +9,18 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const questionsRouter = require('./routes/questions')
 const answersRouter = require('./routes/answers')
+const commentsRouter = require('./routes/comments')
 const errorRouter = require('./routes/error')
 const { sessionSecret } = require('./config');
 const { restoreUser } = require('./auth');
 
+
 const app = express();
+
 
 // view engine setup
 app.set('view engine', 'pug');
+
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -27,6 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // set up session middleware
 const store = new SequelizeStore({ db: sequelize });
 
+
 app.use(
   session({
     name: 'app-overload.sid',
@@ -36,6 +41,7 @@ app.use(
     resave: false,
   })
 );
+
 
 // create Session table if it doesn't already exist
 store.sync();
@@ -48,6 +54,9 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/questions', questionsRouter)
 app.use('/answers', answersRouter)
+app.use('/comments', commentsRouter)
 app.use(errorRouter);
+
+
 
 module.exports = app;
