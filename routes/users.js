@@ -96,8 +96,9 @@ router.get('/demo', asyncHandler(async (req, res) => {
 }));
 
 router.get('/profile', requireAuth, asyncHandler(async (req, res) => {
-  const questions = await Question.findAll({ where: { userId: res.locals.user.id }});
+  const questions = await Question.findAll({ where: { userId: res.locals.user.id }, include: Answer});
   const answers = await Answer.findAll({ where: { userId: res.locals.user.id }, include: Question })
+  console.log(questions[0]);
   res.render('profile', {questions, answers})
 }))
 

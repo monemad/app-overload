@@ -16,6 +16,10 @@
     align-self: center;
 }
 
+#nav-home-link {
+    width: 120px;
+}
+
 #search-form {
     width: 50%;
     display: inline-flex;
@@ -23,6 +27,9 @@
 
 #search-form {
     display: flex;
+    width: 50%;
+    height: 80%;
+    align-self: center;
 }
 
 #search-bar {
@@ -31,6 +38,10 @@
 
 #search-btn {
     justify-self: left;
+}
+
+#nav-prof-link {
+    width: 35px;
 }
 
 #index-page {
@@ -55,11 +66,30 @@ h2 {
     font-size: 20px;
     padding: 20px;
 }
-<<<<<<< HEAD
 
 #question, #new-answer, #question-answers {
     margin: 50px;
 
 }
-=======
->>>>>>> main
+
+li > span {
+    color: gray;
+    font-size: .9em;
+}
+
+li > span > a {
+    color: blue;
+    font-size: .9em;
+    text-decoration: none;
+}
+
+li > a > span {
+    color: gray;
+    font-size: .9em;
+    text-decoration: none;
+}
+
+li > a {
+    text-decoration: none;
+    color: blue;
+}
