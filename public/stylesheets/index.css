@@ -7,13 +7,18 @@
     background-color: lightgray;
     height: 35px;
 }
-
+/* 
 #nav-bar > a > img {
     height: 100%;
-}
+} */
 
 #nav-span {
     align-self: center;
+}
+
+#nav-logo {
+    height: 100%;
+    width: 100%;
 }
 
 #search-form {
@@ -55,11 +60,8 @@ h2 {
     font-size: 20px;
     padding: 20px;
 }
-<<<<<<< HEAD
 
 #question, #new-answer, #question-answers {
     margin: 50px;
 
 }
-=======
->>>>>>> main

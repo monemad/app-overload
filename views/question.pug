@@ -3,7 +3,7 @@ include utils.pug
 
 append head
   //- add page specific styles by appending to the head
-  link(rel="stylesheet" href="/stylesheets/index.css")
+//-   link(rel="stylesheet" href="/stylesheets/index.css")
   //- add page specific js
   script(src="/javascripts/index.js" type="module" defer)
 
@@ -13,8 +13,8 @@ block content
             h1#question-title= `Title: ${question.title}`
             h1#question-details= `Details: ${question.details}`
                 if isMyQuestion
-                    a(href=`/questions/${question.id}/edit`) Edit this question
-                    a(href=`/questions/${question.id}/delete`) Delete this question
+                    a#question-edit-link(href=`/questions/${question.id}/edit`) Edit this question
+                    a#question-delete-link(href=`/questions/${question.id}/delete`) Delete this question
                 h2 Question Comments
                 ul#q-comments-list
                     each qComment in qComments
@@ -30,13 +30,13 @@ block content
                         button(type='submit') Comment on this Question
 
             h1#answer-starter Answers
-            ul
+            ul#answer-list
                 each answer in answers
                     div#question-answers
                         h2= `Answer from ${answer.User.firstName} ${answer.User.lastName}: ${answer.answer}`
                             if(userId === answer.userId)
-                                a(href=`/answers/${answer.id}/edit`) Edit this Answer
-                                a(href=`/answers/${answer.id}/delete`) Delete this Answer
+                                a#answer-edit-link(href=`/answers/${answer.id}/edit`) Edit this Answer
+                                a#answer-delete-link(href=`/answers/${answer.id}/delete`) Delete this Answer
                             h1= `Answer ${answer.id} Comments`
                             ul
                                 each aComment in answer.AnswerComments
