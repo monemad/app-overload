@@ -69,7 +69,7 @@ router.post('/q/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
   }));
 
 
-router.post('/q/:id(\\d+)/delete', asyncHandler(async (req, res) => {
+router.get('/q/:id(\\d+)/delete', asyncHandler(async (req, res) => {
     const commentId = req.params.id;
     const myComment = await QuestionComment.findByPk(commentId,{
       include: Question

@@ -7,10 +7,10 @@
     background-color: lightgray;
     height: 35px;
 }
-
+/* 
 #nav-bar > a > img {
     height: 100%;
-}
+} */
 
 #nav-span {
     align-self: center;
@@ -18,6 +18,12 @@
 
 #nav-home-link {
     width: 120px;
+
+}
+
+#nav-logo {
+    height: 100%;
+    width: 100%;
 }
 
 #search-form {
