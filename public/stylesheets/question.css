@@ -1,18 +1,28 @@
-#question-page {
+#questions-page {
     display: flex;
     flex-direction: column;
     padding-left: 25px;
-    padding-right: 25px;
+    width:80%;
+    right:0;
+
+}
+
+#question-list{
+    overflow-y: auto;
+    max-height: 500px;
 }
 
 #question-title, #question-details {
-    padding: 10px
+    padding: 8px
+
 }
 
 #q-comments-list {
     list-style-type: none;
     display: flex;
     flex-direction: column;
+    align-items: center;
+
 }
 
 .question-comment-li{

@@ -1,0 +1,12 @@
+extends layout.pug
+include utils.pug
+
+block content
+    div#user-page
+            div#grid-layout
+                each user in users
+                    div#user
+                        h4#user-name= `Username: ${user.username}`
+                        p#user-rep= `Reputation: ${user.reputation}`
+                            div#img
+                                img(src="./images/default-user-image.png", alt="")

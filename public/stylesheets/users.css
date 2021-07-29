@@ -1,0 +1,14 @@
+@import "index.css";
+
+#user-page {
+    display: flex;
+    flex-direction: column;
+    width:80%;
+    right:0;
+}
+
+#grid-layout{
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(5,1fr);
+}

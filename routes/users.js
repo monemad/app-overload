@@ -9,7 +9,9 @@ const { loginUser, logoutUser, requireAuth } = require('../auth');
 /* GET users listing. */
 router.get('/', async function(req, res, next) {
   // res.send('respond with a resource');
-  res.json(await User.findAll());
+  const users = await User.findAll()
+  res.render('users', { users });
+
 });
 
 // Get the user registration form
@@ -86,7 +88,7 @@ router.get('/demo', asyncHandler(async (req, res) => {
       username: 'demouser',
       email: 'demo@user.com',
       hashedPassword: await bcrypt.hash('password', 12),
-      reputation: 0, 
+      reputation: 0,
       avatarURL:'../public/images/default.png'
     })
     await demo.save();
