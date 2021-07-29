@@ -7,13 +7,13 @@
     background-color: lightgray;
     height: 35px;
 }
-/* 
-#nav-bar > a > img {
-    height: 100%;
-} */
 
 #nav-span {
     align-self: center;
+}
+
+#nav-home-link {
+    width: 120px;
 }
 
 #nav-logo {
@@ -28,6 +28,9 @@
 
 #search-form {
     display: flex;
+    width: 50%;
+    height: 80%;
+    align-self: center;
 }
 
 #search-bar {
@@ -36,6 +39,14 @@
 
 #search-btn {
     justify-self: left;
+}
+
+#nav-prof-link {
+    width: 35px;
+}
+
+#nav-prof-pic {
+    width: 100%;
 }
 
 #index-page {
@@ -64,4 +75,26 @@ h2 {
 #question, #new-answer, #question-answers {
     margin: 50px;
 
+}
+
+li > span {
+    color: gray;
+    font-size: .9em;
+}
+
+li > span > a {
+    color: blue;
+    font-size: .9em;
+    text-decoration: none;
+}
+
+li > a > span {
+    color: gray;
+    font-size: .9em;
+    text-decoration: none;
+}
+
+li > a {
+    text-decoration: none;
+    color: blue;
 }
