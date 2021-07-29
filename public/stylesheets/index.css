@@ -7,10 +7,6 @@
     background-color: lightgray;
     height: 35px;
 }
-/* 
-#nav-bar > a > img {
-    height: 100%;
-} */
 
 #nav-span {
     align-self: center;
@@ -18,7 +14,6 @@
 
 #nav-home-link {
     width: 120px;
-
 }
 
 #nav-logo {
@@ -48,6 +43,10 @@
 
 #nav-prof-link {
     width: 35px;
+}
+
+#nav-prof-pic {
+    width: 100%;
 }
 
 #index-page {
