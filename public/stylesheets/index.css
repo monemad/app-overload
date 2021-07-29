@@ -63,9 +63,9 @@
     align-self: center;
 }
 
-h1 {
+/* h {
     color: #555555;
-}
+} */
 
 h2 {
     font-style: bold;
@@ -86,7 +86,7 @@ h2 {
 .sidenav {
     position: sticky;
     height: 100%;
-    width:15%;
+    width:10%;
     top: 0;
     background-color: rgba(255,255,255,.5);
     overflow-x: hidden;
@@ -111,7 +111,6 @@ h2 {
 
 #question, #new-answer, #question-answers {
     margin: 50px;
-
 }
 
 li > span {

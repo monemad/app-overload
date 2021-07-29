@@ -4,7 +4,21 @@
     padding-left: 25px;
     width:80%;
     right:0;
+}
+#question-page {
+    display: flex;
+    flex-direction: column;
+    padding-left: 25px;
+    width:80%;
+    right:0;
+}
 
+
+#individual-question{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow-y: auto;
 }
 
 #question-list{
@@ -28,6 +42,14 @@
 #question-title-editor, #question-details-editor, #question-done-editing-link {
     visibility: hidden;
     display: none;
+}
+
+button {
+border-radius: 5px;
+text-decoration: none;
+color: #fff;
+background-color: #0095ff;
+box-shadow: inset 0 1px 0 0 rgb(255 255 255 / 40%);
 }
 
 .question-comment-li{
@@ -57,11 +79,12 @@
 
 .form-input {
     width: 100%;
+    resize: none;
+    tab-size: 4;
 }
 
-#answer-starter {
-    padding-top: 25px;
-}
+
+
 
 #home-div {
     display: inline-flex;
