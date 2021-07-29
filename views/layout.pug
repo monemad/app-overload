@@ -18,16 +18,20 @@ html
           input#search-bar(type='text' name='searchQuery' placeholder='Search here...')
           button#search-btn(type='submit') Search
         if locals.authenticated
-          span#nav-span Welcome, #{locals.user.firstName}
-          a#nav-prof-link(href='/users/profile'): img#nav-prof-pic(src="/images/default.png", alt="My Profile")
-          button: a(href='/users/logout') Logout
+          div#nav-auth
+            span#nav-greeting Welcome, #{locals.user.firstName}
+            a#nav-prof-link(href='/users/profile'): img#nav-prof-pic(src="/images/default.png", alt="My Profile")
+            a(href='/users/logout') Logout
         else
-          button: a(href='/users/login') Login
-          button: a(href='/users/signup') Sign Up
-          button: a(href='/users/demo') Demo User
+          div#nav-auth
+            a(href='/users/login') Login
+            a(href='/users/signup') Sign Up
+            a(href='/users/demo') Demo User
+    div#content
     div#sidebar-content
       div.sidenav
         a(class='homebtn', href='/') Home
         a(class='questionbtn' ,href='/questions') Questions
         a(class='userbtn', href='/users') Users
+
       block content
