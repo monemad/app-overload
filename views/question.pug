@@ -39,8 +39,8 @@ block content
                     div#question-answers
                         h2= `Answer from ${answer.User.firstName} ${answer.User.lastName}: ${answer.answer}`
                             if(userId === answer.userId)
-                                a#answer-edit-link(href=`/answers/${answer.id}/edit`) Edit this Answer
-                                a#answer-delete-link(href=`/answers/${answer.id}/delete`) Delete this Answer
+                                a.answer-edit-link(href=`/answers/${answer.id}/edit`) Edit this Answer
+                                a.answer-delete-link(href=`/answers/${answer.id}/delete`) Delete this Answer
                             h1= `Answer ${answer.id} Comments`
                             ul
                                 each aComment in answer.AnswerComments

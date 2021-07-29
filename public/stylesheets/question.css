@@ -34,7 +34,7 @@
     margin: 5px;
 }
 
-#answer-edit-link, #answer-delete-link, #question-edit-link, #question-delete-link, #question-done-editing-link {
+.answer-edit-link, .answer-delete-link, #question-edit-link, #question-delete-link, #question-done-editing-link {
     color: blue;
     border: 1px solid black;
     padding: 5px;
