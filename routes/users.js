@@ -95,4 +95,8 @@ router.get('/demo', asyncHandler(async (req, res) => {
   return res.redirect('/');
 }));
 
+router.get('/profile', requireAuth, asyncHandler(async (req, res) => {
+  res.render('profile')
+}))
+
 module.exports = router;
