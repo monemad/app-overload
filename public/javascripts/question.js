@@ -1,24 +1,24 @@
 window.addEventListener("DOMContentLoaded", event => {
-    if (window.location.href.startsWith("http://localhost:8080/questions/") && window.location.href.split('/').length === 5) {
-        console.log('Trying to add an event listener to the Answer Delete link on the questions page here')
-        const answerDeleteLink = document.getElementById('answer-delete-link')
+    console.log('Trying to add an event listener to the Question Edit link on the questions page here')
+    const questionEditLink = document.getElementById('question-edit-link')
+    const questionTitleTextArea = document.getElementById('question-title-editor')
+    const questionDetailsTextArea = document.getElementById('question-details-editor')
+    const questionTitleLabel = document.getElementById('question-title')
+    const questionDetailsLabel = document.getElementById('question-details')
 
-        if (answerDeleteLink !== null) {
-            answerDeleteLink.addEventListener('click', async e => {
-                e.preventDefault()
-                const headerElement = e.target.parentElement
-                const listElement = headerElement.parentElement
-                const unorderedList = listElement.parentElement
+    if (questionEditLink !== null) {
+        questionEditLink.addEventListener('click', async e => {
+            e.preventDefault()
+            questionDetailsTextArea.value = questionDetailsLabel.innerText;
+            questionTitleTextArea.value = questionTitleLabel.innerText;
+            questionDetailsTextArea.visibility = 'visible';
+            questionDetailsTextArea.display = 'block';
+            questionTitleTextArea.visibility = 'visible';
+            questionTitleTextArea.display = 'block';
 
-                unorderedList.removeChild(listElement)
-                const answerId = e.target.href.split('/')[4]
-                console.log(answerId)
-
-                await fetch(`http://localhost:8080/answers/${answerId}`, {
-                    method: 'delete',
-                })
-            })
-        }
-
+            // await fetch(`http://localhost:8080/answers/${answerId}`, {
+            //     method: 'delete',
+            // })
+        })
     }
 })
