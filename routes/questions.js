@@ -119,7 +119,10 @@ router.post('/:id(\\d+)/comments', asyncHandler(async (req, res, next) => {
 
 /* Update a specific question by id */
 router.put('/:id(\\d+)', asyncHandler(async (req, res, next) => {
-    //TODO
+    const question = await Question.findByPk(req.params.id)
+    question.title = req.body.title
+    question.details = req.body.details
+    await question.save()
 }));
 
 /* Delete a specific question by id */
