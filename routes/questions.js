@@ -46,7 +46,7 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
         include: User
     })
 
-    console.log(answers[0].User.firstName)
+    // console.log(answers[0].User.firstName)
 
     res.render('question', {
         question,
