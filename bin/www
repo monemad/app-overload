@@ -1,7 +1,25 @@
 #!/usr/bin/env node
 
+// declaring a port
 const port = process.env.PORT || '8080';
 
+// Importing our application
 const app = require('../app');
 
-app.listen(port, () => console.log(`Listening on port ${port}...`));
+// Importing database
+const db = require('../db/models');
+
+// Check the database connection before starting the app
+db.sequelize.authenticate()
+    .then(() => {
+        // The connection to the database succeeded
+        console.log('Database connection success! Sequelize is ready to use...');
+
+        // If we can connect to the DB, then we'll start the server
+        app.listen(port, () => console.log(`Listening on port ${port}...`));
+    })
+    .catch((err) => {
+        // The connection to the database failed
+        console.log('Database connection failure.');
+        console.error(err);
+    });
