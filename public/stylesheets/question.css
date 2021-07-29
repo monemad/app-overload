@@ -29,6 +29,13 @@
     margin: 5px;
 }
 
+#answer-edit-link, #answer-delete-link, #question-edit-link, #question-delete-link {
+    color: blue;
+    border: 1px solid black;
+    padding: 5px;
+    margin: 5px;
+}
+
 .form-div {
     width: 100%;
 }

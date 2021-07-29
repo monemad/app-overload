@@ -125,7 +125,6 @@ router.put('/:id(\\d+)', asyncHandler(async (req, res, next) => {
 /* Delete a specific question by id */
 router.get('/:id(\\d+)/delete', asyncHandler(async (req, res, next) => {
     const question = await Question.findByPk(req.params.id)
-
     await question.destroy()
     res.redirect('/questions')
 }));
