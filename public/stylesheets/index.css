@@ -21,6 +21,10 @@
     display: inline-flex;
 }
 
+#search-form {
+    display: flex;
+}
+
 #search-bar {
     width: 90%;
 }
@@ -52,6 +56,7 @@ h2 {
     font-size: 20px;
     padding: 20px;
 }
+
 .container{
     display: flex;
 
@@ -81,3 +86,9 @@ h2 {
     color: black;
     background-color: #d6d3d3;
   }
+
+
+#question, #new-answer, #question-answers {
+    margin: 50px;
+
+}
