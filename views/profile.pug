@@ -6,6 +6,7 @@ block content
         img#profile-pic(src=locals.user.avatarURL width='100')
     div#question-div
         h2 Your Questions
+            span.counter= ` (${questions.length})`
         if questions.length
             ul#question-list
                 each q in questions
@@ -14,11 +15,12 @@ block content
             p You haven't asked any questions!
     div#answer-div
         h2 Your Answers
+            span.counter= ` (${answers.length})`
         if answers.length
             ul#answer-list
                 each a in answers
                     li#answer= a.answer
-                        span=' in '
+                        span=' for: '
                             a(href=`/questions/${a.Question.id}`)= a.Question.title
         else
             p You haven't answered any questions yet!
