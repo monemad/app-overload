@@ -1,0 +1,24 @@
+extends layout.pug 
+
+block content 
+    div#banner
+        h1= `${locals.user.firstName}'s Profile`
+        img#profile-pic(src=locals.user.avatarURL width='100')
+    div#question-div
+        h2 Your Questions
+        if questions.length
+            ul#question-list
+                each q in questions
+                    li#question: a(href=`/questions/${q.id}`)= q.title
+        else    
+            p You haven't asked any questions!
+    div#answer-div
+        h2 Your Answers
+        if answers.length
+            ul#answer-list
+                each a in answers
+                    li#answer= a.answer
+                        span=' in '
+                            a(href=`/questions/${a.Question.id}`)= a.Question.title
+        else
+            p You haven't answered any questions yet!
