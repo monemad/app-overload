@@ -18,6 +18,7 @@ html
           button#search-btn(type='submit') Search
         if locals.authenticated 
           span#nav-span Welcome, #{locals.user.firstName}
+          a(href='/users/profile'): img(src="/images/default.png", alt="My Profile")
           button: a(href='/users/logout') Logout
         else
           button: a(href='/users/login') Login 

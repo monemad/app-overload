@@ -1,7 +1,7 @@
 const express = require('express');
 const bcrypt = require('bcryptjs')
 const router = express.Router();
-const { User } = require('../db/models');
+const { User, Question, Answer } = require('../db/models');
 const { asyncHandler, csrfProtection, userValidators, loginValidators, handleValidationErrors } = require('./utils');
 const { validationResult } = require('express-validator');
 const { loginUser, logoutUser, requireAuth } = require('../auth');
@@ -24,7 +24,7 @@ router.post('/', csrfProtection, userValidators, asyncHandler(async (req, res) =
   const validationErrors = validationResult(req);
   const {firstName, lastName, username, password, email} = req.body;
   const hashedPassword = await bcrypt.hash(password, 12);
-  const newUser = await User.build({ firstName, lastName, username, email, hashedPassword, reputation: 0, avatarURL:'../public/images/default.png' });
+  const newUser = await User.build({ firstName, lastName, username, email, hashedPassword, reputation: 0, avatarURL:'/images/default.png' });
   if (validationErrors.isEmpty()) {
     await newUser.save();
     loginUser(req, res, newUser);
@@ -87,12 +87,18 @@ router.get('/demo', asyncHandler(async (req, res) => {
       email: 'demo@user.com',
       hashedPassword: await bcrypt.hash('password', 12),
       reputation: 0, 
-      avatarURL:'../public/images/default.png'
+      avatarURL:'/images/default.png'
     })
     await demo.save();
   }
   loginUser(req, res, demo);
   return res.redirect('/');
 }));
+
+router.get('/profile', requireAuth, asyncHandler(async (req, res) => {
+  const questions = await Question.findAll({ where: { userId: res.locals.user.id }});
+  const answers = await Answer.findAll({ where: { userId: res.locals.user.id }, include: Question })
+  res.render('profile', {questions, answers})
+}))
 
 module.exports = router;
