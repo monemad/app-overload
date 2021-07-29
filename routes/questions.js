@@ -1,11 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const { Question, Answer, QuestionComment, AnswerComment } = require('../db/models')
+const { Op } = require('sequelize');
+
+const { Question, Answer, QuestionComment, AnswerComment, User } = require('../db/models')
+
 const { asyncHandler, csrfProtection, userValidators, loginValidators, handleValidationErrors } = require('./utils');
 
 /* GET the questions page to view the top questions */
 router.get('/', asyncHandler(async (req, res, next) => {
-    const questions = await Question.findAll();
+    const questions = await Question.findAll({
+        include: Answer
+    });
+    // console.log(questions)
     res.render('popular-questions', { questions })
 }));
 
@@ -21,7 +27,13 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
     const isMyQuestion = question.userId === res.locals.user.id;
 
     const answers = await Answer.findAll({
-        include: AnswerComment,
+        // include: [AnswerComment, User],
+        include: [
+            User, {
+                model: AnswerComment,
+                include: [User]
+            },
+        ],
         where: {
             questionId: req.params.id
         }
@@ -30,10 +42,11 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
     const qComments = await QuestionComment.findAll({
         where: {
             questionId: req.params.id
-        }
+        },
+        include: User
     })
 
-    // console.log(answers)
+    console.log(answers[0].User.firstName)
 
     res.render('question', {
         question,
@@ -100,6 +113,20 @@ router.get('/:id(\\d+)/delete', asyncHandler(async (req, res, next) => {
 
     await question.destroy()
     res.redirect('/questions')
+}));
+
+router.post('/search', asyncHandler(async (req, res) => {
+    console.log('we in it');
+    const { searchTerm } = req.body;
+    const searchResult = await Question.findAll({
+        where: {
+            title: {
+                [Op.iLike]: searchTerm
+            }
+        }
+    })
+    console.log(searchResult);
+    res.json(searchResult);
 }));
 
 module.exports = router;

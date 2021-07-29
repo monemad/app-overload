@@ -8,55 +8,57 @@ append head
   script(src="/javascripts/index.js" type="module" defer)
 
 block content
-    div#question
-        h1 Question
-        if isMyQuestion
-            a(href=`/questions/${question.id}/edit`) Edit this question
-            a(href=`/questions/${question.id}/delete`) Delete this question
-        h2= `Title: ${question.title}`
-        h2= `Details: ${question.details}`
-            h1 Question Comments
-            ul
-                each qComment in qComments
-                    li= qComment.comment
-                        if(userId === qComment.userId)
-                            a(href=`/comments/q/${qComment.id}/edit`) Edit this comment
-                            a(href=`/comments/q/${qComment.id}/delete`) Delete this comment
-                +validationErrorSummary(errors)
-                form(id='new-question-comment' method='post' action=`/questions/${question.id}/comments`)
-                    input(type='hidden' name= '_csrf' value= csrfToken)
-                    +field('Comment: ', 'comment', '', 'textarea', true)
-                    button(type='submit') Comment on this Question
+    div#question-page
+        div#individual-question
+            h1#question-title= `Title: ${question.title}`
+            h1#question-details= `Details: ${question.details}`
+                if isMyQuestion
+                    a(href=`/questions/${question.id}/edit`) Edit this question
+                    a(href=`/questions/${question.id}/delete`) Delete this question
+                h2 Question Comments
+                ul#q-comments-list
+                    each qComment in qComments
+                        li.question-comment-li
+                            h3= `${qComment.User.firstName} ${qComment.User.lastName} : ${qComment.comment}`
+                            if(userId === qComment.userId)
+                                a.comment-editor(href=`/comments/q/${qComment.id}/edit`) Edit this comment
+                                a.comment-editor(href=`/comments/q/${qComment.id}/delete`) Delete this comment
+                    +validationErrorSummary(errors)
+                    form(id='new-question-comment' method='post' action=`/questions/${question.id}/comments`)
+                        input(type='hidden' name= '_csrf' value= csrfToken)
+                        +field('New Comment on this Question: ', 'comment', '', 'textarea', true)
+                        button(type='submit') Comment on this Question
 
-        h1 Answers
+            h1#answer-starter Answers
             ul
                 each answer in answers
                     div#question-answers
-                        h2= answer.answer
+                        h2= `Answer from ${answer.User.firstName} ${answer.User.lastName}: ${answer.answer}`
                             if(userId === answer.userId)
                                 a(href=`/answers/${answer.id}/edit`) Edit this Answer
                                 a(href=`/answers/${answer.id}/delete`) Delete this Answer
                             h1= `Answer ${answer.id} Comments`
                             ul
                                 each aComment in answer.AnswerComments
-                                    li= aComment.comment
+                                    li.question-comment-li
+                                        h3= `${aComment.User.firstName} ${aComment.User.lastName} : ${aComment.comment}`
                                         if(userId === aComment.userId)
-                                            a(href=`/comments/a/${aComment.id}/edit`) Edit this comment
-                                            a(href=`/comments/a/${aComment.id}/delete`) Delete this comment
+                                            a.comment-editor(href=`/comments/a/${aComment.id}/edit`) Edit this comment
+                                            a.comment-editor(href=`/comments/a/${aComment.id}/delete`) Delete this comment
 
                             +validationErrorSummary(errors)
-                            form(id='new-answer' method='post' action=`/answers/${answer.id}/comments`)
+                            form(class='new-answer' method='post' action=`/answers/${answer.id}/comments`)
                                 input(type='hidden' name= '_csrf' value= csrfToken)
                                 +field('Comment: ', 'comment', '', 'textarea', true)
                                 button(type='submit') Comment on this Answer
 
 
 
-    div#new-answer
-        h1 Submit a new Answer
-        +validationErrorSummary(errors)
-        form(id='new-answer' method='post' action=`/questions/${question.id}/answers`)
-            input(type='hidden' name= '_csrf' value= csrfToken)
-            +field('Full Answer: ', 'answer', '', 'textarea', true)
-            button(type='submit') Submit an Answer to this Question!
-        a(href="/questions") Back to the questions
+        div#new-answer
+            h1 Submit a new Answer
+            +validationErrorSummary(errors)
+            form(id='new-answer' method='post' action=`/questions/${question.id}/answers`)
+                input(type='hidden' name= '_csrf' value= csrfToken)
+                +field('Full Answer: ', 'answer', '', 'textarea', true)
+                button(type='submit') Submit an Answer to this Question!
+            a(href="/questions") Back to the questions

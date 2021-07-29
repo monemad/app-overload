@@ -7,10 +7,13 @@ append head
   script(src="/javascripts/index.js" type="module" defer)
 
 block content
-    div#questions-div
-        h1 Most Popular App Overload Questions
-        ul 
+    div#questions-page
+        h1#question-page-header Most Popular App Overload Questions
+        a#new-question-button(href="/questions/new") Submit A New Question!
+        ul#question-list
             each question in questions
-                li
+                li.question-list-item
+                  p= `${question.votes} Votes`
+                  p= `${question.Answers.length} Answers`
+                  p= `${question.viewCount} Views`
                   a(href=`/questions/${question.id}`)= question.title 
-    a(href="/questions/new") New Question
