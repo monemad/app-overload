@@ -9,7 +9,7 @@
 
 #question-list{
     overflow-y: auto;
-    max-height: 500px;
+    max-height: 100vh;
 }
 
 #question-title, #question-details {

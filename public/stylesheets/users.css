@@ -6,9 +6,23 @@
     width:80%;
     right:0;
 }
+#user-layout {
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-height: 100vh;
 
-#grid-layout{
-    display: grid;
-    grid-gap: 10px;
-    grid-template-columns: repeat(5,1fr);
+    overflow-y: auto;
+}
+
+.user {
+    display: flex;
+    flex-direction: row;
+    width: 35%;
+    box-sizing: border-box;
+    margin: 10px;
+}
+
+.icon {
+    height: 50px;
 }
