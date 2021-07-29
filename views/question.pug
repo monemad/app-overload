@@ -18,7 +18,7 @@ block content
             if isMyQuestion
                 a#question-edit-link(href=`/questions/${question.id}/edit`) Edit this question
                 a#question-delete-link(href=`/questions/${question.id}/delete`) Delete this question
-                a#question-done-editing-link(href=`href=/questions/${question.id}/edit`) Done Editing Question
+                a#question-done-editing-link(href=`/questions/${question.id}/edit`) Done Editing Question
                 h2 Question Comments
                 ul#q-comments-list
                     each qComment in qComments
@@ -37,10 +37,12 @@ block content
             ul#answer-list
                 each answer in answers
                     div#question-answers
+                        textarea#answer-editor(name="answerEditor", cols="30", rows="10")
                         h2= `Answer from ${answer.User.firstName} ${answer.User.lastName}: ${answer.answer}`
                             if(userId === answer.userId)
                                 a.answer-edit-link(href=`/answers/${answer.id}/edit`) Edit this Answer
                                 a.answer-delete-link(href=`/answers/${answer.id}/delete`) Delete this Answer
+                                a.answer-done-editing-link(href=`/answers/${answer.id}/edit`) Done Editing Answer
                             h1= `Answer ${answer.id} Comments`
                             ul
                                 each aComment in answer.AnswerComments
