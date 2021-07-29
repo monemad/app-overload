@@ -14,6 +14,9 @@ block content
             each question in questions
                 li.question-list-item
                   p= `${question.votes} Votes`
-                  p= `${question.Answers.length} Answers`
+                  if question.Answers
+                    p= `${question.Answers.length} Answers`
+                  else
+                    p= `0 Answers`
                   p= `${question.viewCount} Views`
                   a(href=`/questions/${question.id}`)= question.title 

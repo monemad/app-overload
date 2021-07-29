@@ -10,12 +10,13 @@ html
   body
     div#nav-div
       nav#nav-bar 
-        a(href='/') Home
+        a(href='/')
+          img(src="./images/app-logo.png", alt="")
         form#search-form
           input#search-bar(type='text' name='searchQuery' placeholder='Search here...')
           button#search-btn(type='submit') Search
         if locals.authenticated 
-          span Welcome, #{locals.user.firstName}
+          span#nav-span Welcome, #{locals.user.firstName}
           button: a(href='/users/logout') Logout
         else
           button: a(href='/users/login') Login 
