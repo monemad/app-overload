@@ -24,7 +24,10 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
         }
     })
 
-    const isMyQuestion = question.userId === res.locals.user.id;
+    let isMyQuestion = false;
+    if(res.locals.user){
+        isMyQuestion = question.userId === res.locals.user.id;
+    }
 
     const answers = await Answer.findAll({
         // include: [AnswerComment, User],
@@ -48,7 +51,8 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
 
     // console.log(answers[0].User.firstName)
 
-    res.render('question', {
+    if (res.locals.user) {
+        res.render('question', {
         question,
         answers,
         qComments,
@@ -56,6 +60,17 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
         isMyQuestion,
         userId: res.locals.user.id
     });
+    } else {
+        res.render('question', {
+            question,
+            answers,
+            qComments,
+            csrfToken: req.csrfToken(),
+            isMyQuestion,
+            userId: 0
+        });
+    }
+
 }));
 
 /* GET the new questions page to answer a specific question */
