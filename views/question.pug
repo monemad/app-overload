@@ -28,7 +28,7 @@ block content
                             if(userId === qComment.userId)
                                 a.comment-editor(href=`/comments/q/${qComment.id}/edit`) Edit this comment
                                 a.comment-delete(href=`/comments/q/${qComment.id}/delete`) Delete this comment
-                                a.comment-done-editing-link(href=`/questions/${question.id}/edit`) Done Editing Comment
+                                a.comment-done-editing-link(href=`/comments/q/${qComment.id}`) Done Editing Comment
                 +validationErrorSummary(errors)
                 form(id='new-question-comment' method='post' action=`/questions/${question.id}/comments`)
                     input(type='hidden' name= '_csrf' value= csrfToken)
@@ -40,11 +40,11 @@ block content
                 each answer in answers
                     div#question-answers
                         textarea.answer-details-editor(name="answerEditor", cols="30", rows="10")
-                        h2= `Answer from ${answer.User.firstName} ${answer.User.lastName}: ${answer.answer}`
+                        h2.answer-details= `Answer from ${answer.User.firstName} ${answer.User.lastName}: ${answer.answer}`
                             if(userId === answer.userId)
                                 a.answer-edit-link(href=`/answers/${answer.id}/edit`) Edit this Answer
                                 a.answer-delete-link(href=`/answers/${answer.id}/delete`) Delete this Answer
-                                a.answer-done-editing-link(href=`/answers/${answer.id}/edit`) Done Editing Answer
+                                a.answer-done-editing-link(href=`/answers/${answer.id}`) Done Editing Answer
                             h1= `Answer ${answer.id} Comments`
                             ul
                                 each aComment in answer.AnswerComments
@@ -54,9 +54,9 @@ block content
                                             if(userId === aComment.userId)
                                                 a.comment-editor(href=`/comments/a/${aComment.id}/edit`) Edit this comment
                                                 a.comment-delete(href=`/comments/a/${aComment.id}/delete`) Delete this comment
-                                                a.comment-done-editing-link(href=`/questions/${question.id}/edit`) Done Editing Comment
+                                                a.comment-done-editing-link(href=`/comments/a/${aComment.id}`) Done Editing Comment
                             +validationErrorSummary(errors)
-                            form(class='new-answer' method='post' action=`/answers/${answer.id}/comments`)
+                            form(class='new-answer-comment' method='post' action=`/answers/${answer.id}/comments`)
                                 input(type='hidden' name= '_csrf' value= csrfToken)
                                 +field('Comment: ', 'comment', '', 'textarea', true)
                                 button(type='submit') Add a comment

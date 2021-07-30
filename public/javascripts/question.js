@@ -112,6 +112,18 @@ window.addEventListener("DOMContentLoaded", event => {
                     editLink.style.display = 'block'
                     commentLabel.data = commentEditor.value;
                     commentEditor.value = ''
+
+                    const body = {
+                        comment: commentLabel.data,
+                    }
+                    console.log(e.target.href)
+                    await fetch(e.target.href, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(body)
+                    })
                 })
             })
         })
