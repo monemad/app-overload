@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
       otherKey: 'questionId'
     }
     Tag.belongsToMany(models.User , columnMappingUser)
-    Tag.belongsToMany(models.User , columnMappingQuestion)
+    Tag.belongsToMany(models.Question , columnMappingQuestion)
   };
   return Tag;
 };

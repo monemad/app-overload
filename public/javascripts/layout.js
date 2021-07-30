@@ -9,7 +9,6 @@ window.addEventListener("DOMContentLoaded", (event)=>{
     document.getElementById('search-bar').addEventListener('click', insertSearchResults)
 
     document.getElementsByTagName('html')[0].addEventListener('click', async e => {
-        console.log('made it');
         const resultsDiv = document.getElementById('search-results-div');
         document.getElementById('search-bar').classList.remove('expanded');
 

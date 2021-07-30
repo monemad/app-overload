@@ -1,0 +1,85 @@
+#profile-pic {
+    border-radius: 25px;
+    box-shadow: 0px 0px 4px 0px black;
+}
+
+#content > * {
+    width: 85%;
+}
+
+h1, h2 {
+    padding: 0.4em 0;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.6);
+    margin: 1em 0;
+}
+
+h1 {
+    margin-top: 0;
+}
+
+ul {
+    list-style-type: none;
+}
+
+#user-banner {
+    display: flex;
+    width: 85%;
+    justify-content: space-between;
+    padding-right: 2em;
+}
+
+#user-card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(217,89,112,0.5);
+    box-shadow: 0px 0px 2px 0px rgba(217,89,112,1);
+    border-radius: 15px;
+    width: 150px;
+    height: 170px;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: rgba(211, 211, 211, 0.2);
+}
+
+#user-details, #user-details-list {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+#user-details-list > li {
+    text-align: right;
+}
+
+#edit-text-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#edit-text-buttons.editing {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.text-button {
+    font-size: 0.9em;
+    color: gray;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.text-button:hover {
+    text-decoration: underline;
+}
+
+#cancel-edit {
+    color: rgba(255, 0, 0, 0.8);
+}
+
+#edit-div {
+    display: flex;
+    flex-direction: column;
+}
