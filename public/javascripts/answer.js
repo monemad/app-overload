@@ -1,8 +1,6 @@
 window.addEventListener("DOMContentLoaded", event => {
     if (window.location.href.startsWith("http://localhost:8080/questions/") && window.location.href.split('/').length === 5) {
-        console.log('Trying to add an event listener to the Answer Delete link on the questions page here')
         const answerDeleteLinks = document.getElementsByClassName('answer-delete-link')
-        console.log("answerDeleteLinks.length = ",  answerDeleteLinks.length)
         if (answerDeleteLinks.length) {
             Array.from(answerDeleteLinks).forEach(answerDeleteLink => {
                 answerDeleteLink.addEventListener('click', async e => {
@@ -13,7 +11,6 @@ window.addEventListener("DOMContentLoaded", event => {
 
                     unorderedList.removeChild(listElement)
                     const answerId = e.target.href.split('/')[4]
-                    console.log(answerId)
 
                     await fetch(`/answers/${answerId}`, {
                         method: 'delete',
@@ -34,16 +31,12 @@ window.addEventListener("DOMContentLoaded", event => {
             answerEditLink.addEventListener('click', e => {
                 e.preventDefault()
                 const answerDiv = e.target.parentElement.parentElement;
-                // console.log(answerDiv.childNodes)
                 const textArea = answerDiv.childNodes[0]
                 const answerDetails = answerDiv.childNodes[1]
-                // console.log(answerDetails.childNodes)
                 const answerLabel = answerDetails.childNodes[0]
-                console.log(answerLabel)
                 const answerEditLink = e.target
                 const answerDeleteLink = answerDetails.childNodes[2]
                 const answerDoneEditingLink = answerDetails.childNodes[3]
-                // console.log(answerDoneEditingLink)
 
                 textArea.value = answerLabel.data;
                 textArea.style.visibility = 'visible'
@@ -59,7 +52,6 @@ window.addEventListener("DOMContentLoaded", event => {
 
                 answerDoneEditingLink.addEventListener('click', async event => {
                     event.preventDefault()
-                    console.log('here')
                     const body = {
                         answer : textArea.value,
                     }
@@ -75,8 +67,6 @@ window.addEventListener("DOMContentLoaded", event => {
                     answerEditLink.style.display = 'block'
                     answerDeleteLink.style.visibility = 'visible'
                     answerDeleteLink.style.display = 'block'
-
-                    console.log(event.target.href)
 
                     await fetch(event.target.href, {
                         method: 'PUT',

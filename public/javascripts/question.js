@@ -1,5 +1,4 @@
 window.addEventListener("DOMContentLoaded", event => {
-    console.log('Trying to add an event listener to the Question Edit link on the questions page here')
     const questionEditLink = document.getElementById('question-edit-link')
     const questionDeleteLink = document.getElementById('question-delete-link')
     const questionTitleTextArea = document.getElementById('question-title-editor')
@@ -12,7 +11,7 @@ window.addEventListener("DOMContentLoaded", event => {
     if (questionEditLink !== null) {
         questionEditLink.addEventListener('click', e => {
             e.preventDefault()
-            console.log('here')
+
             questionDetailsTextArea.value = questionDetailsLabel.innerText;
             questionTitleTextArea.value = questionTitleLabel.innerText;
             questionDetailsTextArea.style.visibility = 'visible';
@@ -34,7 +33,7 @@ window.addEventListener("DOMContentLoaded", event => {
 
             questionDoneEditingLink.addEventListener('click', async event => {
                 event.preventDefault()
-                console.log('here')
+
                 const body = {
                     title: questionTitleTextArea.value,
                     details: questionDetailsTextArea.value
@@ -78,16 +77,14 @@ window.addEventListener("DOMContentLoaded", event => {
         Array.from(commentEditLinks).forEach(commentEditLink => {
             commentEditLink.addEventListener('click', e => {
                 e.preventDefault()
-                console.log(e.target.parentElement.childNodes)
+
                 const editLink = e.target
                 const deleteLink = e.target.parentElement.childNodes[2]
                 const commentDoneEditingLink = e.target.parentElement.childNodes[3]
                 const comment = e.target.parentElement.parentElement;
-                // console.log(comment.childNodes)
                 const commentEditor = comment.childNodes[0]
                 commentEditor.style.visibility = 'visible'
                 commentEditor.style.display = 'block'
-                console.log(e.target.parentElement.childNodes)
                 commentEditor.value = e.target.parentElement.childNodes[0].data.split('---')[0]
                 e.target.parentElement.childNodes[0].data = ''
                 const commentLabel = e.target.parentElement.childNodes[0]
@@ -116,7 +113,7 @@ window.addEventListener("DOMContentLoaded", event => {
                     const body = {
                         comment: commentLabel.data,
                     }
-                    console.log(e.target.href)
+
                     await fetch(e.target.href, {
                         method: 'PUT',
                         headers: {
