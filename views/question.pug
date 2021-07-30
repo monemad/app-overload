@@ -19,25 +19,27 @@ block content
                 a#question-edit-link(href=`/questions/${question.id}/edit`) Edit this question
                 a#question-delete-link(href=`/questions/${question.id}/delete`) Delete this question
                 a#question-done-editing-link(href=`/questions/${question.id}/edit`) Done Editing Question
-                h2 Question Comments
-                ul#q-comments-list
-                    each qComment in qComments
-                        li.question-comment-li
-                            h3= `${qComment.User.firstName} ${qComment.User.lastName} : ${qComment.comment}`
+            h2 Question Comments
+            ul#q-comments-list
+                each qComment in qComments
+                    li.question-comment-li
+                        textarea.comment-details-editor(name="commentDetailsEditor", cols="30", rows="10") 
+                        h3= `${qComment.User.firstName} ${qComment.User.lastName} : ${qComment.comment}`
                             if(userId === qComment.userId)
                                 a.comment-editor(href=`/comments/q/${qComment.id}/edit`) Edit this comment
-                                a.comment-editor(href=`/comments/q/${qComment.id}/delete`) Delete this comment
-                    +validationErrorSummary(errors)
-                    form(id='new-question-comment' method='post' action=`/questions/${question.id}/comments`)
-                        input(type='hidden' name= '_csrf' value= csrfToken)
-                        +field('New Comment on this Question: ', 'comment', '', 'textarea', true)
-                        button(type='submit') Comment on this Question
+                                a.comment-delete(href=`/comments/q/${qComment.id}/delete`) Delete this comment
+                                a.comment-done-editing-link(href=`/questions/${question.id}/edit`) Done Editing Comment
+                +validationErrorSummary(errors)
+                form(id='new-question-comment' method='post' action=`/questions/${question.id}/comments`)
+                    input(type='hidden' name= '_csrf' value= csrfToken)
+                    +field('New Comment on this Question: ', 'comment', '', 'textarea', true)
+                    button(type='submit') Comment on this Question
 
             h1#answer-starter Answers
             ul#answer-list
                 each answer in answers
                     div#question-answers
-                        textarea#answer-editor(name="answerEditor", cols="30", rows="10")
+                        textarea.answer-details-editor(name="answerEditor", cols="30", rows="10")
                         h2= `Answer from ${answer.User.firstName} ${answer.User.lastName}: ${answer.answer}`
                             if(userId === answer.userId)
                                 a.answer-edit-link(href=`/answers/${answer.id}/edit`) Edit this Answer
@@ -47,11 +49,12 @@ block content
                             ul
                                 each aComment in answer.AnswerComments
                                     li.question-comment-li
+                                        textarea.comment-details-editor(name="commentDetailsEditor", cols="30", rows="10") 
                                         h3= `${aComment.User.firstName} ${aComment.User.lastName} : ${aComment.comment}`
-                                        if(userId === aComment.userId)
-                                            a.comment-editor(href=`/comments/a/${aComment.id}/edit`) Edit this comment
-                                            a.comment-editor(href=`/comments/a/${aComment.id}/delete`) Delete this comment
-
+                                            if(userId === aComment.userId)
+                                                a.comment-editor(href=`/comments/a/${aComment.id}/edit`) Edit this comment
+                                                a.comment-delete(href=`/comments/a/${aComment.id}/delete`) Delete this comment
+                                                a.comment-done-editing-link(href=`/questions/${question.id}/edit`) Done Editing Comment
                             +validationErrorSummary(errors)
                             form(class='new-answer' method='post' action=`/answers/${answer.id}/comments`)
                                 input(type='hidden' name= '_csrf' value= csrfToken)

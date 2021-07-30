@@ -82,5 +82,25 @@ router.get('/q/:id(\\d+)/delete', asyncHandler(async (req, res) => {
     res.redirect(`/questions/${questionId}`)
   }));
 
+router.delete('/q/:id(\\d+)', asyncHandler(async (req, res) => {
+  const commentId = req.params.id;
+  const myComment = await QuestionComment.findByPk(commentId, {
+    include: Question
+  });
+
+  const questionId = myComment.questionId
+  await myComment.destroy();
+}));
+
+router.delete('/a/:id(\\d+)', asyncHandler(async (req, res) => {
+  const commentId = req.params.id;
+  const myComment = await AnswerComment.findByPk(commentId, {
+    include: Answer
+  });
+
+  const answerId = myComment.answerId
+  await myComment.destroy();
+}));
+
 
   module.exports = router;
