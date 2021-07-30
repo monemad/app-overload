@@ -41,7 +41,8 @@ router.post('/', csrfProtection, userValidators, asyncHandler(async (req, res) =
 // Submit JSON to update user
 router.patch('/users/user:id', asyncHandler(async (req, res) => {
   const { firstName, lastName, username, email } = req.data;
-  const user = await User.findOne({ where: email })
+  const user = await User.findOne({ where: email });
+  await user.update({ firstName, lastName, username });
 }))
 
 // Get the login form

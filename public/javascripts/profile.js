@@ -5,11 +5,12 @@ window.addEventListener('DOMContentLoaded', event => {
         if (isEdit){
             showEditForm();
         } else {
-            const errorLis = Array.from(document.getElementsByClassName('error'));
-            console.log(errorLis);
-            if (errorLis.length)
-                for (let err in errorLis)
-                    err.remove();
+            const errorLis = Array.from(document.querySelectorAll('li.error'));
+            if (errorLis.length){
+                for (let i = 0; i < errorLis.length; i++){
+                    errorLis[i].remove();
+                }
+            }
             
             const nameRegEx = /^[\w-'!]+ [\w-'!]+$/;
             
@@ -17,19 +18,34 @@ window.addEventListener('DOMContentLoaded', event => {
             const errors = [];
             
             const inputs = Array.from(document.getElementsByClassName('edit-input')).map(input => input.value);
+            const name = inputs[0].split(' ');
             console.log(inputs);
 
-            if (!inputs[0] || inputs[0].length > 50 || !nameRegEx.test(inputs[0])){
+            if (!inputs[0] || !nameRegEx.test(inputs[0])){
                 valid = false;
-                errors.push('Enter first and last name')
+                errors.unshift('Enter first and last name')
             }
-            if (!inputs[1] || inputs[1].length > 50){
+            if (name[0].length > 50){
                 valid = false;
-                errors.push('Username cannot be empty or longer than 50 characters')
+                errors.unshift('First name is too long')
+            }
+            if (name[1].length > 50){
+                valid = false;
+                errors.unshift('Last name is too long')
+            }
+            if (!inputs[1]) {
+                valid = false;
+                errors.unshift('Enter username')
+            }
+            if (inputs[1].length > 50) {
+                valid = false;
+                errors.unshift('Username is too long')
             }
             
             if (valid){
-
+                
+                const updateValues = { firstName: name[0], lastName: name[1], username: inputs[1] };
+                console.log(updateValues);
 
                 const confirmButton = document.getElementById('confirm-user-details');
                 confirmButton.innerText = 'Edit';
