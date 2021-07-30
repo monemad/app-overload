@@ -15,7 +15,7 @@ window.addEventListener("DOMContentLoaded", event => {
                     const answerId = e.target.href.split('/')[4]
                     console.log(answerId)
 
-                    await fetch(`http://localhost:8080/answers/${answerId}`, {
+                    await fetch(`/answers/${answerId}`, {
                         method: 'delete',
                     })
                 })
