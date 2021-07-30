@@ -9,7 +9,7 @@ append head
 block content
     div#questions-page
         h1#question-page-header Most Popular App Overload Questions
-        a#new-question-button(href="/questions/new") Submit A New Question!
+        a#new-question-button(href="/questions/new") Ask a Question
         ul#question-list
             each question in questions
                 li.question-list-item
@@ -19,4 +19,4 @@ block content
                   else
                     p= `0 Answers`
                   p= `${question.viewCount} Views`
-                  a(href=`/questions/${question.id}`)= question.title 
+                  a(href=`/questions/${question.id}`)= question.title
