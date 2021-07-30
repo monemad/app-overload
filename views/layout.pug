@@ -11,28 +11,28 @@ html
         link(rel='stylesheet' href='/stylesheets/nav-bar.css')
         script(src="/javascripts/layout.js" type="module" defer)
   body
-    div#nav-div
-      nav#nav-bar
-        a#nav-home-link(href='/')
-          img#nav-logo(src="/images/app-logo.png", alt="")
-        div#search-div
-          form#search-form(autocomplete='off')
-            input#search-bar(type='text' name='searchQuery' placeholder='Search here...')
-        if locals.authenticated
-          div#nav-auth
-            span#nav-greeting Welcome, #{locals.user.firstName}
-            a#nav-prof-link(href='/users/profile'): img#nav-prof-pic(src="/images/default.png", alt="My Profile")
-            a(href='/users/logout') Logout
-        else
-          div#nav-auth
-            a(href='/users/login') Login
-            a(href='/users/signup') Sign Up
-            a(href='/users/demo') Demo User
-    div#sidebar-content
+
+    nav#nav-bar
+      a#nav-home-link(href='/')
+        img#nav-logo(src="/images/app-logo.png", alt="")
+      div#search-div
+        form#search-form(autocomplete='off')
+          input#search-bar(type='text' name='searchQuery' placeholder='Search here...')
+      if locals.authenticated
+        div#nav-auth
+          span#nav-greeting Welcome, #{locals.user.firstName}
+          a#nav-prof-link(href='/users/profile'): img#nav-prof-pic(src="/images/default.png", alt="My Profile")
+          a(href='/users/logout') Logout
+      else
+        div#nav-auth
+          a(href='/users/login') Login
+          a(href='/users/signup') Sign Up
+          a(href='/users/demo') Demo User
+    div.body-container
       div.sidenav
-        a(class='homebtn', href='/') Home
+        img(class='home-icon' src="./images/home-icon.png", alt="")
         a(class='questionbtn' ,href='/questions') Questions
         a(class='userbtn', href='/users') Users
 
-    div#content
-      block content
+      div#content
+        block content
