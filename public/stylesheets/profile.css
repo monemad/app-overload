@@ -68,6 +68,7 @@ ul {
     font-size: 0.9em;
     color: gray;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .text-button:hover {
