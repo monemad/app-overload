@@ -31,17 +31,9 @@ h2 {
 
 }
 
-/* #sidebar-content{
-    display: flex;
-    flex-direction: row;
-    position: relative;
-    width: 15%;
-    top: 50px;
-} */
-
 .sidenav {
     border-right: 1px solid rgb(217,89,112);
-    position: sticky;
+    position: fixed;
     height: 100vh;
     width:20%;
     background-color: rgba(255,255,255,.5);
@@ -50,8 +42,6 @@ h2 {
 }
 
 .sidenav a {
-    /* top | right | bottom | left */
-
     padding: 6px 8px 6px 16px;
     text-decoration: none;
     text-align: right;
@@ -68,13 +58,27 @@ h2 {
     background-color: #d6d3d3;
 }
 
-#content {
+/* #content {
     position: absolute;
     left: 20%;
     width: 80%;
     top: 50px;
     margin: 10px;
     padding-left: 1em
+} */
+
+#content {
+    position: absolute;
+    left: 20%;
+    width: 80%;
+    top: 50px;
+    margin: 0;
+    margin-left: 8%;
+    max-width: 1400px;
+}
+
+#content > * {
+    width: 80%;
 }
 
 
