@@ -133,3 +133,16 @@ textarea {
     height: fit-content;
     block-size: fit-content;
 }
+
+textarea[name='comment'] {
+    visibility: invisible;
+    display: none;
+}
+
+#question-answers, #q-comments-list {
+    margin-bottom: 75px;
+}
+
+.add-comment-button {
+    margin-top: 5px;
+}

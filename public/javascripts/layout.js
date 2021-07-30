@@ -17,7 +17,7 @@ window.addEventListener("DOMContentLoaded", (event)=>{
 
 
 
-    document.querySelector('.home-icon').addEventListener('click', e => {
+    document.querySelector('.homebtn').addEventListener('click', e => {
     e.preventDefault()
     window.location.href = '/'
     })

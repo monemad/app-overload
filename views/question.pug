@@ -7,6 +7,7 @@ append head
     //- add page specific js
     script(src="/javascripts/answer.js" type="module" defer)
     script(src="/javascripts/question.js" type="module" defer)
+    script(src="/javascripts/comment.js" type="module" defer)
 
 block content
     div#question-page
@@ -24,7 +25,7 @@ block content
                 each qComment in qComments
                     li.question-comment-li
                         textarea.comment-details-editor(name="commentDetailsEditor")
-                        h3= `${qComment.User.firstName} ${qComment.User.lastName} : ${qComment.comment}`
+                        h4= `${qComment.comment} - ${qComment.User.firstName} ${qComment.User.lastName}`
                             if(userId === qComment.userId)
                                 a.comment-editor(href=`/comments/q/${qComment.id}/edit`) Edit this comment
                                 a.comment-delete(href=`/comments/q/${qComment.id}/delete`) Delete this comment
@@ -32,25 +33,25 @@ block content
                 +validationErrorSummary(errors)
                 form(id='new-question-comment' method='post' action=`/questions/${question.id}/comments`)
                     input(type='hidden' name= '_csrf' value= csrfToken)
-                    +field('New Comment on this Question: ', 'comment', '', 'textarea', true)
-                    button(type='submit') Add a comment
+                    +field('', 'comment', '', 'textarea', true)
+                    button.add-comment-button(type='submit') Add a comment on Question
 
 
             ul#answer-list
                 each answer in answers
                     div#question-answers
                         textarea.answer-details-editor(name="answerEditor")
-                        h2.answer-details= `Answer from ${answer.User.firstName} ${answer.User.lastName}: ${answer.answer}`
+                        h2.answer-details= `${answer.answer}`
                             if(userId === answer.userId)
                                 a.answer-edit-link(href=`/answers/${answer.id}/edit`) Edit this Answer
                                 a.answer-delete-link(href=`/answers/${answer.id}/delete`) Delete this Answer
                                 a.answer-done-editing-link(href=`/answers/${answer.id}`) Done Editing Answer
-                            h1= `Answer ${answer.id} Comments`
+                            h1
                             ul
                                 each aComment in answer.AnswerComments
                                     li.question-comment-li
                                         textarea.comment-details-editor(name="commentDetailsEditor")
-                                        h3= `${aComment.User.firstName} ${aComment.User.lastName} : ${aComment.comment}`
+                                        h4= `${aComment.comment} - ${aComment.User.firstName} ${aComment.User.lastName}`
                                             if(userId === aComment.userId)
                                                 a.comment-editor(href=`/comments/a/${aComment.id}/edit`) Edit this comment
                                                 a.comment-delete(href=`/comments/a/${aComment.id}/delete`) Delete this comment
@@ -58,8 +59,8 @@ block content
                             +validationErrorSummary(errors)
                             form(class='new-answer-comment' method='post' action=`/answers/${answer.id}/comments`)
                                 input(type='hidden' name= '_csrf' value= csrfToken)
-                                +field('Comment: ', 'comment', '', 'textarea', true)
-                                button(type='submit') Add a comment
+                                +field('', 'comment', '', 'textarea', true)
+                                button.add-comment-button(type='submit') Add a comment on Answer
 
 
 
@@ -68,7 +69,7 @@ block content
             +validationErrorSummary(errors)
             form(id='new-answer' method='post' action=`/questions/${question.id}/answers`)
                 input(type='hidden' name= '_csrf' value= csrfToken)
-                +field('Full Answer: ', 'answer', '', 'textarea', true)
+                +field('', 'answer', '', 'textarea', true)
                 button(type='submit') Post Your Answer
         div#home-div
             a#back-home(href="/questions") Back to the questions
