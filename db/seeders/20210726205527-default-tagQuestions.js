@@ -6,7 +6,7 @@ module.exports = {
       return queryInterface.bulkInsert('TagQuestions', [
         {questionId: 1, tagId: 1, createdAt: new Date(), updatedAt: new Date()},
         { questionId: 1, tagId: 2 , createdAt: new Date(), updatedAt: new Date()},
-        { questionId: 2, tagId: 2 , createdAt: new Date(), updatedAt: new Date()}
+        { questionId: 1, tagId: 2 , createdAt: new Date(), updatedAt: new Date()}
       ], {});
   },
 
