@@ -1,111 +1,9 @@
 @import "popular-questions.css";
 @import "question.css";
 
-#nav-bar {
-    display: flex;
-    justify-content: center;
-    background-color: lightgray;
-    height: 50px;
-    border-bottom: 1px solid rgba(217,89,112,1);
-}
-
-#nav-bar > * {
-    margin: 0 5px;
-}
-
-#nav-greeting {
-    align-self: center;
-    font-weight: bold;
-    font-size: .9em;
-}
-
-#nav-home-link {
-    width: 120px;
-    margin: auto 0;
-    height: 35px;
-}
-
-#nav-logo {
-    height: auto;
-    width: 100%;
-    margin: auto;
-    border-radius: 5px;
-}
-
-#search-div {
-    width: 40%;
-    height: 35px;
-    align-self: center;
-}
-
-#search-form {
-    display: flex;
+html {
     width: 100%;
     height: 100%;
-}
-
-#search-bar {
-    width: 100%;
-    border-radius: 8px;
-    border: 1px solid rgba(217,89,112,0.5);
-    padding: 0 5px;
-}
-
-#search-results-div {
-    background-color: rgb(211, 211, 211);
-    position: absolute;
-    border: 1px solid rgba(217,89,112,1);
-    border-top: none;
-    width: 40%;
-    top: 49px;
-}
-
-#results-list > a {
-    text-decoration: none;
-}
-
-#results-list li {
-    background-color: rgb(211, 211, 211);
-    list-style: none;
-    font-size: 1.15em;
-    padding: 0 5px;
-}
-
-#results-list li:hover {
-    background-color: darkgray;
-}
-
-#nav-auth {
-    display: flex;
-    height: 80%;
-    align-self: center;
-    justify-content: space-around;
-    align-items: center;
-    width: fit-content;
-}
-
-#nav-auth > a {
-    text-decoration: none;
-    font-weight:bold;
-    cursor: pointer;
-}
-
-#nav-auth > a:hover {
-    text-decoration: underline;
-}
-
-#nav-auth > * {
-    margin: 0 5px;
-}
-
-#nav-prof-link {
-    width: 35px;
-}
-
-#nav-prof-pic {
-    height: 35px;
-    border-radius: 35px;
-    border: 2px solid rgba(217,89,112,0.5);
 }
 
 #index-page {
@@ -136,16 +34,19 @@ h2 {
 #sidebar-content{
     display: flex;
     flex-direction: row;
+    position: relative;
+    top: 50px;
 }
 
 .sidenav {
     position: sticky;
     height: 100%;
     width:10%;
-    top: 0;
+    top: 60px;
     background-color: rgba(255,255,255,.5);
     overflow-x: hidden;
     padding-top: 20px;
+    z-index: 0;
   }
 
 .sidenav a {

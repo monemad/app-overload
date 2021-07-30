@@ -141,7 +141,8 @@ router.post('/search', asyncHandler(async (req, res) => {
             title: {
                 [Op.iLike]: searchTerm
             }
-        }
+        },
+        limit: 10
     })
     console.log(searchResult);
     res.json(searchResult);
