@@ -39,9 +39,13 @@ router.post('/', csrfProtection, userValidators, asyncHandler(async (req, res) =
 }));
 
 // Submit JSON to update user
-router.patch('/users/user:id', asyncHandler(async (req, res) => {
-  const { firstName, lastName, username, email } = req.data;
-  const user = await User.findOne({ where: email })
+router.put('/profile', asyncHandler(async (req, res) => {
+  console.log('in it');
+  const { firstName, lastName, username } = req.body;
+  const user = await User.findByPk(res.locals.user.id);
+  console.log(user);
+  await user.update({ firstName, lastName, username });
+  res.end();
 }))
 
 // Get the login form

@@ -15,6 +15,7 @@ router.use((req, res, next) => {
 // 404 error handler
 router.use((err, req, res, next) => {
     if (err.status === 404) {
+        res.statusCode = 404;
         return res.render('file-not-found')
     }
 
@@ -28,7 +29,7 @@ router.use((err, req, res, next) => {
     res.locals.error = req.app.get('env') === 'development' ? err : {};
 
     // render the error page
-    res.status(err.status || 500);
+    res.statusCode(err.status || 500);
     res.render('error');
 });
 

@@ -41,7 +41,7 @@ const insertSearchResults = async e => {
     const body = { searchTerm: `%${searchBar.value}%` }
 
     console.log(body);
-    const res = await fetch('http://localhost:8080/questions/search',
+    const res = await fetch('/questions/search',
     {
         method: 'post',
         headers: {
