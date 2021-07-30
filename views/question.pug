@@ -23,7 +23,7 @@ block content
             ul#q-comments-list
                 each qComment in qComments
                     li.question-comment-li
-                        textarea.comment-details-editor(name="commentDetailsEditor", cols="30", rows="10") 
+                        textarea.comment-details-editor(name="commentDetailsEditor", cols="30", rows="10")
                         h3= `${qComment.User.firstName} ${qComment.User.lastName} : ${qComment.comment}`
                             if(userId === qComment.userId)
                                 a.comment-editor(href=`/comments/q/${qComment.id}/edit`) Edit this comment
@@ -33,7 +33,7 @@ block content
                 form(id='new-question-comment' method='post' action=`/questions/${question.id}/comments`)
                     input(type='hidden' name= '_csrf' value= csrfToken)
                     +field('New Comment on this Question: ', 'comment', '', 'textarea', true)
-                    button(type='submit') Comment on this Question
+                    button(type='submit') Add a comment
 
 
             ul#answer-list
@@ -49,7 +49,7 @@ block content
                             ul
                                 each aComment in answer.AnswerComments
                                     li.question-comment-li
-                                        textarea.comment-details-editor(name="commentDetailsEditor", cols="30", rows="10") 
+                                        textarea.comment-details-editor(name="commentDetailsEditor", cols="30", rows="10")
                                         h3= `${aComment.User.firstName} ${aComment.User.lastName} : ${aComment.comment}`
                                             if(userId === aComment.userId)
                                                 a.comment-editor(href=`/comments/a/${aComment.id}/edit`) Edit this comment
@@ -59,7 +59,7 @@ block content
                             form(class='new-answer-comment' method='post' action=`/answers/${answer.id}/comments`)
                                 input(type='hidden' name= '_csrf' value= csrfToken)
                                 +field('Comment: ', 'comment', '', 'textarea', true)
-                                button(type='submit') Comment on this Answer
+                                button(type='submit') Add a comment
 
 
 
@@ -69,6 +69,6 @@ block content
             form(id='new-answer' method='post' action=`/questions/${question.id}/answers`)
                 input(type='hidden' name= '_csrf' value= csrfToken)
                 +field('Full Answer: ', 'answer', '', 'textarea', true)
-                button(type='submit') Post Your Answer 
+                button(type='submit') Post Your Answer
         div#home-div
             a#back-home(href="/questions") Back to the questions

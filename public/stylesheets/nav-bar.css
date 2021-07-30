@@ -11,6 +11,10 @@
     z-index: 1;
 }
 
+#nav-div{
+    height:fit-content;
+}
+
 #nav-bar > * {
     margin: 0 5px;
 }
@@ -59,7 +63,7 @@
 
 #search-bar.expanded {
     border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px; 
+    border-bottom-right-radius: 0px;
 }
 
 #search-results-div {

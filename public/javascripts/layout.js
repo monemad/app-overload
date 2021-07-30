@@ -17,7 +17,7 @@ window.addEventListener("DOMContentLoaded", (event)=>{
 
 
 
-    document.querySelector('.homebtn').addEventListener('click', e => {
+    document.querySelector('.home-icon').addEventListener('click', e => {
     e.preventDefault()
     window.location.href = '/'
     })
@@ -49,7 +49,7 @@ const insertSearchResults = async e => {
         },
         body: JSON.stringify(body)
     });
-    
+
     const searchResult = await res.json();
     const results = searchResult.map(res => `<a href='/questions/${res.id}'><li class='search-result'>${res.title}</li></a>`).join('');
     console.log(results);
@@ -73,7 +73,7 @@ const insertSearchResults = async e => {
         searchDiv.appendChild(resultsDiv);
         resultsDiv.appendChild(resultsList);
     }
-    
+
 
     resultsList.innerHTML = '';
     resultsList.innerHTML = results;

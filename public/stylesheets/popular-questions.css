@@ -37,9 +37,15 @@ li > p {
 #new-question-button {
     display: inline-flex;
     align-self: center;
-    border: 1px solid black;
+    
     padding: 10px;
     margin: 10px;
-    background-color: lightgray;
-    color: blue;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #0095ff;
+    box-shadow: inset 0 1px 0 0 rgb(255 255 255 / 40%);
+
+
 }
