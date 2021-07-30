@@ -76,6 +76,7 @@ h2 {
     max-width: 1400px;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 /* #question, #new-answer, #question-answers {

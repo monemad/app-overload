@@ -1,15 +1,53 @@
+#content {
+    padding: 8% 0;
+}
+
+h1 {
+    margin-bottom: .5em;
+}
+
 div.form-div {
-    border: 1px solid black;
-    width: 50%;
+    border: 2px solid rgba(217,89,112,0.5);
+    box-shadow: 0px 0px 2px 0px rgb(217 89 112);
+    background-color: rgba(112, 128, 144, 0.1);
+    width: fit-content;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 2em 0 1em 0;
+    border-radius: 20px;
 }
-
 form#registration-form, form#login-form {
     width: 70%;
 }
 
 .form-field-div {
 
+}
+
+input {
+    margin-top: 2px;
+    border: 2px solid rgba(217,89,112,0.5);
+    border-radius: 5px;
+    padding: 2px 5px;
+    outline: none;
+    margin-bottom: 1em;
+    height: 2em;
+}
+
+label {
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+#validation-error-div {
+    position: relative;
+    border: 2px solid red;
+    border-radius: 10px;
+    box-shadow: 0px 0px 2px 0px rgb(255, 0, 0);
+    background-color: rgba(255, 0, 0, 0.1);
+    padding: 0 1em 0.5em 1.5em;
+    margin-bottom: 1em;
+    font-weight: bold;
+    font-size: 0.9em;
 }

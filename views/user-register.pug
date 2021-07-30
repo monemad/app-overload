@@ -6,6 +6,7 @@ append head
 
 block content
     +validationErrorSummary(errors)
+    h1 Sign Up
     div#register-form-div.form-div
         form(id='registration-form' method='post' action='/users')
             input(type='hidden' name= '_csrf' value= csrfToken)
