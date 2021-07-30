@@ -49,5 +49,16 @@ router.delete('/:id(\\d+)', asyncHandler(async (req, res, next) => {
   console.log('here in the delte route')
 }));
 
+router.put('/:id(\\d+)', asyncHandler(async (req, res) => {
+  console.log('here in my put route handler')
+  const answerId = parseInt(req.params.id, 10);
+  const answer = await Answer.findByPk(answerId);
+  answer.answer = req.body.answer;
+  console.log(answer)
+  await answer.save()
+  res.end()
+
+}));
+
 
   module.exports = router;
