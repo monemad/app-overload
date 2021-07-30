@@ -27,37 +27,17 @@ router.post('/:id(\\d+)/comments', csrfProtection, asyncHandler(async (req, res)
     res.redirect(`/questions/${id}`)
   }));
 
-
-router.get('/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res) => {
-    const answerId = parseInt(req.params.id, 10);
-    const answer = await Answer.findByPk(answerId);
-    res.render('answer-edit', { title: 'Edit Answer',answer, csrfToken: req.csrfToken(),});
-
-  }));
-
-router.post('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
-    const newAnswer = req.body.answer
-    const answerId = parseInt(req.params.id, 10);
-    const answer = await Answer.findByPk(answerId);
-    answer.update({ newAnswer })
-
-  }));
-
 router.delete('/:id(\\d+)', asyncHandler(async (req, res, next) => {
   const answer = await Answer.findByPk(req.params.id)
   await answer.destroy()
-  console.log('here in the delte route')
 }));
 
 router.put('/:id(\\d+)', asyncHandler(async (req, res) => {
-  console.log('here in my put route handler')
   const answerId = parseInt(req.params.id, 10);
   const answer = await Answer.findByPk(answerId);
   answer.answer = req.body.answer;
-  console.log(answer)
   await answer.save()
   res.end()
-
 }));
 
 

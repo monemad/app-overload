@@ -3,8 +3,14 @@
     box-shadow: 0px 0px 4px 0px black;
 }
 
+#content {
+    margin: 0;
+    margin-left: 8%;
+    max-width: 1400px;
+}
+
 #content > * {
-    width: 85%;
+    width: 80%;
 }
 
 h1, h2 {
@@ -23,9 +29,9 @@ ul {
 
 #user-banner {
     display: flex;
-    width: 85%;
+    width: 80%;
     justify-content: space-between;
-    padding-right: 2em;
+
 }
 
 #user-card {
@@ -50,6 +56,15 @@ ul {
 
 #user-details-list > li {
     text-align: right;
+    margin: 2px 0;
+}
+
+#user-name {
+    font-weight: bold;
+}
+
+#user-email, #user-join-date {
+    color: rgba(0, 0, 0, 0.6);
 }
 
 #edit-text-buttons {
@@ -66,7 +81,7 @@ ul {
 
 .text-button {
     font-size: 0.9em;
-    color: gray;
+    color: rgb(0, 0, 0, 0.4);
     cursor: pointer;
     text-decoration: none;
 }
@@ -82,4 +97,19 @@ ul {
 #edit-div {
     display: flex;
     flex-direction: column;
+}
+
+#edit-div > label {
+    margin-top: 5px;
+    font-size: .9em;
+    font-weight: bold;
+    color: gray;
+}
+
+#edit-div > input {
+    margin-top: 2px;
+    border: 2px solid rgba(217,89,112,0.5);
+    border-radius: 5px;
+    padding: 2px 5px;
+    outline: none;
 }

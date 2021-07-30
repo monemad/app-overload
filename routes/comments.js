@@ -6,20 +6,22 @@ const { asyncHandler, csrfProtection, userValidators, loginValidators, handleVal
 const { validationResult } = require('express-validator');
 
 
+//Add a new Question Comment
+router.post('/q/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
+  const newComment = req.body.comment
+  const commentId = req.params.id
+  const myComment = await QuestionComment.findByPk(commentId, {
+    include: Question
+  });
 
+  const questionId = myComment.questionId
+  myComment.comment = newComment
+  await myComment.save()
+  res.redirect(`/questions/${questionId}`)
 
+}));
 
-
-router.get('/a/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res) => {
-    const commentId = req.params.id;
-    const commentType = 'a'
-    const myComment = await AnswerComment.findByPk(commentId);
-
-    //show same text area box
-    res.render('comment-edit', { title: 'Edit Comment',commentType, myComment, commentId , csrfToken: req.csrfToken()});
-
-  }));
-
+//Add a new Answer comment
 router.post('/a/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
     const newComment = req.body.comment
     const commentId = req.params.id
@@ -31,29 +33,7 @@ router.post('/a/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
     res.redirect(`/questions/${questionId}`)
   }));
 
-
-router.post('/a/:id(\\d+)/delete', asyncHandler(async (req, res) => {
-    const commentId = req.params.id;
-    const myComment = await AnswerComment.findByPk(commentId,{
-      include: Answer
-    });
-    const questionId = myComment.Answer.questionId
-    await myComment.destroy();
-
-    res.redirect(`/questions/${questionId}`)
-  }));
-
-
-router.get('/q/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res) => {
-    const commentId = req.params.id
-    const commentType = 'q'
-    const myComment = await QuestionComment.findByPk(commentId);
-
-    //show same text area box
-    res.render('comment-edit', { title: 'Edit Comment', commentType, myComment, commentId, csrfToken: req.csrfToken()});
-
-  }));
-
+//Update a question comment
 router.put('/q/:id(\\d+)', asyncHandler(async (req, res) => {
   const commentId = req.params.id
 
@@ -64,6 +44,7 @@ router.put('/q/:id(\\d+)', asyncHandler(async (req, res) => {
 
 }));
 
+//Update an answer comment
 router.put('/a/:id(\\d+)', asyncHandler(async (req, res) => {
   const commentId = req.params.id
 
@@ -74,34 +55,7 @@ router.put('/a/:id(\\d+)', asyncHandler(async (req, res) => {
 
 }));
 
-router.post('/q/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
-    const newComment = req.body.comment
-    const commentId = req.params.id
-    const myComment = await QuestionComment.findByPk(commentId,{
-      include: Question
-    });
-
-    const questionId = myComment.questionId
-    myComment.comment =  newComment
-    await myComment.save()
-    res.redirect(`/questions/${questionId}`)
-
-  }));
-
-
-router.get('/q/:id(\\d+)/delete', asyncHandler(async (req, res) => {
-    const commentId = req.params.id;
-    const myComment = await QuestionComment.findByPk(commentId,{
-      include: Question
-    });
-
-
-    const questionId = myComment.questionId
-    await myComment.destroy();
-
-    res.redirect(`/questions/${questionId}`)
-  }));
-
+//Delete a question comment
 router.delete('/q/:id(\\d+)', asyncHandler(async (req, res) => {
   const commentId = req.params.id;
   const myComment = await QuestionComment.findByPk(commentId, {
@@ -112,6 +66,7 @@ router.delete('/q/:id(\\d+)', asyncHandler(async (req, res) => {
   await myComment.destroy();
 }));
 
+//Delete an answer comment
 router.delete('/a/:id(\\d+)', asyncHandler(async (req, res) => {
   const commentId = req.params.id;
   const myComment = await AnswerComment.findByPk(commentId, {
@@ -122,5 +77,4 @@ router.delete('/a/:id(\\d+)', asyncHandler(async (req, res) => {
   await myComment.destroy();
 }));
 
-
-  module.exports = router;
+module.exports = router;
