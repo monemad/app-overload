@@ -50,11 +50,13 @@
 }
 
 #search-results-div {
-    background-color: rgba(255,255,255,1)
+    background-color: white;
+    position: absolute;
 }
 
-#results-list {
+#results-list > li {
     background-color: white;
+    list-style: none;
 }
 
 #nav-auth {
