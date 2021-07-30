@@ -5,6 +5,7 @@ window.addEventListener("DOMContentLoaded", (event)=>{
     })
 
     document.getElementById('search-bar').addEventListener('input', async e => {
+        e.stopPropagation();
         e.preventDefault();
         const searchBar = document.getElementById('search-bar');
         const body = { searchTerm: `%${searchBar.value}%` }
@@ -26,6 +27,7 @@ window.addEventListener("DOMContentLoaded", (event)=>{
         if (!searchBar.value || !results) {
             const resultsDiv = document.getElementById('search-results-div');
             if (resultsDiv) resultsDiv.remove();
+            searchBar.classList.remove('expanded');
             return;
         };
 
@@ -45,16 +47,18 @@ window.addEventListener("DOMContentLoaded", (event)=>{
 
         resultsList.innerHTML = '';
         resultsList.innerHTML = results;
-
-        // const content = document.getElementById('content');
-        // const resultsList = document.createElement('ul');
-        // resultsList.id = 'search-results-list';
-        // resultsList.innerHTML = results;
-        // content.appendChild(resultsList);
+        searchBar.classList.add('expanded');
     })
 
-    document.getElementById('search-bar').addEventListener('focusout', async e => {
+    document.getElementById('search-bar').addEventListener('click', e => {
+        e.stopPropagation();
+    })
+
+    document.getElementsByTagName('html')[0].addEventListener('click', async e => {
+        console.log('made it');
         const resultsDiv = document.getElementById('search-results-div');
+        document.getElementById('search-bar').classList.remove('expanded');
+
         if (resultsDiv) resultsDiv.remove();
     })
 
