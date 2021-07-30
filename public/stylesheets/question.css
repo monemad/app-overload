@@ -22,6 +22,7 @@
 }
 
 #question-list{
+
     overflow-y: auto;
     max-height: 100vh;
 }
@@ -45,6 +46,7 @@
 }
 
 button {
+cursor: pointer;
 border-radius: 5px;
 text-decoration: none;
 color: #fff;
@@ -54,7 +56,7 @@ box-shadow: inset 0 1px 0 0 rgb(255 255 255 / 40%);
 
 .question-comment-li{
     display: inline-flex;
-    border-top: 1px solid lightgray;
+    border-top: 1px solid rgb(217,89,112);;
     color: rgba(108, 122, 137, .8);
     justify-self: center;
 }
