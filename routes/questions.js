@@ -11,7 +11,6 @@ router.get('/', asyncHandler(async (req, res, next) => {
     const questions = await Question.findAll({
         include: Answer
     });
-    // console.log(questions)
     res.render('popular-questions', { questions })
 }));
 
@@ -30,7 +29,6 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
     }
 
     const answers = await Answer.findAll({
-        // include: [AnswerComment, User],
         include: [
             User, {
                 model: AnswerComment,
@@ -48,8 +46,6 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
         },
         include: User
     })
-
-    // console.log(answers[0].User.firstName)
 
     if (res.locals.user) {
         res.render('question', {
@@ -133,8 +129,8 @@ router.get('/:id(\\d+)/delete', asyncHandler(async (req, res, next) => {
     res.redirect('/questions')
 }));
 
+//Search for questions
 router.post('/search', asyncHandler(async (req, res) => {
-    console.log('we in it');
     const { searchTerm } = req.body;
     const searchResult = await Question.findAll({
         where: {
@@ -144,7 +140,6 @@ router.post('/search', asyncHandler(async (req, res) => {
         },
         limit: 10
     })
-    console.log(searchResult);
     res.json(searchResult);
 }));
 
