@@ -1,16 +1,18 @@
 #questions-page {
     display: flex;
     flex-direction: column;
-    padding-left: 25px;
+    padding-left: 35px;
     width:80%;
     right:0;
 }
 #question-page {
     display: flex;
     flex-direction: column;
-    padding-left: 25px;
+    padding-left: 35px;
     width:80%;
     right:0;
+    overflow-x: hidden;
+
 }
 
 

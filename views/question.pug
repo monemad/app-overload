@@ -33,7 +33,7 @@ block content
                 form(id='new-question-comment' method='post' action=`/questions/${question.id}/comments`)
                     input(type='hidden' name= '_csrf' value= csrfToken)
                     +field('New Comment on this Question: ', 'comment', '', 'textarea', true)
-                    button(type='submit') Comment on this Question
+                    button(type='submit') Add a comment
 
 
             ul#answer-list
@@ -59,7 +59,7 @@ block content
                             form(class='new-answer' method='post' action=`/answers/${answer.id}/comments`)
                                 input(type='hidden' name= '_csrf' value= csrfToken)
                                 +field('Comment: ', 'comment', '', 'textarea', true)
-                                button(type='submit') Comment on this Answer
+                                button(type='submit') Add a comment
 
 
 
