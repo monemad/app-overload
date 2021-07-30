@@ -54,6 +54,26 @@ router.get('/q/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res) =>
 
   }));
 
+router.put('/q/:id(\\d+)', asyncHandler(async (req, res) => {
+  const commentId = req.params.id
+
+  const myComment = await QuestionComment.findByPk(commentId);
+  myComment.comment = req.body.comment
+  await myComment.save()
+  res.end()
+
+}));
+
+router.put('/a/:id(\\d+)', asyncHandler(async (req, res) => {
+  const commentId = req.params.id
+
+  const myComment = await AnswerComment.findByPk(commentId);
+  myComment.comment = req.body.comment
+  await myComment.save()
+  res.end()
+
+}));
+
 router.post('/q/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
     const newComment = req.body.comment
     const commentId = req.params.id
