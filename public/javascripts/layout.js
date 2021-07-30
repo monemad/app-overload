@@ -1,28 +1,33 @@
 
 window.addEventListener("DOMContentLoaded", (event)=>{
+    document.getElementById('search-form').addEventListener('submit', e => {
+        e.preventDefault();
+    })
+
     document.getElementById('search-bar').addEventListener('input', async e => {
         e.preventDefault();
         const searchBar = document.getElementById('search-bar');
-        if (!searchBar.value) {
-            const resultsList = document.getElementById('results-list');
-            if (resultsList) resultsList.innerHTML = '';
-            return;
-        };
         const body = { searchTerm: `%${searchBar.value}%` }
         // searchBar.value = '';
         console.log(body);
         const res = await fetch('http://localhost:8080/questions/search',
-            {
-                method: 'post',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(body)
-            });
+        {
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body)
+        });
         
         const searchResult = await res.json();
-        const results = searchResult.map(res => `<li class='search-result'><a href='/questions/${res.id}'>${res.title}</a></li>`).join('');
+        const results = searchResult.map(res => `<a href='/questions/${res.id}'><li class='search-result'>${res.title}</li></a>`).join('');
         console.log(results);
+
+        if (!searchBar.value || !results) {
+            const resultsDiv = document.getElementById('search-results-div');
+            if (resultsDiv) resultsDiv.remove();
+            return;
+        };
 
         const searchDiv = document.getElementById('search-div');
 
@@ -46,6 +51,11 @@ window.addEventListener("DOMContentLoaded", (event)=>{
         // resultsList.id = 'search-results-list';
         // resultsList.innerHTML = results;
         // content.appendChild(resultsList);
+    })
+
+    document.getElementById('search-bar').addEventListener('focusout', async e => {
+        const resultsDiv = document.getElementById('search-results-div');
+        if (resultsDiv) resultsDiv.remove();
     })
 
 

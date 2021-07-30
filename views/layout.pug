@@ -15,9 +15,8 @@ html
         a#nav-home-link(href='/')
           img#nav-logo(src="/images/app-logo.png", alt="")
         div#search-div
-          form#search-form
+          form#search-form(autocomplete='off')
             input#search-bar(type='text' name='searchQuery' placeholder='Search here...')
-            //- button#search-btn(type='submit') Search
         if locals.authenticated
           div#nav-auth
             span#nav-greeting Welcome, #{locals.user.firstName}
