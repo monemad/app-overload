@@ -27,7 +27,6 @@ html {
 h2 {
     font-style: bold;
     font-size: 20px;
-    padding: 20px;
 }
 
 .container{
@@ -81,9 +80,9 @@ h2 {
 }
 
 
-#question, #new-answer, #question-answers {
+/* #question, #new-answer, #question-answers {
     margin: 50px;
-}
+} */
 
 li > span {
     color: gray;
