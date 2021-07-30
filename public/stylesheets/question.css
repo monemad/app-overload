@@ -15,7 +15,7 @@
     flex-direction: column;
 }
 
-#question-title-editor, #question-details-editor, #question-done-editing-link, .comment-details-editor, .answer-details-editor, .comment-done-editing-link {
+#question-title-editor, #question-details-editor, #question-done-editing-link, .comment-details-editor, .answer-details-editor, .comment-done-editing-link, .answer-done-editing-link {
     visibility: hidden;
     display: none;
 }
@@ -34,7 +34,7 @@
     margin: 5px;
 }
 
-.answer-edit-link, .answer-delete-link, #question-edit-link, #question-delete-link, #question-done-editing-link, .comment-done-editing-link {
+.answer-edit-link, .answer-delete-link, #question-edit-link, #question-delete-link, #question-done-editing-link, .comment-done-editing-link, .answer-done-editing-link {
     color: blue;
     border: 1px solid black;
     padding: 5px;
