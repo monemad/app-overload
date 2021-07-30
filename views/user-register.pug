@@ -1,6 +1,9 @@
 extends layout.pug 
 include utils.pug
 
+append head 
+    link(rel='stylesheet' href='/stylesheets/form.css')
+
 block content
     +validationErrorSummary(errors)
     div#register-form-div.form-div
