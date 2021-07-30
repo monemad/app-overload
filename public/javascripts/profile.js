@@ -1,6 +1,6 @@
 let isEdit= true;
 window.addEventListener('DOMContentLoaded', event => {
-    document.getElementById('edit-user-details').addEventListener('click', e => {
+    document.getElementById('edit-user-details').addEventListener('click', async e => {
 
         if (isEdit){
             showEditForm();
@@ -18,18 +18,20 @@ window.addEventListener('DOMContentLoaded', event => {
             const errors = [];
             
             const inputs = Array.from(document.getElementsByClassName('edit-input')).map(input => input.value);
-            const name = inputs[0].split(' ');
+            let name;
             console.log(inputs);
 
             if (!inputs[0] || !nameRegEx.test(inputs[0])){
                 valid = false;
                 errors.unshift('Enter first and last name')
+            } else {
+                name = inputs[0].split(' ');
             }
-            if (name[0].length > 50){
+            if (name && name[0].length > 50){
                 valid = false;
                 errors.unshift('First name is too long')
             }
-            if (name[1].length > 50){
+            if (name && name[1].length > 50){
                 valid = false;
                 errors.unshift('Last name is too long')
             }
@@ -43,10 +45,18 @@ window.addEventListener('DOMContentLoaded', event => {
             }
             
             if (valid){
-                
+                console.log(name[0], name[1]);
                 const updateValues = { firstName: name[0], lastName: name[1], username: inputs[1] };
-                console.log(updateValues);
-
+                console.log('about to fetch');
+                await fetch('/users/profile', {
+                    method: 'put',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(updateValues)
+                });
+                console.log('done fetching');
+                window.location.href = '/users/profile';
                 const confirmButton = document.getElementById('confirm-user-details');
                 confirmButton.innerText = 'Edit';
                 confirmButton.id = 'edit-user-details';

@@ -50,6 +50,7 @@ ul {
 
 #user-details-list > li {
     text-align: right;
+    margin: 2px 0;
 }
 
 #edit-text-buttons {
@@ -82,4 +83,19 @@ ul {
 #edit-div {
     display: flex;
     flex-direction: column;
+}
+
+#edit-div > label {
+    margin-top: 5px;
+    font-size: .9em;
+    font-weight: bold;
+    color: gray;
+}
+
+#edit-div > input {
+    margin-top: 2px;
+    border: 2px solid rgba(217,89,112,0.5);
+    border-radius: 5px;
+    padding: 2px 5px;
+    outline: none;
 }
