@@ -11,7 +11,7 @@ a {
   box-sizing: border-box;
 }
 
-h1, h2, h3, h4, h5, h6, a, ol, li, ul, div, span,
+h1, h2, h4, h5, h6, a, ol, li, ul, div, span,
 body, header, nav {
   font-size: 1rem;
   color: inherit;
@@ -24,4 +24,9 @@ body, header, nav {
 
 h1 {
   font-size: 2rem;
+}
+
+h3 {
+  font-size: 1rem;
+  color: black;
 }

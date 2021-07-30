@@ -72,4 +72,64 @@ window.addEventListener("DOMContentLoaded", event => {
 
         })
     }
+
+    const commentEditLinks = document.getElementsByClassName('comment-editor')
+    if(commentEditLinks.length){
+        Array.from(commentEditLinks).forEach(commentEditLink => {
+            commentEditLink.addEventListener('click', e => {
+                e.preventDefault()
+                console.log(e.target.parentElement.childNodes)
+                const editLink = e.target
+                const deleteLink = e.target.parentElement.childNodes[2]
+                const commentDoneEditingLink = e.target.parentElement.childNodes[3]
+                const comment = e.target.parentElement.parentElement;
+                // console.log(comment.childNodes)
+                const commentEditor = comment.childNodes[0]
+                commentEditor.style.visibility = 'visible'
+                commentEditor.style.display = 'block'
+                console.log(e.target.parentElement.childNodes)
+                commentEditor.value = e.target.parentElement.childNodes[0].data
+                e.target.parentElement.childNodes[0].data = ''
+                const commentLabel = e.target.parentElement.childNodes[0]
+                // commentLabel.style.visibility = 'invisible'
+                // commentLabel.style.display = 'none'
+                deleteLink.style.visibility = 'invisible'
+                deleteLink.style.display = 'none'
+                commentDoneEditingLink.style.visibility = 'visible'
+                commentDoneEditingLink.style.display = 'block'
+                editLink.style.visibility = 'invisible'
+                editLink.style.display = 'none'
+
+                commentDoneEditingLink.addEventListener('click', async e=> {
+                    e.preventDefault()
+                    commentEditor.style.visibility = 'invisible'
+                    commentEditor.style.display = 'none'
+                    deleteLink.style.visibility = 'visible'
+                    deleteLink.style.display = 'block'
+                    commentDoneEditingLink.style.visibility = 'invisible'
+                    commentDoneEditingLink.style.display = 'none'
+                    editLink.style.visibility = 'visible'
+                    editLink.style.display = 'block'
+                    commentLabel.data = commentEditor.value;
+                    commentEditor.value = ''
+                })
+            })
+        })
+    }
+
+    const commentDeleteLinks = document.getElementsByClassName('comment-delete')
+    if (commentDeleteLinks.length) {
+        Array.from(commentDeleteLinks).forEach(commentDeleteLink => {
+            commentDeleteLink.addEventListener('click', async e => {
+                e.preventDefault()
+                const comment = e.target.parentElement;
+                const commentList = comment.parentElement;
+                commentList.removeChild(comment);
+
+                await fetch(`http://localhost:8080/comments/${e.target.href.split('/')[4]}/${e.target.href.split('/')[5]}`, {
+                    method: 'DELETE',
+                })
+            })
+        })
+    }
 })

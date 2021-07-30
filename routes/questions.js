@@ -123,6 +123,7 @@ router.put('/:id(\\d+)', asyncHandler(async (req, res, next) => {
     question.title = req.body.title
     question.details = req.body.details
     await question.save()
+    res.end()
 }));
 
 /* Delete a specific question by id */
