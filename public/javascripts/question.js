@@ -60,7 +60,7 @@ window.addEventListener("DOMContentLoaded", event => {
                 questionDeleteLink.style.visibility = 'visible'
                 questionDeleteLink.style.display = 'block'
 
-                await fetch(`http://localhost:8080/questions/${questionId}`, {
+                await fetch(`/questions/${questionId}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json'
@@ -138,7 +138,7 @@ window.addEventListener("DOMContentLoaded", event => {
                 const commentList = comment.parentElement;
                 commentList.removeChild(comment);
 
-                await fetch(`http://localhost:8080/comments/${e.target.href.split('/')[4]}/${e.target.href.split('/')[5]}`, {
+                await fetch(`/comments/${e.target.href.split('/')[4]}/${e.target.href.split('/')[5]}`, {
                     method: 'DELETE',
                 })
             })
