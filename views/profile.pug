@@ -5,7 +5,7 @@ append head
 
 block content 
     div#user-banner
-        h1= `${locals.user.firstName}'s Profile`
+        h1= `${locals.user.username[0].toUpperCase().concat(locals.user.username.slice(1))}'s Profile`
         img#profile-pic(src=locals.user.avatarURL width='100')
         p#reputation= `Reputation: ${locals.user.reputation}`
     div#question-div
