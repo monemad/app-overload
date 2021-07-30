@@ -21,7 +21,7 @@ window.addEventListener("DOMContentLoaded", (event)=>{
             });
         
         const searchResult = await res.json();
-        const results = searchResult.map(res => `<li class='search-result'><a href='/questions/${res.id}'>${res.title}</a></li>`);
+        const results = searchResult.map(res => `<li class='search-result'><a href='/questions/${res.id}'>${res.title}</a></li>`).join('');
         console.log(results);
 
         const searchDiv = document.getElementById('search-div');

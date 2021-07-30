@@ -50,12 +50,13 @@
 }
 
 #search-results-div {
-    background-color: white;
+    background-color: lightgray;
     position: absolute;
+    padding: 8px 10px;
 }
 
 #results-list > li {
-    background-color: white;
+    background-color: lightgray;
     list-style: none;
 }
 
