@@ -2,12 +2,21 @@ extends layout.pug
 
 append head
     link(rel='stylesheet' href='/stylesheets/profile.css')
+    script(src="/javascripts/profile.js" type="module" defer)
 
 block content 
+    h1= `${locals.user.username[0].toUpperCase().concat(locals.user.username.slice(1))}'s Profile`
     div#user-banner
-        h1= `${locals.user.username[0].toUpperCase().concat(locals.user.username.slice(1))}'s Profile`
-        img#profile-pic(src=locals.user.avatarURL width='100')
-        p#reputation= `Reputation: ${locals.user.reputation}`
+        div#user-card
+            img#profile-pic(src=locals.user.avatarURL width='100')
+            span#reputation= `Reputation: ${locals.user.reputation}`
+        div#user-details
+            ul#user-details-list
+                li#user-name= `${locals.user.firstName} ${locals.user.lastName}`
+                li#user-email= locals.user.email
+                li#user-join-date= `Joined: ${new Date(locals.user.createdAt).toDateString()}`
+                div#edit-text-buttons
+                    span#edit-user-details.text-button Edit
     div#question-div
         h2 Your Questions
             span.counter= ` (${questions.length})`
