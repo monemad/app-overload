@@ -1,12 +1,17 @@
 extends layout.pug 
 include utils.pug 
 
+append head 
+    link(rel='stylesheet' href='/stylesheets/form.css')
+
 block content
     +validationErrorSummary(errors)
-    form(id='login-form' method='post' action='/users/login/')
-        input(type='hidden' name='_csrf' value=csrfToken)
-        +field('Email: ', 'email', '', 'email', true)
-        +field('Password: ', 'password', '', 'password', true)
-        button(type='submit') Log In!
+    h1 Log In
+    div#login-form-div.form-div
+        form(id='login-form' method='post' action='/users/login/')
+            input(type='hidden' name='_csrf' value=csrfToken)
+            +field('Email: ', 'email', '', 'email', true)
+            +field('Password: ', 'password', '', 'password', true)
+            button(type='submit') Log In!
     p Don't have an account? 
         a(href='/users/signup') Sign up

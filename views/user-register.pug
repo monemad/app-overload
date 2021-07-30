@@ -1,8 +1,12 @@
 extends layout.pug 
 include utils.pug
 
+append head 
+    link(rel='stylesheet' href='/stylesheets/form.css')
+
 block content
     +validationErrorSummary(errors)
+    h1 Sign Up
     div#register-form-div.form-div
         form(id='registration-form' method='post' action='/users')
             input(type='hidden' name= '_csrf' value= csrfToken)
