@@ -25,7 +25,7 @@ block content
                 each qComment in qComments
                     li.question-comment-li
                         textarea.comment-details-editor(name="commentDetailsEditor")
-                        h4= `${qComment.comment} - ${qComment.User.firstName} ${qComment.User.lastName}`
+                        h4= `${qComment.comment} --- ${qComment.User.firstName} ${qComment.User.lastName}`
                             if(userId === qComment.userId)
                                 a.comment-editor(href=`/comments/q/${qComment.id}/edit`) Edit this comment
                                 a.comment-delete(href=`/comments/q/${qComment.id}/delete`) Delete this comment
@@ -51,7 +51,7 @@ block content
                                 each aComment in answer.AnswerComments
                                     li.question-comment-li
                                         textarea.comment-details-editor(name="commentDetailsEditor")
-                                        h4= `${aComment.comment} - ${aComment.User.firstName} ${aComment.User.lastName}`
+                                        h4= `${aComment.comment} --- ${aComment.User.firstName} ${aComment.User.lastName}`
                                             if(userId === aComment.userId)
                                                 a.comment-editor(href=`/comments/a/${aComment.id}/edit`) Edit this comment
                                                 a.comment-delete(href=`/comments/a/${aComment.id}/delete`) Delete this comment

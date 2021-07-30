@@ -88,7 +88,7 @@ window.addEventListener("DOMContentLoaded", event => {
                 commentEditor.style.visibility = 'visible'
                 commentEditor.style.display = 'block'
                 console.log(e.target.parentElement.childNodes)
-                commentEditor.value = e.target.parentElement.childNodes[0].data
+                commentEditor.value = e.target.parentElement.childNodes[0].data.split('---')[0]
                 e.target.parentElement.childNodes[0].data = ''
                 const commentLabel = e.target.parentElement.childNodes[0]
                 // commentLabel.style.visibility = 'invisible'
