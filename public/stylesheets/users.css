@@ -1,0 +1,28 @@
+@import "index.css";
+
+#user-page {
+    display: flex;
+    flex-direction: column;
+    width:80%;
+    right:0;
+}
+#user-layout {
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-height: 100vh;
+
+    overflow-y: auto;
+}
+
+.user {
+    display: flex;
+    flex-direction: row;
+    width: 35%;
+    box-sizing: border-box;
+    margin: 10px;
+}
+
+.icon {
+    height: 50px;
+}

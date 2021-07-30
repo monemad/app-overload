@@ -11,9 +11,9 @@ append head
 block content
     div#question-page
         div#individual-question
-            textarea#question-title-editor(name="questionTitleEditor", cols="30", rows="10") 
+            textarea#question-title-editor(name="questionTitleEditor", cols="30", rows="10")
             h1#question-title= `Title: ${question.title}`
-            textarea#question-details-editor(name="questionDetailsEditor", cols="30", rows="10") 
+            textarea#question-details-editor(name="questionDetailsEditor", cols="30", rows="10")
             h1#question-details= `Details: ${question.details}`
             if isMyQuestion
                 a#question-edit-link(href=`/questions/${question.id}/edit`) Edit this question
@@ -35,7 +35,7 @@ block content
                     +field('New Comment on this Question: ', 'comment', '', 'textarea', true)
                     button(type='submit') Comment on this Question
 
-            h1#answer-starter Answers
+
             ul#answer-list
                 each answer in answers
                     div#question-answers
@@ -64,11 +64,11 @@ block content
 
 
         div#new-answer
-            h1 Submit a new Answer
+            h2 Your Answer
             +validationErrorSummary(errors)
             form(id='new-answer' method='post' action=`/questions/${question.id}/answers`)
                 input(type='hidden' name= '_csrf' value= csrfToken)
                 +field('Full Answer: ', 'answer', '', 'textarea', true)
-                button(type='submit') Submit an Answer to this Question!
+                button(type='submit') Post Your Answer 
         div#home-div
             a#back-home(href="/questions") Back to the questions
