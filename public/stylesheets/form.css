@@ -1,10 +1,13 @@
 div.form-div {
     border: 1px solid black;
-    width: fit-content;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-form {
-    width: 50%;
+form#registration-form, form#login-form {
+    width: 70%;
 }
 
 .form-field-div {
