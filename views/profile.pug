@@ -1,5 +1,8 @@
 extends layout.pug 
 
+append head
+    link(rel='stylesheet' href='/stylesheets/profile.css')
+
 block content 
     div#user-banner
         h1= `${locals.user.firstName}'s Profile`
