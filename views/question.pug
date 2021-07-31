@@ -16,6 +16,8 @@ block content
             h1#question-title= `Title: ${question.title}`
             textarea#question-details-editor(name="questionDetailsEditor")
             h1#question-details= `Details: ${question.details}`
+            if userId === 0
+                a#interact-with-question-button(href="/users/login") Login to Interact with this Qusestion
             if isMyQuestion
                 a#question-edit-link(href=`/questions/${question.id}/edit`) Edit this question
                 a#question-delete-link(href=`/questions/${question.id}/delete`) Delete this question
@@ -34,7 +36,8 @@ block content
                 form(id='new-question-comment' method='post' action=`/questions/${question.id}/comments`)
                     input(type='hidden' name= '_csrf' value= csrfToken)
                     +field('', 'comment', '', 'textarea', true)
-                    button.add-comment-button(type='submit') Add a comment on Question
+                    if userId !== 0
+                        button.add-comment-button(type='submit') Add a comment on Question
 
 
             ul#answer-list
@@ -60,16 +63,17 @@ block content
                             form(class='new-answer-comment' method='post' action=`/answers/${answer.id}/comments`)
                                 input(type='hidden' name= '_csrf' value= csrfToken)
                                 +field('', 'comment', '', 'textarea', true)
-                                button.add-comment-button(type='submit') Add a comment on Answer
+                                if userId !== 0
+                                    button.add-comment-button(type='submit') Add a comment on Answer
 
 
 
         div#new-answer
-            h2 Your Answer
-            +validationErrorSummary(errors)
-            form(id='new-answer' method='post' action=`/questions/${question.id}/answers`)
-                input(type='hidden' name= '_csrf' value= csrfToken)
-                +field('', 'answer', '', 'textarea', true)
-                button(type='submit') Post Your Answer
+            if userId !== 0
+                h2 Your Answer
+                    form(id='new-answer' method='post' action=`/questions/${question.id}/answers`)
+                        input(type='hidden' name= '_csrf' value= csrfToken)
+                        +field('', 'answer', '', 'textarea', true)
+                        button(type='submit') Post Your Answer
         div#home-div
             a#back-home(href="/questions") Back to the questions
