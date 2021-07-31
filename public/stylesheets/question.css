@@ -30,8 +30,11 @@
 }
 
 #question-title, #question-details {
-    /* padding: 8px */
+    margin-bottom: 15px;
+}
 
+#question-details {
+    font-size: 20px;
 }
 
 #question-done-editing-link, #question-delete-link {
