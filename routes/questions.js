@@ -11,7 +11,13 @@ router.get('/', asyncHandler(async (req, res, next) => {
     const questions = await Question.findAll({
         include: Answer
     });
-    res.render('popular-questions', { questions })
+
+    if (res.locals.user) {
+        res.render('popular-questions', { questions, userId: res.locals.user.id })
+    } else {
+        res.render('popular-questions', { questions })
+    }
+
 }));
 
 /* GET the question page to view a specific question */
