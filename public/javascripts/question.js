@@ -12,8 +12,8 @@ window.addEventListener("DOMContentLoaded", event => {
         questionEditLink.addEventListener('click', e => {
             e.preventDefault()
 
-            questionDetailsTextArea.value = questionDetailsLabel.innerText;
-            questionTitleTextArea.value = questionTitleLabel.innerText;
+            questionDetailsTextArea.value = questionDetailsLabel.innerText.slice(9, questionDetailsLabel.innerText.length);
+            questionTitleTextArea.value = questionTitleLabel.innerText.slice(7, questionTitleLabel.innerText.length);
             questionDetailsTextArea.style.visibility = 'visible';
             questionDetailsTextArea.style.display = 'block';
             questionTitleTextArea.style.visibility = 'visible';

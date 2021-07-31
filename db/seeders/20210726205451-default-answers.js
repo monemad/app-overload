@@ -4,65 +4,143 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
 
       return queryInterface.bulkInsert('Answers', [
-        { answer: `In View/Option select “Show terminal”`, votes: 47, questionId: 1, userId: 6, createdAt: new Date(), updatedAt: new Date() },
-        { answer: `When you copy and past a text block 2 solutions:
-1 - With Reuse button inactive       : it’s copying just the format and when you change the text it’s not link
-2 - With Reuse button active         : it’s copying the object and the link with the database for Multilanguage used.And when you  change 1 of the object, it's changing all the objects linked.`, votes: 0, questionId: 2, userId: 3, createdAt: new Date(), updatedAt: new Date()},
-    { answer: `Yes in Functions/Alarm groups use a bit from the controller in Remote acknowledge`, votes: 30, questionId: 3, userId: 6, createdAt: new Date(), updatedAt: new Date() },
-    { answer: `Possible with AC31 Modbus TCP master Driver or with using Generic Modbus TCP master or slave`, votes: 10, questionId: 4, userId: 26, createdAt: new Date(), updatedAt: new Date() },
-    { answer: `Yes: You need the Ethernet Card or with CP551 it’s available directly. The first time you send the program you have to use the serial transfer to "configure" the Ethernet Card`, votes: 24, questionId: 5, userId: 4, createdAt: new Date(), updatedAt: new Date() },
-    { answer: `No, it’s not working with CAB90, SubD15 connector`, votes: 32, questionId: 6, userId: 24, createdAt: new Date(), updatedAt: new Date() },
-    { answer: `In the Driver Help there is Efficient communication chapter`, votes: 24, questionId: 7, userId: 25, createdAt: new Date(), updatedAt: new Date() },
-    { answer: `Setup\Peripherals\controller: selection the Driver and change properties Setting Default Station.`, votes: 81, questionId: 8, userId: 20, createdAt: new Date(), updatedAt: new Date() },
-    { answer: `NO, to use the slave mode, use the Modbus Slave Driver`, votes: 62, questionId: 9, userId: 35, createdAt: new Date(), updatedAt: new Date() },
-    { answer: `The maximum number of blocks (1 block = 1 screen) is 50 for CP501, 150 for CP502 and CP503 and 990 for the other terminals.`, votes: 59, questionId: 10, userId: 24, createdAt: new Date(), updatedAt: new Date() },
-    { answer: `5 possibilities:
-    1 - Jump to the new block with the function-keys. (Ch23.2 Jump to block with function keys) (Double click on the function keys to program).
-2 - Jump to the new block with Jump command           in tools box. 
-3 - Jump to the Previous block or Main
-4 - Jump to the new block with status of digital signal(open the ""block header"" in the project block manager(right click on the block) or from the block list.Write the bit in display signal.
-5 - Jump to the new block with status of Analogue signal(In Setup / System Signal: Possibility to put in a PLC register to active one page with is number(works when the value change).`, votes: 1, questionId: 11, userId: 7, createdAt: new Date(), updatedAt: new Date()},
-{ answer: `In Setup / System Signal: Possibility to put in a PLC register the active page`, votes: 37, questionId: 12, userId: 8, createdAt: new Date(), updatedAt: new Date()},
-{ answer: `If you want the cursor on the first manoeuvrable, open the ""block header"" in the project block manager(right click on the block) or from the block list.
-Press the ""status"" key and define ""Put the cursor..."" and / or ""auto data entry"".`, votes: -7, questionId: 13, userId: 26, createdAt: new Date(), updatedAt: new Date()},
-{ answer: `Yes! The text is scrollable in using Up and Down arrow keys(up to 150 characters).`, votes: 30, questionId: 14, userId: 3, createdAt: new Date(), updatedAt: new Date()},
-{ answer: `Yes! You can make a macro with all the variable who acknowledge each group.`, votes: 4, questionId: 15, userId: 6, createdAt: new Date(), updatedAt: new Date()},
-{ answer: `Yes, use the loop on the menu on the right
-Click, it's increasing and after réduce (4 sizes)`, votes: 17, questionId: 16, userId: 29, createdAt: new Date(), updatedAt: new Date()},
-{ answer: `In SETUP / Terminal Options :
-0 equal no screen saver
-different: value in Seconds`, votes: 2, questionId: 17, userId: 22, createdAt: new Date(), updatedAt: new Date()},
-{ answer: `You have to download the applet in the CP500 Panel and Cross in Setup / Network / Services WWW Server, FTP Server`, votes: 83, questionId: 18, userId: 32, createdAt: new Date(), updatedAt: new Date()},
-{ answer: `STN(SupeT) Passive matrices
-TFT(Thin film transistor) Active Matrices`, votes: 31, questionId: 19, userId: 16, createdAt: new Date(), updatedAt: new Date()},
-{ answer: `The communication has been disconnected.You have just to send the program again.If necessary power off and on the product`, votes: 73, questionId: 20, userId: 25, createdAt: new Date(), updatedAt: new Date()},
-{ answer: `The number of commands is limited by the number of characters used:
-CP501, CP502 & CP503 = 20 characters
-CP511, CP512, CP513, CP551, CP552, CP554
-  & CP555 = 30 characters
-Complete list of commands p4 - 38 manual 1SBC159002R0202`, votes: 38, questionId: 21, userId: 37, createdAt: new Date(), updatedAt: new Date()},
-{ answer: `The Datalogger are used to collect regularly the information from analogue values(You don't need to make a trend to collect this values)
-  (Page 4 - 5 from 1SBC159002R0202)`, votes: 44, questionId: 22, userId: 39, createdAt: new Date(), updatedAt: new Date()},
-{ answer: `The trends and the Datalogger mustn't have the same name to be able to keep the information from both without conflict!`, votes: 25, questionId: 23, userId: 12, createdAt: new Date(), updatedAt: new Date()},
-{ answer: `The libraries are used to save the new symbols to be able to use it in others projects. It's the customer personalisation`, votes: 24, questionId: 24, userId: 6, createdAt: new Date(), updatedAt: new Date() },
-  { answer: `The internal variables are available like an other driver and non-volatile variables are saved in the flash memory and be read at the next start-up
-    (Page 4 - 5 from 1SBC159002R0202)`, votes: 51, questionId: 25, userId: 6, createdAt: new Date(), updatedAt: new Date()},
-{ answer: `If your application works with memory backup(IFC - MC) and Comli Slave, the feature “Restore application from memory card” will not work correctly. (HMIWEB001235)`, votes: 67, questionId: 26, userId: 12, createdAt: new Date(), updatedAt: new Date()},
-{ answer: `It is possible to install the new version without uninstalling the old version but we recommend that you always uninstall the old version before installing the new.If you keep both versions of CP500Soft use may receive error messages.`, votes: 3, questionId: 27, userId: 37, createdAt: new Date(), updatedAt: new Date()},
-{ answer: `Projects will not be crashed and there is no need to move them.`, votes: 6, questionId: 28, userId: 28, createdAt: new Date(), updatedAt: new Date()},
-{ answer: `Yes, old projects can be opened in the new version of CP500Soft without any problems.`, votes: 58, questionId: 29, userId: 19, createdAt: new Date(), updatedAt: new Date()},
-{ answer: `You can NOT open projects made with the new version of CP500Soft in an older version of CP500Soft`, votes: 48, questionId: 30, userId: 7, createdAt: new Date(), updatedAt: new Date()},
-{ answer: `We ALWAYS recommend using the latest / newest CP500Soft together with the latest / newest version of the system program in the panel.This is the combination that we test so this is what we support and test.`, votes: 65, questionId: 31, userId: 27, createdAt: new Date(), updatedAt: new Date()},
-{ answer: `- It's not possible to use 2 bare code in same time, the terminal does not support any station (multidrop) handling.
-But it's possible to connect the barcode readers via a relay. Then can you switch between which of the readers that are active. I think you also can connect them direct to the terminal but only one can be active at a time.
-The terminal does not know from which barcode reader the data comes from, this must you take care of in the PLC.
+        { answer: `As mentioned in the comments, your code should work. I'll list some steps which can be used to try to find the problem.
 
-- It exist some bare code with Modbus option.`, votes: -5, questionId: 32, userId: 23, createdAt: new Date(), updatedAt: new Date()},
-{ answer: `Maybe you don't have the Rights, please verify you have Administrator rights !`, votes: 32, questionId: 33, userId: 30, createdAt: new Date(), updatedAt: new Date()},
-{ answer: `CP501 have an independent driver and AC500 variables are not available, but Generic Modbus is available.`, votes: 16, questionId: 34, userId: 9, createdAt: new Date(), updatedAt: new Date() },
-{ answer: `AC500 I/O are not available directly, you have to affect them to internal Modbus variables in the AC500 products.`, votes: -9, questionId: 35, userId: 34, createdAt: new Date(), updatedAt: new Date() },
-{ answer: `Import of variable could be done with text files, or for AC31 and AC500, directly with the exported files from 907AC1131 or PS501 softwares. Install_Modbus_ABB_NameImport.bat and Install_Modbus_ABB_NameImport.exe needed (double click on .bat file), file available with AC500 Driver on Web`, votes: 3, questionId: 36, userId: 40, createdAt: new Date(), updatedAt: new Date() },
-{ answer: `You musn't have a project open. Click on parameters and change the language.`, votes: 28, questionId: 37, userId: 11, createdAt: new Date(), updatedAt: new Date() },
+Show debug info
+Set DEBUG =* in your environment.DEBUG is an environment variable which controls logging for many Node modules.You'll be able to see the flow of a request through Express. If there is too much info, you can limit the output like so: DEBUG=*,-babel,-babel:*,-nodemon,-nodemon:*,-router:layer,-follow-redirects,-send (use a comma-separated list and put a - in front of any module you'd like to exclude)
+
+    This should help you trace the life of a request through the various routers and routes.You're now in a position to...
+
+    Check for another route that is short - circuiting the request
+    The fact that you're seeing an HTML page when the Express route is sending an object might indicate that your request is matching a different route. Look for catch-all routes such as non-middleware app.use() or wildcard routes which appear ABOVE your route.
+
+    Other suggestions
+    Don't explicitly set the status
+    Adding.status(200) is more code and unnecessary.
+
+    Use res.json()
+    Use.json() instead of.send().If will always add the Content - Type: application / json header, whereas.send() will not when it cannot determine the content type(e.g. .send(null) or.send('hello') will not set the Content Type header to application / json, which may confuse clients).`, votes: 8, questionId: 1, userId: 38, createdAt: new Date(), updatedAt: new Date()},
+{ answer: `Use dynamicUrlToDependencies option of Service Worker Precache to cache your route url and its dependencies.Then set navigateFallback to '/' and navigateFallbackWhitelist to a regex matching your sublinks logic.
+
+    Take this configuration: (Add const glob = require('glob') atop of your webpack config)`, votes: 43, questionId: 2, userId: 2, createdAt: new Date(), updatedAt: new Date()},
+{ answer: `That use case should be supported.I have an example of something similar using the underlying sw- precache library, and I believe the syntax should be equivalent when using the Webpack wrapper.
+
+In this case, /shell is the URL used for dynamically generated content from the server, constituting the App Shell, but it sounds like your use case is similar, with / instead of / shell.`, votes: 74, questionId: 2, userId: 34, createdAt: new Date(), updatedAt: new Date()},
+{ answer: `To answer your main question, the CORS spec only requires the OPTIONS call to precede the POST or GET if the POST or GET has any non - simple content or headers in it.
+
+  Content - Types that require a CORS pre - flight request(the OPTIONS call) are any Content - Type except the following:
+
+application / x - www - form - urlencoded
+multipart / form - data
+text / plain
+Any other Content - Types apart from those listed above will trigger a pre - flight request.
+
+As for Headers, any Request Headers apart from the following will trigger a pre - flight request:
+
+Accept
+Accept - Language
+Content - Language
+Content - Type
+DPR
+Save - Data
+Viewport - Width
+Width
+Any other Request Headers will trigger the pre - flight request.
+
+  So, you could add a custom header such as: x - Trigger: CORS, and that should trigger the pre - flight request and hit the OPTIONS block.
+
+See MDN Web API Reference - CORS Preflighted requests
+  `, votes: 26, questionId: 3, userId: 2, createdAt: new Date(), updatedAt: new Date()},
+{ answer: `I found the easiest way is to use the node.js package cors.There are, of course many ways to configure the behaviour to your needs; the page linked above shows a number of examples.`, votes: 8, questionId: 3, userId: 21, createdAt: new Date(), updatedAt: new Date()},
+{ answer: `Try passing control to the next matching route.If Express is matching app.get route first, then it won't continue onto the options route unless you do this (note use of next): In terms of organising the CORS stuff, I put it in a middleware which is working well for me:`, votes: 29, questionId: 3, userId: 6, createdAt: new Date(), updatedAt: new Date()},
+{ answer: `This is because require() does not exist in the browser/client-side JavaScript.
+
+Now you're going to have to make some choices about your client-side JavaScript script management.
+
+You have three options:
+
+Use the < script > tag.
+Use a CommonJS implementation.It has synchronous dependencies like Node.js
+Use an asynchronous module definition (AMD) implementation.
+CommonJS client side - implementations include(most of them require a build step before you deploy):
+
+Browserify - You can use most Node.js modules in the browser.This is my personal favorite.
+  Webpack - Does everything(bundles JavaScript code, CSS, etc.).It was made popular by the surge of React, but it is notorious for its difficult learning curve.
+    Rollup - a new contender.It leverages ES6 modules and includes tree - shaking abilities(removes unused code).
+You can read more about my comparison of Browserify vs(deprecated) Component.
+
+AMD implementations include:
+
+RequireJS - Very popular amongst client - side JavaScript developers.It is not my taste because of its asynchronous nature.
+  Note, in your search for choosing which one to go with, you'll read about Bower. Bower is only for package dependencies and is unopinionated on module definitions like CommonJS and AMD.`, votes: 25, questionId: 4, userId: 6, createdAt: new Date(), updatedAt: new Date()},
+{ answer: `I am coming from an Electron environment, where I need IPC communication between a renderer process and the main process. The renderer process sits in an HTML file between script tags and generates the same error. throws the Uncaught ReferenceError: require is not defined
+
+I was able to work around that by specifying Node.js integration as true when the browser window(where this HTML file is embedded) was originally created in the main process.That solved the issue for me.The solution was proposed here.`, votes: 97, questionId: 4, userId: 39, createdAt: new Date(), updatedAt: new Date()},
+{ answer: `ES6: In HTML, include the main JavaScript file using attribute type = ""module "" (browser support):
+
+<script type="" module"" src = ""script.js"" ></script >
+  And in the script.js file, include another file like this:
+
+import { hello } from './module.js';
+...
+// alert(hello());
+Inside the included file(module.js), you must export the function/class that you will import:
+
+export function hello() {
+  return ""Hello World"";
+}
+A working example is here.More information is here.`, votes: 39, questionId: 4, userId: 13, createdAt: new Date(), updatedAt: new Date()},
+{ answer: `In Express it's already done for you and you can simply use req.query for that:
+
+var id = req.query.id; // $_GET[""id""]
+Otherwise, in NodeJS, you can access req.url and the builtin url module to url.parse it manually:
+
+var url = require('url');
+var url_parts = url.parse(request.url, true);
+var query = url_parts.query; `, votes: 36, questionId: 5, userId: 20, createdAt: new Date(), updatedAt: new Date()},
+{ answer: `Since you've mentioned Express.js in your tags, here is an Express-specific answer: use req.query. E.g.
+
+var express = require('express');
+var app = express();
+
+app.get('/', function (req, res) {
+  res.send('id: ' + req.query.id);
+});
+
+app.listen(3000); `, votes: 58, questionId: 5, userId: 8, createdAt: new Date(), updatedAt: new Date()},
+{ answer: `There are a lot of details in the File System API.The most common way is:
+
+const fs = require('fs'); `, votes: 41, questionId: 6, userId: 27, createdAt: new Date(), updatedAt: new Date()},
+{ answer: `Currently there are three ways to write a file:
+
+fs.write(fd, buffer, offset, length, position, callback)
+
+You need to wait for the callback to ensure that the buffer is written to disk.It's not buffered.
+
+fs.writeFile(filename, data, [encoding], callback)
+
+All data must be stored at the same time; you cannot perform sequential writes.
+
+  fs.createWriteStream(path, [options])
+
+Creates a WriteStream, which is convenient because you don't need to wait for a callback. But again, it's not buffered.`, votes: 77, questionId: 6, userId: 36, createdAt: new Date(), updatedAt: new Date()},
+{ answer: `You might have guessed it already: it's a connection error.
+
+""ECONNRESET"" means the other side of the TCP conversation abruptly closed its end of the connection.This is most probably due to one or more application protocol errors.You could look at the API server logs to see if it complains about something.
+
+But since you are also looking for a way to check the error and potentially debug the problem, you should take a look at ""How to debug a socket hang up error in NodeJS ? "" which was posted at stackoverflow in relation to an alike question.`, votes: 46, questionId: 7, userId: 1, createdAt: new Date(), updatedAt: new Date()},
+{ answer: `A simple tcp server I had for serving the flash policy file was causing this.I can now catch the error using a handler:
+
+# serving the flash policy file
+net = require(""net"")`, votes: 38, questionId: 7, userId: 10, createdAt: new Date(), updatedAt: new Date()},
+{ answer: `I had a similar problem where apps started erroring out after an upgrade of Node.I believe this can be traced back to Node release v0.9.10 this item:
+
+net: don't suppress ECONNRESET (Ben Noordhuis)
+Previous versions wouldn't error out on interruptions from the client. A break in the connection from the client throws the error ECONNRESET in Node. I believe this is intended functionality for Node, so the fix (at least for me) was to handle the error, which I believe you did in unCaught exceptions. Although I handle it in the net.socket handler.
+
+You can demonstrate this:
+
+Make a simple socket server and get Node v0.9.9 and v0.9.10.`, votes: 16, questionId: 7, userId: 8, createdAt: new Date(), updatedAt: new Date()},
       ], {});
 
   },
