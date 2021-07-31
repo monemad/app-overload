@@ -69,12 +69,11 @@ block content
 
 
         div#new-answer
-
-            h2 Your Answer
-            +validationErrorSummary(errors)
-                form(id='new-answer' method='post' action=`/questions/${question.id}/answers`)
-                    input(type='hidden' name= '_csrf' value= csrfToken)
-                    +field('', 'answer', '', 'textarea', true)
-                    button(type='submit') Post Your Answer
+            if userId !== 0
+                h2 Your Answer
+                    form(id='new-answer' method='post' action=`/questions/${question.id}/answers`)
+                        input(type='hidden' name= '_csrf' value= csrfToken)
+                        +field('', 'answer', '', 'textarea', true)
+                        button(type='submit') Post Your Answer
         div#home-div
             a#back-home(href="/questions") Back to the questions
