@@ -136,8 +136,8 @@ window.addEventListener("DOMContentLoaded", event => {
             commentDeleteLink.addEventListener('click', async e => {
                 e.preventDefault()
                 const comment = e.target.parentElement;
-                const commentList = comment.parentElement;
-                commentList.removeChild(comment);
+                const commentListItem = comment.parentElement;
+                commentListItem.remove();
 
                 await fetch(`/comments/${e.target.href.split('/')[4]}/${e.target.href.split('/')[5]}`, {
                     method: 'DELETE',
