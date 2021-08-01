@@ -1,5 +1,5 @@
 #content {
-    padding: 8% 0;
+    padding: 4% 0;
 }
 
 h1 {
@@ -25,7 +25,7 @@ form#registration-form, form#login-form {
 
 }
 
-input {
+.form-input {
     margin-top: 2px;
     border: 2px solid rgba(217,89,112,0.5);
     border-radius: 5px;

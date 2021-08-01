@@ -69,10 +69,11 @@
 #search-results-div {
     background-color: white;
     position: absolute;
-    border-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
     border: 2px solid rgba(217,89,112,0.5);
     border-top: none;
-    width: 40%;
+    width: inherit;
     top: 35px;
     z-index: 2;
 }
@@ -84,6 +85,7 @@
 #results-list > a {
     text-decoration: none;
     z-index: 2;
+    width: inherit;
 }
 
 #results-list > a:last-child > li {
@@ -95,6 +97,7 @@
     background-color: white;
     list-style: none;
     font-size: 1.15em;
+    width: inherit;
     padding: 0 5px;
     transition: background-color 0.2s ease-out;
     z-index: 2;

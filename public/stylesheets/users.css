@@ -10,9 +10,6 @@
     display:flex;
     flex-direction: row;
     flex-wrap: wrap;
-    max-height: 100vh;
-
-    overflow-y: auto;
 }
 
 .user {
