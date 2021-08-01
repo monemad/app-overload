@@ -23,19 +23,19 @@ window.addEventListener("DOMContentLoaded", (event)=>{
 
 
     document.querySelector('.homebtn').addEventListener('click', e => {
-    e.preventDefault()
-    window.location.href = '/'
+        e.preventDefault()
+        window.location.href = '/'
     })
 
     document.querySelector('.questionbtn').addEventListener('click', e => {
         e.preventDefault()
         window.location.href = '/questions'
-        })
+    })
 
     document.querySelector('.userbtn').addEventListener('click', e => {
-            e.preventDefault()
-            window.location.href = '/users'
-            })
+        e.preventDefault()
+        window.location.href = '/users'
+    })
 
 })
 
