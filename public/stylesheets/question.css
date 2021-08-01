@@ -29,6 +29,10 @@
     max-height: 100vh;
 }
 
+#question-list-item {
+    align-self: flex-start;
+}
+
 #question-title, #question-details {
     margin-bottom: 15px;
 }

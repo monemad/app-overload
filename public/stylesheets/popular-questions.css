@@ -16,7 +16,7 @@
 
 .question-list-item {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     border-top: 1px solid grey;
 }
 
@@ -49,4 +49,17 @@ li > p {
     box-shadow: inset 0 1px 0 0 rgb(255 255 255 / 40%);
 }
 
+#popular-question-votes, #popular-question-answers, #popular-question-views {
+    margin-left: 15px;
+    justify-content: center;
+    align-content: center;
+    display: flex;
+    flex-direction: column;
+}
 
+.question-list-item > div > p {
+    align-self: center;
+    justify-self: center;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
