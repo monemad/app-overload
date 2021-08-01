@@ -38,9 +38,17 @@ router.post('/', csrfProtection, userValidators, asyncHandler(async (req, res) =
   }
 }));
 
+router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
+  const userId = parseInt(req.params.id, 10);
+  console.log(userId, '< ---------------------------------------------------------');
+  const displayUser = await User.findByPk(parseInt(userId, 10));
+  const questions = await Question.findAll({ where: { userId }, include: Answer});
+  const answers = await Answer.findAll({ where: { userId }, include: Question });
+  res.render('profile', { displayUser, questions, answers });
+}))
+
 // Submit JSON to update user
 router.put('/profile', asyncHandler(async (req, res) => {
-  console.log('in it');
   const { firstName, lastName, username } = req.body;
   const user = await User.findByPk(res.locals.user.id);
   console.log(user);
@@ -109,9 +117,8 @@ router.get('/demo', asyncHandler(async (req, res) => {
 
 router.get('/profile', requireAuth, asyncHandler(async (req, res) => {
   const questions = await Question.findAll({ where: { userId: res.locals.user.id }, include: Answer});
-  const answers = await Answer.findAll({ where: { userId: res.locals.user.id }, include: Question })
-  console.log(questions[0]);
-  res.render('profile', {questions, answers})
+  const answers = await Answer.findAll({ where: { userId: res.locals.user.id }, include: Question });
+  res.render('profile', { displayUser: res.locals.user, questions, answers })
 }))
 
 module.exports = router;

@@ -1,13 +1,15 @@
 extends layout.pug
 include utils.pug
 
+append head 
+    script(src="/javascripts/users.js" type="module" defer)
+
 block content
     div#user-page
         div#user-layout
             each user in users
-                div.user
-
-                        img(class='icon' src="./images/default-user-image.png", alt="")
-                        div.user-display
-                            h4#user-name=  `${user.username}`
-                            p#user-rep= `Reputation: ${user.reputation}`
+                div.user(data-id = `${user.id}`)
+                    img(class='icon' src="./images/default-user-image.png" alt="" data-id = `${user.id}`)
+                    div.user-display(data-id = `${user.id}`)
+                        h4#user-name(data-id = `${user.id}`)=  `${user.username}`
+                        p#user-rep(data-id = `${user.id}`)= `Reputation: ${user.reputation}`

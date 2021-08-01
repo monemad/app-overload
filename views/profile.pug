@@ -5,21 +5,26 @@ append head
     script(src="/javascripts/profile.js" type="module" defer)
 
 block content 
-    h1= locals.user.username
+    h1= displayUser.username
     div#user-banner
         div#user-card
-            img#profile-pic(src=locals.user.avatarURL width='100')
-            span#reputation= `Reputation: ${locals.user.reputation}`
+            img#profile-pic(src=displayUser.avatarURL width='100')
+            span#reputation= `Reputation: ${displayUser.reputation}`
         div#user-details
             ul#user-details-list
-                li#user-name= `${locals.user.firstName} ${locals.user.lastName}`
-                li#user-email= locals.user.email
-                li#user-join-date= `Joined: ${new Date(locals.user.createdAt).toDateString()}`
-                div#edit-text-buttons
-                    span#edit-user-details.text-button Edit
+                li#user-name= `${displayUser.firstName} ${displayUser.lastName}`
+                li#user-email= displayUser.email
+                li#user-join-date= `Joined: ${new Date(displayUser.createdAt).toDateString()}`
+                if user && user.id === displayUser.id
+                    div#edit-text-buttons
+                        span#edit-user-details.text-button Edit
     div#question-div
-        h2 Your Questions
-            span.counter= ` (${questions.length})`
+        if user && user.id === displayUser.id
+            h2 Your Questions
+                span.counter= ` (${questions.length})`
+        else
+            h2= `${displayUser.firstName}'s Questions`
+                span.counter= ` (${questions.length})`
         if questions.length
             ul#question-list
                 each q in questions
@@ -29,12 +34,19 @@ block content
                     else
                         li.user-question: a(href=`/questions/${q.id}`)= q.title
                             span= ` ${q.Answers.length} answer(s)`
-        else    
-            p You haven't asked any questions!
+        else
+            if user && user.id === displayUser.id   
+                p You haven't asked any questions!
+            else 
+                p= `${displayUser.firstName} hasn't asked any questions yet!`
 
     div#answer-div
-        h2 Your Answers
-            span.counter= ` (${answers.length})`
+        if user && user.id === displayUser.id
+            h2 Your Answers
+                span.counter= ` (${answers.length})`
+        else 
+            h2= `${displayUser.firstName}'s Answers`
+                span.counter= ` (${answers.length})`
         if answers.length
             ul#answer-list
                 each a in answers
@@ -42,4 +54,7 @@ block content
                         span=' for: '
                             a(href=`/questions/${a.Question.id}` title=a.Question.title)= `${a.Question.title.split(' ')[0]}...`
         else
-            p You haven't answered any questions yet!
+            if user && user.id === displayUser.id   
+                p You haven't answered any questions yet!
+            else 
+                p= `${displayUser.firstName} hasn't answered any questions yet!`
