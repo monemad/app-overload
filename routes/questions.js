@@ -5,6 +5,7 @@ const { Op } = require('sequelize');
 const { Question, Answer, QuestionComment, AnswerComment, User } = require('../db/models')
 
 const { asyncHandler, csrfProtection, userValidators, loginValidators, handleValidationErrors } = require('./utils');
+const { requireAuth } = require('../auth');
 
 /* GET the questions page to view the top questions */
 router.get('/', asyncHandler(async (req, res, next) => {
@@ -76,13 +77,13 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
 }));
 
 /* GET the new questions page to answer a specific question */
-router.get('/new', asyncHandler(async (req, res, next) => {
+router.get('/new', requireAuth, asyncHandler(async (req, res, next) => {
     const question = await Question.build()
     res.render('new-question', {question})
 }));
 
 //Post a new question
-router.post('/', asyncHandler(async (req, res, next) => {
+router.post('/', requireAuth, asyncHandler(async (req, res, next) => {
     const {title, details} = req.body
     const question = await Question.create({
         title,
@@ -95,7 +96,7 @@ router.post('/', asyncHandler(async (req, res, next) => {
 }));
 
 /* Submit an answer to a specific question which will be dynamically added to the answers list */
-router.post('/:id(\\d+)/answers', asyncHandler(async (req, res, next) => {
+router.post('/:id(\\d+)/answers', requireAuth, asyncHandler(async (req, res, next) => {
     const {answer} = req.body
     const newAnswer = await Answer.create({
         answer,
@@ -107,7 +108,7 @@ router.post('/:id(\\d+)/answers', asyncHandler(async (req, res, next) => {
 }));
 
 /* Submit an commment to a specific question which will be dynamically added to the answers list */
-router.post('/:id(\\d+)/comments', asyncHandler(async (req, res, next) => {
+router.post('/:id(\\d+)/comments', requireAuth, asyncHandler(async (req, res, next) => {
     const {comment} = req.body
     const newQComment = await QuestionComment.create({
         comment,
@@ -119,7 +120,7 @@ router.post('/:id(\\d+)/comments', asyncHandler(async (req, res, next) => {
 }));
 
 /* Update a specific question by id */
-router.put('/:id(\\d+)', asyncHandler(async (req, res, next) => {
+router.put('/:id(\\d+)', requireAuth, asyncHandler(async (req, res, next) => {
     const question = await Question.findByPk(req.params.id)
     question.title = req.body.title
     question.details = req.body.details
@@ -128,7 +129,7 @@ router.put('/:id(\\d+)', asyncHandler(async (req, res, next) => {
 }));
 
 /* Delete a specific question by id */
-router.get('/:id(\\d+)/delete', asyncHandler(async (req, res, next) => {
+router.get('/:id(\\d+)/delete', requireAuth, asyncHandler(async (req, res, next) => {
     const question = await Question.findByPk(req.params.id)
     await question.destroy()
     res.redirect('/questions')

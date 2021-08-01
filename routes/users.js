@@ -40,7 +40,6 @@ router.post('/', csrfProtection, userValidators, asyncHandler(async (req, res) =
 
 router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
   const userId = parseInt(req.params.id, 10);
-  console.log(userId, '< ---------------------------------------------------------');
   const displayUser = await User.findByPk(parseInt(userId, 10));
   const questions = await Question.findAll({ where: { userId }, include: Answer});
   const answers = await Answer.findAll({ where: { userId }, include: Question });
@@ -48,10 +47,9 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
 }))
 
 // Submit JSON to update user
-router.put('/profile', asyncHandler(async (req, res) => {
+router.put('/profile', requireAuth, asyncHandler(async (req, res) => {
   const { firstName, lastName, username } = req.body;
   const user = await User.findByPk(res.locals.user.id);
-  console.log(user);
   await user.update({ firstName, lastName, username });
   res.end();
 }))
