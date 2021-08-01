@@ -71,7 +71,7 @@ router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, 
     let match = await bcrypt.compare(password, user.hashedPassword);
     if (match){
       loginUser(req, res, user);
-      return res.redirect('/');
+      res.render('index', { title: 'App Overload' });
     }
 
     errors.push('Could not login with provided email and password. Please try again!')
@@ -104,7 +104,7 @@ router.get('/demo', asyncHandler(async (req, res) => {
     await demo.save();
   }
   loginUser(req, res, demo);
-  return res.redirect('/');
+  res.redirect('/');
 }));
 
 router.get('/profile', requireAuth, asyncHandler(async (req, res) => {

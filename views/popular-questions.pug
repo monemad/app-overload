@@ -5,18 +5,29 @@ append head
   link(rel="stylesheet" href="/stylesheets/index.css")
   //- add page specific js
   script(src="/javascripts/index.js" type="module" defer)
+  script(src="/javascripts/popular-questions.js" type="module" defer)
 
 block content
     div#questions-page
         h1#question-page-header Most Popular App Overload Questions
-        a#new-question-button(href="/questions/new") Ask a Question
+        if userId
+          a#new-question-button(href="/questions/new") Ask a Question
+        else
+          a#no-question-button(href="/users/login") Login to Ask a Question
         ul#question-list
             each question in questions
                 li.question-list-item
-                  p= `${question.votes} Votes`
-                  if question.Answers
-                    p= `${question.Answers.length} Answers`
-                  else
-                    p= `0 Answers`
-                  p= `${question.viewCount} Views`
+                  #popular-question-votes
+                    p= `${question.votes}`
+                    p Votes
+                  #popular-question-answers
+                    if question.Answers
+                      p= `${question.Answers.length}`
+                      p Answers
+                    else
+                      p 0
+                      p Answers
+                  #popular-question-views
+                    p= `${question.viewCount}`
+                    p Views
                   a(href=`/questions/${question.id}`)= question.title

@@ -26,9 +26,16 @@
 #question-list{
 }
 
-#question-title, #question-details {
-    /* padding: 8px */
+#question-list-item {
+    align-self: flex-start;
+}
 
+#question-title, #question-details {
+    margin-bottom: 15px;
+}
+
+#question-details {
+    font-size: 20px;
 }
 
 #question-done-editing-link, #question-delete-link {
