@@ -1,6 +1,7 @@
 let isEdit= true;
 window.addEventListener('DOMContentLoaded', event => {
-    document.getElementById('edit-user-details').addEventListener('click', async e => {
+    if (document.getElementById('edit-user-details'))
+        document.getElementById('edit-user-details').addEventListener('click', async e => {
 
         if (isEdit){
             showEditForm();

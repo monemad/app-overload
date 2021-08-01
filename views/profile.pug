@@ -15,11 +15,11 @@ block content
                 li#user-name= `${displayUser.firstName} ${displayUser.lastName}`
                 li#user-email= displayUser.email
                 li#user-join-date= `Joined: ${new Date(displayUser.createdAt).toDateString()}`
-                if user.id === displayUser.id
+                if user && user.id === displayUser.id
                     div#edit-text-buttons
                         span#edit-user-details.text-button Edit
     div#question-div
-        if user.id === displayUser.id
+        if user && user.id === displayUser.id
             h2 Your Questions
                 span.counter= ` (${questions.length})`
         else
@@ -35,13 +35,13 @@ block content
                         li.user-question: a(href=`/questions/${q.id}`)= q.title
                             span= ` ${q.Answers.length} answer(s)`
         else
-            if user.id === displayUser.id   
+            if user && user.id === displayUser.id   
                 p You haven't asked any questions!
             else 
                 p= `${displayUser.firstName} hasn't asked any questions yet!`
 
     div#answer-div
-        if user.id === displayUser.id
+        if user && user.id === displayUser.id
             h2 Your Answers
                 span.counter= ` (${answers.length})`
         else 
@@ -54,7 +54,7 @@ block content
                         span=' for: '
                             a(href=`/questions/${a.Question.id}` title=a.Question.title)= `${a.Question.title.split(' ')[0]}...`
         else
-            if user.id === displayUser.id   
+            if user && user.id === displayUser.id   
                 p You haven't answered any questions yet!
             else 
                 p= `${displayUser.firstName} hasn't answered any questions yet!`
