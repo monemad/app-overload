@@ -148,3 +148,8 @@ textarea[name='comment'] {
 .add-comment-button {
     margin-top: 5px;
 }
+
+#answer-comment-list {
+    display: flex;
+    flex-direction: column;
+}
