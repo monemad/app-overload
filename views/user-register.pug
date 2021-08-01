@@ -5,19 +5,20 @@ append head
     link(rel='stylesheet' href='/stylesheets/form.css')
 
 block content
-    +validationErrorSummary(errors)
-    h1 Sign Up
-    div#register-form-div.form-div
-        form(id='registration-form' method='post' action='/users')
-            input(type='hidden' name= '_csrf' value= csrfToken)
-            +field('First Name: ', 'firstName', newUser.firstName, true)
-            +field('Last Name: ', 'lastName', newUser.lastName)
-            +field('Username: ', 'username', newUser.username, true)
-            +field('Email: ', 'email', newUser.email, 'email', true)
-            +field('Password: ', 'password', '', 'password', true)
-            +field('Confirm Password: ', 'confirmPassword', '', 'password', true)
-            button(type='submit') Sign Up!
-    p Already have an account? 
-        a(href='/users/login') Log in
+    div#register-form-page.form-page
+        +validationErrorSummary(errors)
+        h1 Sign Up
+        div#register-form-div.form-div
+            form(id='registration-form' method='post' action='/users')
+                input(type='hidden' name= '_csrf' value= csrfToken)
+                +field('First Name: ', 'firstName', newUser.firstName, true)
+                +field('Last Name: ', 'lastName', newUser.lastName)
+                +field('Username: ', 'username', newUser.username, true)
+                +field('Email: ', 'email', newUser.email, 'email', true)
+                +field('Password: ', 'password', '', 'password', true)
+                +field('Confirm Password: ', 'confirmPassword', '', 'password', true)
+                button(type='submit') Sign Up!
+        p Already have an account? 
+            a(href='/users/login') Log in
 
         

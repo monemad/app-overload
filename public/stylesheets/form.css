@@ -1,9 +1,16 @@
 #content {
-    padding: 4% 0;
+    padding-top: 4%;
 }
 
 h1 {
     margin-bottom: .5em;
+    text-align: center;
+}
+
+.form-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 div.form-div {
