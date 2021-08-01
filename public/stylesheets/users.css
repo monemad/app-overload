@@ -39,10 +39,10 @@
 }
 
 .user:hover{
-    border: 1px solid rgb(174, 71, 90);
+    border: 1px solid rgba(217, 89, 112, 0.7);
     cursor: pointer;
     opacity: 100%;
-    box-shadow: 0px 0px 3px 2px rgb(195, 80, 101);
+    box-shadow: 0px 0px 8px 0px rgb(217, 89, 112);
 }
 
 #user-name{
