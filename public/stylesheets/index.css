@@ -44,7 +44,8 @@ h2 {
     position: fixed;
     height: 100vh;
     width:20%;
-    background-color: rgba(255,255,255,.5);
+    /* background-color: rgba(255,255,255,.5); */
+    background-color: rgba(150, 128, 144, 0.06);
     padding-top: 50px;
     z-index: 0;
     transform: translate(0px,50px);
@@ -122,4 +123,9 @@ li > a {
 }
 .home-icon:hover{
     background-color: rgb(217,89,112);
+}
+
+.sidenav a.current-page {
+    font-weight: bold;
+    color: black;
 }

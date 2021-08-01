@@ -58,3 +58,8 @@ label {
     font-weight: bold;
     font-size: 0.9em;
 }
+
+p > a {
+    color: rgba(217,89,112,1);
+    text-decoration: none;
+}

@@ -1,5 +1,10 @@
 
 window.addEventListener("DOMContentLoaded", (event)=>{
+
+
+    determineCurrentPageForSidebarLinks();
+
+
     document.getElementById('search-form').addEventListener('submit', e => {
         e.preventDefault();
     })
@@ -78,4 +83,26 @@ const insertSearchResults = async e => {
     resultsList.innerHTML = '';
     resultsList.innerHTML = results;
     searchBar.classList.add('expanded');
+}
+
+const determineCurrentPageForSidebarLinks = () => {
+
+    const homeButton = document.getElementsByClassName('homebtn')[0];
+    const questionButton = document.getElementsByClassName('questionbtn')[0];
+    const userButton = document.getElementsByClassName('userbtn')[0];
+    const currentURL = window.location.href;
+
+    if (currentURL.endsWith('/')) {
+        homeButton.classList.add('current-page');
+        questionButton.classList.remove('current-page');
+        userButton.classList.remove('current-page');
+    } else if (currentURL.endsWith('/questions')) {
+        homeButton.classList.remove('current-page');
+        questionButton.classList.add('current-page');
+        userButton.classList.remove('current-page');
+    } else if (currentURL.endsWith('/users')) {
+        homeButton.classList.remove('current-page');
+        questionButton.classList.remove('current-page');
+        userButton.classList.add('current-page');
+    }
 }
