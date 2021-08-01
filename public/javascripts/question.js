@@ -85,7 +85,12 @@ window.addEventListener("DOMContentLoaded", event => {
                 const commentEditor = comment.childNodes[0]
                 commentEditor.style.visibility = 'visible'
                 commentEditor.style.display = 'block'
-                commentEditor.value = e.target.parentElement.childNodes[0].data.split('---')[0]
+                if (e.target.parentElement.childNodes[0].data.split('---').length > 1) {
+                    commentEditor.value = e.target.parentElement.childNodes[0].data.split('---')[0]
+                } else {
+                    commentEditor.value = e.target.parentElement.childNodes[0].data
+                }
+
                 e.target.parentElement.childNodes[0].data = ''
                 const commentLabel = e.target.parentElement.childNodes[0]
                 // commentLabel.style.visibility = 'invisible'
@@ -108,7 +113,6 @@ window.addEventListener("DOMContentLoaded", event => {
                     editLink.style.visibility = 'visible'
                     editLink.style.display = 'block'
                     commentLabel.data = commentEditor.value;
-                    commentEditor.value = ''
 
                     const body = {
                         comment: commentLabel.data,

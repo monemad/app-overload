@@ -50,7 +50,7 @@ block content
                                 a.answer-delete-link(href=`/answers/${answer.id}/delete`) Delete this Answer
                                 a.answer-done-editing-link(href=`/answers/${answer.id}`) Done Editing Answer
                             h1
-                            ul
+                            ul#answer-comment-list
                                 each aComment in answer.AnswerComments
                                     li.question-comment-li
                                         textarea.comment-details-editor(name="commentDetailsEditor")
