@@ -76,7 +76,7 @@ h2 {
     width: 80%;
     top: 50px;
     margin: 0;
-    padding-left: 2%;
+    padding: 1em 0 0 2%;
     max-width: 1400px;
     display: flex;
     flex-direction: column;
@@ -85,9 +85,9 @@ h2 {
 
 }
 
-/* #question, #new-answer, #question-answers {
-    margin: 50px;
-} */
+#content > * {
+    width: 80%; 
+}
 
 li > span {
     color: gray;
@@ -111,17 +111,10 @@ li > a {
     color: blue;
 }
 
-
-/* body{
-    box-sizing: border-box;
-    margin: 25px;
-
-} */
 .body-container{
     box-sizing: border-box;
 
 }
-
 
 .home-icon{
     height:50px;

@@ -10,8 +10,8 @@
     display: inline-flex;
     justify-content: center;
     align-content: center;
-    margin-top: 10px;
     margin-bottom: 10px;
+    text-align: center;
 }
 
 .question-list-item {
@@ -24,7 +24,7 @@
     color: blue;
     font: bold;
     align-self: center;
-    padding-left: 150px;
+    padding-left: 20%;
 }
 
 #question-list {
