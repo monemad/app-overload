@@ -28,8 +28,8 @@ block content
         if questions.length
             ul#question-list
                 each q in questions
-                    if q.title.split(' ').length > 5
-                        li.user-question: a(href=`/questions/${q.id}` title=q.title)= `${q.title.split(' ').slice(0,5).join(' ')}...`
+                    if q.title.length > 100
+                        li.user-question: a(href=`/questions/${q.id}` title=q.title)= `${q.title.slice(0, 100)}...`
                             span= ` ${q.Answers.length} answer(s)`
                     else
                         li.user-question: a(href=`/questions/${q.id}`)= q.title
@@ -50,9 +50,14 @@ block content
         if answers.length
             ul#answer-list
                 each a in answers
-                    li.user-answer= a.answer
-                        span=' for: '
-                            a(href=`/questions/${a.Question.id}` title=a.Question.title)= `${a.Question.title.split(' ')[0]}...`
+                    if a.answer.length > 100
+                        li.user-answer= `${a.answer.slice(0, 100)}...`
+                            span=' for: '
+                                a(href=`/questions/${a.Question.id}` title=a.Question.title)= `${a.Question.title.split(' ')[0]}...`
+                    else
+                        li.user-answer= a.answer
+                            span=' for: '
+                                a(href=`/questions/${a.Question.id}` title=a.Question.title)= `${a.Question.title.split(' ')[0]}...`
         else
             if user && user.id === displayUser.id   
                 p You haven't answered any questions yet!
