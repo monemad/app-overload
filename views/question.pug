@@ -17,7 +17,7 @@ block content
             textarea#question-details-editor(name="questionDetailsEditor")
             h1#question-details= `Details: ${question.details}`
             if userId === 0
-                a#interact-with-question-button(href="/users/login") Login to Interact with this Qusestion
+                a#interact-with-question-button(href="/users/login") Login to Interact with this Question
             if isMyQuestion
                 a#question-edit-link(href=`/questions/${question.id}/edit`) Edit this question
                 a#question-delete-link(href=`/questions/${question.id}/delete`) Delete this question

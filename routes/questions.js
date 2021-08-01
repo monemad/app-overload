@@ -91,8 +91,7 @@ router.post('/', asyncHandler(async (req, res, next) => {
         viewCount: 1,
         userId: res.locals.user.id
     })
-    const questions = await Question.findAll()
-    res.render('popular-questions', {questions})
+    res.redirect('/questions');
 }));
 
 /* Submit an answer to a specific question which will be dynamically added to the answers list */

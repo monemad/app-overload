@@ -107,3 +107,11 @@ ul {
     padding: 2px 5px;
     outline: none;
 }
+
+li.user-question {
+    margin-bottom: 1em;
+}
+
+li.user-answer {
+    margin-bottom: 1em;
+}

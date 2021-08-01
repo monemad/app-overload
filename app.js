@@ -12,6 +12,7 @@ const answersRouter = require('./routes/answers')
 const commentsRouter = require('./routes/comments')
 const errorRouter = require('./routes/error')
 const { sessionSecret } = require('./config');
+const { asyncHandler } = require('./routes/utils')
 const { restoreUser } = require('./auth');
 
 const app = express();
@@ -42,7 +43,7 @@ app.use(
 store.sync();
 
 // restore user using session ID
-app.use(restoreUser);
+app.use(asyncHandler(restoreUser));
 
 // use routers
 app.use('/', indexRouter);
