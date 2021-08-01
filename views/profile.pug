@@ -5,7 +5,7 @@ append head
     script(src="/javascripts/profile.js" type="module" defer)
 
 block content 
-    h1= `${locals.user.username[0].toUpperCase().concat(locals.user.username.slice(1))}'s Profile`
+    h1= locals.user.username
     div#user-banner
         div#user-card
             img#profile-pic(src=locals.user.avatarURL width='100')
