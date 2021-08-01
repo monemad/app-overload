@@ -40,11 +40,11 @@ h2 {
 
 .sidenav {
 
-    border-right: 1px solid rgb(217,89,112);
+    border-right: 1px solid rgba(217,89,112, 0.3);
     position: fixed;
     height: 100vh;
     width:20%;
-    /* background-color: rgba(255,255,255,.5); */
+    max-width: 300px; 
     background-color: rgba(150, 128, 144, 0.06);
     padding-top: 50px;
     z-index: 0;
@@ -63,6 +63,7 @@ h2 {
     font-size: 13px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     display: block;
+    transition: background-color 0.15s linear;
 }
 
 .sidenav a:hover {
@@ -115,14 +116,6 @@ li > a {
 .body-container{
     box-sizing: border-box;
 
-}
-
-.home-icon{
-    height:50px;
-    cursor: pointer;
-}
-.home-icon:hover{
-    background-color: rgb(217,89,112);
 }
 
 .sidenav a.current-page {

@@ -27,8 +27,8 @@
 
 #nav-home-link {
     width: 120px;
-    margin: auto 0;
-    height: 35px;
+    margin: auto 5px;
+    height: fit-content;
 }
 
 #nav-logo {
@@ -42,6 +42,7 @@
     width: 40%;
     height: 35px;
     align-self: center;
+    margin: auto 5px;
 }
 
 #search-form {
@@ -125,6 +126,7 @@
     cursor: pointer;
     height: 100%;
     transition: background-color 0.15s linear;
+    width: auto;
 }
 
 #nav-auth > a:hover {
