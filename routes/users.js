@@ -77,7 +77,7 @@ router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, 
     let match = await bcrypt.compare(password, user.hashedPassword);
     if (match){
       loginUser(req, res, user);
-      res.render('index', { title: 'App Overload' });
+      return res.render('index', { title: 'App Overload' });
     }
 
     errors.push('Could not login with provided email and password. Please try again!')
