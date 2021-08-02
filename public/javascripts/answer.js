@@ -1,5 +1,5 @@
 window.addEventListener("DOMContentLoaded", event => {
-    if (window.location.href.startsWith("http://localhost:8080/questions/") && window.location.href.split('/').length === 5) {
+    if (window.location.href.includes("/questions/") && window.location.href.split('/').length === 5) {
         const answerDeleteLinks = document.getElementsByClassName('answer-delete-link')
         if (answerDeleteLinks.length) {
             Array.from(answerDeleteLinks).forEach(answerDeleteLink => {
