@@ -8,6 +8,7 @@ append head
 
 block content
   div#index-page
-    h1= title
-    p Welcome to App Overload
-    a#most-recent(href="/questions") Most Recent Questions
+    h1#splash-header.splash= title
+    p#splash-greeting.splash Welcome to App Overload 🤯
+    a#most-popular.splash(href="/questions") Most Popular Questions
+    img#splash-img(src='/images/splash.jpg')
