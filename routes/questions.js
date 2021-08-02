@@ -10,7 +10,8 @@ const { requireAuth } = require('../auth');
 /* GET the questions page to view the top questions */
 router.get('/', asyncHandler(async (req, res, next) => {
     const questions = await Question.findAll({
-        include: Answer
+        include: Answer,
+        order: [['votes', 'DESC']]
     });
 
     if (res.locals.user) {
