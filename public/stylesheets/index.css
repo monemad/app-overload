@@ -35,7 +35,7 @@ html {
     padding: 10px;
     margin: 10px;
     cursor: pointer;
-    border: 1px solid rgba(217, 89, 112, 0.7);
+    /* border: 1px solid rgba(217, 89, 112, 0.7); */
     border-radius: 5px;
     text-decoration: none;
     color: black;

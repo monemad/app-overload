@@ -125,6 +125,11 @@ button {
     margin-top: 0.5em;
 }
 
+input.form-input {
+    height: 2em;
+    border: 1px solid black;
+}
+
 #home-div {
     display: inline-flex;
     align-items: center;
