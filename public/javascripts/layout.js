@@ -45,7 +45,7 @@ const insertSearchResults = async e => {
     const searchBar = document.getElementById('search-bar');
     const body = { searchTerm: `%${searchBar.value}%` }
 
-    console.log(body);
+    // console.log(body);
     const res = await fetch('/questions/search',
     {
         method: 'post',
@@ -57,7 +57,7 @@ const insertSearchResults = async e => {
 
     const searchResult = await res.json();
     const results = searchResult.map(res => `<a href='/questions/${res.id}'><li class='search-result'>${res.title}</li></a>`).join('');
-    console.log(results);
+    // console.log(results);
 
     if (!searchBar.value || !results) {
         const resultsDiv = document.getElementById('search-results-div');

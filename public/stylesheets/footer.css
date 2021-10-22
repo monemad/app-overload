@@ -1,0 +1,38 @@
+#page-container {
+    position: relative;
+    min-height: 90vh;
+    height: fit-content;
+    padding-bottom: 150px;
+}
+
+#profile-page-container {
+    position: relative;
+    min-height: 90vh;
+    height: fit-content;
+    padding-bottom: 250px;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-around;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid darkgray;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+.person-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.individual-links-container {
+    margin-top: 5%;
+}
+
+#question-page {
+    padding-bottom: 150px;
+}
