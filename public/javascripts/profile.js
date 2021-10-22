@@ -20,7 +20,7 @@ window.addEventListener('DOMContentLoaded', event => {
             
             const inputs = Array.from(document.getElementsByClassName('edit-input')).map(input => input.value);
             let name;
-            console.log(inputs);
+            // console.log(inputs);
 
             if (!inputs[0] || !nameRegEx.test(inputs[0])){
                 valid = false;
@@ -46,9 +46,9 @@ window.addEventListener('DOMContentLoaded', event => {
             }
             
             if (valid){
-                console.log(name[0], name[1]);
+                // console.log(name[0], name[1]);
                 const updateValues = { firstName: name[0], lastName: name[1], username: inputs[1] };
-                console.log('about to fetch');
+                // console.log('about to fetch');
                 await fetch('/users/profile', {
                     method: 'put',
                     headers: {
@@ -56,7 +56,7 @@ window.addEventListener('DOMContentLoaded', event => {
                     },
                     body: JSON.stringify(updateValues)
                 });
-                console.log('done fetching');
+                // console.log('done fetching');
                 window.location.href = '/users/profile';
                 const confirmButton = document.getElementById('confirm-user-details');
                 confirmButton.innerText = 'Edit';
@@ -82,7 +82,7 @@ const showEditForm = () => {
     editButton.innerText = 'Confirm';
     editButton.id = 'confirm-user-details';
     const values = userDetails.map(ele => ele.innerText);
-    console.log(values);
+    // console.log(values);
     
     userDetails[0].remove();
     userDetails[1].remove();

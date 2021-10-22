@@ -52,7 +52,7 @@ const userValidators = [
         .isLength({ max: 50 })
         .withMessage('Passsword must not be more than 50 characters long')
         .matches(/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/)
-        .withMessage('Password is not formatted correctly'),
+        .withMessage('Password must contain 1 lowercase, 1 uppercase, 1 number and 1 special character'),
     check('confirmPassword')
         .exists({ checkFalsy: true })
         .withMessage('Please provide a password confirmation')

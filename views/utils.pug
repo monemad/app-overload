@@ -13,3 +13,27 @@ mixin field(labelText, fieldName, fieldValue, fieldType = 'text', req = false, p
             textarea(name=fieldName class='form-input' rows='5' required= `${req}`)= fieldValue
         else
             input(type=fieldType name=fieldName value=fieldValue placeholder=placeholder class='form-input' required= `${req}`)
+
+mixin footer()
+    div.footer 
+      .person-container
+        h2= 'Jordan Bohmbach'
+        .individual-links-container
+          a(class='github', href='https://github.com/jordan-bohmbach')
+            img(src="https://img.icons8.com/ios/50/000000/github--v1.png", alt="Jordans Github")
+          a(class='linkedin', href='https://www.linkedin.com/in/jordanbohmbach/')
+            img(src="https://img.icons8.com/ios/50/000000/linkedin.png", alt="Jordans Linkedin")
+      .person-container
+        h2= 'Moiz Ahmad'
+        .individual-links-container
+          a(class='github', href='https://www.linkedin.com/in/moiznahmad/')
+            img(src="https://img.icons8.com/ios/50/000000/github--v1.png", alt="Moizs Github")
+          a(class='linkedin', href='https://github.com/monemad')
+            img(src="https://img.icons8.com/ios/50/000000/linkedin.png", alt="Moizs Linkedin")
+      .person-container
+        h2= 'Alex Monson'
+        .individual-links-container
+          a(class='github', href='https://github.com/AmMonsoon')
+            img(src="https://img.icons8.com/ios/50/000000/github--v1.png", alt="Alexs Github")
+          a(class='linkedin', href='https://www.linkedin.com/in/alex-monson-144151222/')
+            img(src="https://img.icons8.com/ios/50/000000/linkedin.png", alt="Alexs Linkedin")

@@ -1,4 +1,5 @@
 extends layout
+include utils.pug
 
 append head
   //- add page specific styles by appending to the head
@@ -8,6 +9,7 @@ append head
   script(src="/javascripts/popular-questions.js" type="module" defer)
 
 block content
+  #page-container
     div#questions-page
         h1#question-page-header Most Popular App Overload Questions
         if userId
@@ -31,3 +33,4 @@ block content
                     p= `${question.viewCount}`
                     p Views
                   a(href=`/questions/${question.id}`)= question.title
+    +footer()

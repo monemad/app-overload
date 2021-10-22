@@ -5,7 +5,11 @@
     flex-direction: column;
     width:80%;
     right:0;
+    min-height: 90vh;
+    height: fit-content;
+    padding-bottom: 150px;
 }
+
 #user-layout {
     display:flex;
     flex-direction: row;

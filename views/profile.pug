@@ -1,65 +1,69 @@
 extends layout.pug 
+include utils.pug
 
 append head
     link(rel='stylesheet' href='/stylesheets/profile.css')
     script(src="/javascripts/profile.js" type="module" defer)
 
 block content 
-    h1= displayUser.username
-    div#user-banner
-        div#user-card
-            img#profile-pic(src=displayUser.avatarURL width='100')
-            span#reputation= `Reputation: ${displayUser.reputation}`
-        div#user-details
-            ul#user-details-list
-                li#user-name= `${displayUser.firstName} ${displayUser.lastName}`
-                li#user-email= displayUser.email
-                li#user-join-date= `Joined: ${new Date(displayUser.createdAt).toDateString()}`
-                if user && user.id === displayUser.id
-                    div#edit-text-buttons
-                        span#edit-user-details.text-button Edit
-    div#question-div
-        if user && user.id === displayUser.id
-            h2 Your Questions
-                span.counter= ` (${questions.length})`
-        else
-            h2= `${displayUser.firstName}'s Questions`
-                span.counter= ` (${questions.length})`
-        if questions.length
-            ul#question-list
-                each q in questions
-                    if q.title.length > 100
-                        li.user-question: a(href=`/questions/${q.id}` title=q.title)= `${q.title.slice(0, 100)}...`
-                            span= ` ${q.Answers.length} answer(s)`
-                    else
-                        li.user-question: a(href=`/questions/${q.id}`)= q.title
-                            span= ` ${q.Answers.length} answer(s)`
-        else
-            if user && user.id === displayUser.id   
-                p You haven't asked any questions!
-            else 
-                p= `${displayUser.firstName} hasn't asked any questions yet!`
+    #profile-page-container
+        h1= displayUser.username
+        div#user-banner
+            div#user-card
+                img#profile-pic(src=displayUser.avatarURL width='100')
+                span#reputation= `Reputation: ${displayUser.reputation}`
+            div#user-details
+                ul#user-details-list
+                    li#user-name= `${displayUser.firstName} ${displayUser.lastName}`
+                    li#user-email= displayUser.email
+                    li#user-join-date= `Joined: ${new Date(displayUser.createdAt).toDateString()}`
+                    if user && user.id === displayUser.id
+                        div#edit-text-buttons
+                            span#edit-user-details.text-button Edit
+        div#question-div
+            if user && user.id === displayUser.id
+                h2 Your Questions
+                    span.counter= ` (${questions.length})`
+            else
+                h2= `${displayUser.firstName}'s Questions`
+                    span.counter= ` (${questions.length})`
+            if questions.length
+                ul#question-list
+                    each q in questions
+                        if q.title.length > 100
+                            li.user-question: a(href=`/questions/${q.id}` title=q.title)= `${q.title.slice(0, 100)}...`
+                                span= ` ${q.Answers.length} answer(s)`
+                        else
+                            li.user-question: a(href=`/questions/${q.id}`)= q.title
+                                span= ` ${q.Answers.length} answer(s)`
+            else
+                if user && user.id === displayUser.id   
+                    p You haven't asked any questions!
+                else 
+                    p= `${displayUser.firstName} hasn't asked any questions yet!`
 
-    div#answer-div
-        if user && user.id === displayUser.id
-            h2 Your Answers
-                span.counter= ` (${answers.length})`
-        else 
-            h2= `${displayUser.firstName}'s Answers`
-                span.counter= ` (${answers.length})`
-        if answers.length
-            ul#answer-list
-                each a in answers
-                    if a.answer.length > 100
-                        li.user-answer= `${a.answer.slice(0, 100)}...`
-                            span=' for: '
-                                a(href=`/questions/${a.Question.id}` title=a.Question.title)= `${a.Question.title.split(' ')[0]}...`
-                    else
-                        li.user-answer= a.answer
-                            span=' for: '
-                                a(href=`/questions/${a.Question.id}` title=a.Question.title)= `${a.Question.title.split(' ')[0]}...`
-        else
-            if user && user.id === displayUser.id   
-                p You haven't answered any questions yet!
+        div#answer-div
+            if user && user.id === displayUser.id
+                h2 Your Answers
+                    span.counter= ` (${answers.length})`
             else 
-                p= `${displayUser.firstName} hasn't answered any questions yet!`
+                h2= `${displayUser.firstName}'s Answers`
+                    span.counter= ` (${answers.length})`
+            if answers.length
+                ul#answer-list
+                    each a in answers
+                        if a.answer.length > 100
+                            li.user-answer= `${a.answer.slice(0, 100)}...`
+                                span=' for: '
+                                    a(href=`/questions/${a.Question.id}` title=a.Question.title)= `${a.Question.title.split(' ')[0]}...`
+                        else
+                            li.user-answer= a.answer
+                                span=' for: '
+                                    a(href=`/questions/${a.Question.id}` title=a.Question.title)= `${a.Question.title.split(' ')[0]}...`
+            else
+                if user && user.id === displayUser.id   
+                    p You haven't answered any questions yet!
+                else 
+                    p= `${displayUser.firstName} hasn't answered any questions yet!`
+
+        +footer()
